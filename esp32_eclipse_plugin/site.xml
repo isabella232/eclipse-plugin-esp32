@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/ilg.esp32_eclipse.debug.gdbjtag.openocd_4.1.4.201706301007.jar" id="ilg.esp32_eclipse.debug.gdbjtag.openocd" version="4.1.4.201706301007"/>
+</site>
