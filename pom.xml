@@ -9,7 +9,7 @@
 	<!-- https://maven.apache.org/pom.html groupId:artifactId:version are all 
 		required fields, acting much like an address and timestamp in one. -->
 	<!-- Generally unique amongst an organization or a project. -->
-	<groupId>ilg.gnuarmeclipse</groupId>
+	<groupId>ilg.esp32_eclipse</groupId>
 	<!-- Generally the name that the project is known by. -->
 	<artifactId>plug-ins</artifactId>
 	<version>3.4.1-SNAPSHOT</version>
@@ -38,55 +38,23 @@
 	</licenses>
 
 	<modules>
-		<module>ilg.gnuarmeclipse.core</module>
-		<module>ilg.gnuarmeclipse.managedbuild.cross</module>
-		<module>ilg.gnuarmeclipse.managedbuild.cross-feature</module>
+		<module>ilg.esp32_eclipse.core</module>
+		<module>ilg.esp32_eclipse.managedbuild.cross</module>
 
-		<module>ilg.gnuarmeclipse.templates.core</module>
-		<module>ilg.gnuarmeclipse.templates.cortexm</module>
-		<module>ilg.gnuarmeclipse.templates.cortexm-feature</module>
-		<module>ilg.gnuarmeclipse.templates.stm</module>
-		<module>ilg.gnuarmeclipse.templates.stm-feature</module>
-		<module>ilg.gnuarmeclipse.templates.freescale</module>
-		<module>ilg.gnuarmeclipse.templates.freescale.pe</module>
-		<module>ilg.gnuarmeclipse.templates.freescale-feature</module>
-		<module>ilg.gnuarmeclipse.templates.ad</module>
-		<module>ilg.gnuarmeclipse.templates.ad-feature</module>
+		<module>ilg.esp32_eclipse.debug.core</module>
 
-		<module>ilg.gnuarmeclipse.debug.core</module>
+		<module>ilg.esp32_eclipse.debug.gdbjtag</module>
 
-		<module>ilg.gnuarmeclipse.debug.gdbjtag</module>
+		<module>ilg.esp32_eclipse.debug.gdbjtag.openocd</module>
+        <module>ilg.esp32_eclipse.debug.gdbjtag.openocd-feature</module>
 
-		<module>ilg.gnuarmeclipse.debug.gdbjtag.jlink</module>
-		<module>ilg.gnuarmeclipse.debug.gdbjtag.jlink-feature</module>
+		<module>ilg.esp32_eclipse.debug.packs</module>
 
-		<module>ilg.gnuarmeclipse.debug.gdbjtag.openocd</module>
-		<module>ilg.gnuarmeclipse.debug.gdbjtag.openocd-feature</module>
+		<module>ilg.esp32_eclipse.debug.gdbjtag.restart</module>
 
-		<module>ilg.gnuarmeclipse.debug.gdbjtag.pyocd</module>
-		<module>ilg.gnuarmeclipse.debug.gdbjtag.pyocd-feature</module>
+		<module>ilg.esp32_eclipse.packs.core</module>
+		<module>ilg.esp32_eclipse.packs.data</module>
 
-		<module>ilg.gnuarmeclipse.debug.gdbjtag.qemu</module>
-		<module>ilg.gnuarmeclipse.debug.gdbjtag.qemu-feature</module>
-
-		<module>ilg.gnuarmeclipse.debug.packs</module>
-
-		<module>ilg.gnuarmeclipse.debug.gdbjtag.restart</module>
-
-		<module>ilg.gnuarmeclipse.packs</module>
-		<module>ilg.gnuarmeclipse.packs.core</module>
-		<module>ilg.gnuarmeclipse.packs.data</module>
-		<module>ilg.gnuarmeclipse.packs.ui</module>
-		<module>ilg.gnuarmeclipse.managedbuild.packs</module>
-		<module>ilg.gnuarmeclipse.packs-feature</module>
-
-		<module>ilg.gnuarmeclipse.codered</module>
-		<module>ilg.gnuarmeclipse.codered-feature</module>
-
-		<module>ilg.gnuarmeclipse.doc.user</module>
-		<module>ilg.gnuarmeclipse.doc.user-feature</module>
-
-		<module>ilg.gnuarmeclipse-repository</module>
 	</modules>
 
 	<repositories>
@@ -191,6 +159,6 @@
 		</pluginManagement>
 	</build>
 
-	<name>GNU ARM Eclipse parent</name>
-	<url>http://gnuarmeclipse.github.io</url>
+	<name>ESP32 Eclipse parent</name>
+	<url>http://esp32_eclipse.github.io</url>
 </project>
