@@ -33,7 +33,8 @@ public class SVDPathManagerProxy implements ISVDPathManager {
 
 	private static SVDPathManagerProxy fgInstance;
 
-	public static SVDPathManagerProxy getInstance() {
+	public static SVDPathManagerProxy getInstance() 
+	{
 
 		if (fgInstance == null) {
 			fgInstance = new SVDPathManagerProxy();

@@ -35,16 +35,19 @@ public class ConfigurationBuildMacroSupplier implements IConfigurationBuildMacro
 	// ------------------------------------------------------------------------
 
 	@Override
-	public IBuildMacro getMacro(String macroName, IConfiguration configuration, IBuildMacroProvider provider) {
+	public IBuildMacro getMacro(String macroName, IConfiguration configuration, IBuildMacroProvider provider) 
+	{
 
 		for (String sCmd : fCmds) {
-			if (sCmd.equals(macroName)) {
+			if (sCmd.equals(macroName)) 
+			{
 				IToolChain toolchain = configuration.getToolChain();
 
 				String sId = Option.OPTION_PREFIX + ".command." + sCmd.replace("cross_", "");
 
 				IOption option = toolchain.getOptionBySuperClassId(sId); // $NON-NLS-1$
-				if (option != null) {
+				if (option != null) 
+				{
 					String sVal = (String) option.getValue();
 
 					// System.out.println("Macro "
@@ -59,7 +62,8 @@ public class ConfigurationBuildMacroSupplier implements IConfigurationBuildMacro
 					return new BuildMacro(macroName, BuildMacro.VALUE_TEXT, sVal);
 				}
 
-				if (Activator.getInstance().isDebugging()) {
+				if (Activator.getInstance().isDebugging()) 
+				{
 					System.out.println("Missing value of " + sId);
 				}
 				return null;

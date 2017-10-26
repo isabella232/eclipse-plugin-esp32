@@ -570,7 +570,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 		fTargetIpAddress.setEnabled(!enabled);
 		fTargetPortNumber.setEnabled(!enabled);
 	}
-
+	private static String OS = System.getProperty("os.name").toLowerCase();
 	@Override
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		try {
@@ -579,6 +579,10 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 
 			// OpenOCD GDB server
 			{
+//				if ( OS.indexOf("win") >= 0) 
+//				{
+//					System.out.println("This is Windows");
+//				}
 				// Start server locally
 				booleanDefault = PersistentPreferences.getGdbServerDoStart();
 				fDoStartGdbServer.setSelection(

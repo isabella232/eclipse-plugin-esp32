@@ -35,7 +35,8 @@ public class CProjectExtraDataManagerProxy implements ICProjectExtraDataManager 
 
 	private static CProjectExtraDataManagerProxy fgInstance;
 
-	public static CProjectExtraDataManagerProxy getInstance() {
+	public static CProjectExtraDataManagerProxy getInstance() 
+	{
 
 		if (fgInstance == null) {
 			fgInstance = new CProjectExtraDataManagerProxy();
@@ -47,7 +48,8 @@ public class CProjectExtraDataManagerProxy implements ICProjectExtraDataManager 
 
 	private ICProjectExtraDataManager fDataManagers[];
 
-	public CProjectExtraDataManagerProxy() {
+	public CProjectExtraDataManagerProxy() 
+	{
 
 		IExtension[] extensions = Platform.getExtensionRegistry().getExtensionPoint(EXTENSION_POINT_ID).getExtensions();
 

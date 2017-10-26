@@ -31,15 +31,18 @@ import org.eclipse.cdt.managedbuilder.macros.IBuildMacroProvider;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Platform;
 
-public class EnvironmentVariableSupplier implements IConfigurationEnvironmentVariableSupplier {
+public class EnvironmentVariableSupplier implements IConfigurationEnvironmentVariableSupplier 
+{
 
 	// ------------------------------------------------------------------------
 
-	public IBuildEnvironmentVariable getVariable(String variableName, IConfiguration configuration,
-			IEnvironmentVariableProvider provider) {
-		if (PathEnvironmentVariable.isVar(variableName)) {
+	public IBuildEnvironmentVariable getVariable(String variableName, IConfiguration configuration, IEnvironmentVariableProvider provider) 
+	{
+		if (PathEnvironmentVariable.isVar(variableName)) 
+		{
 			return PathEnvironmentVariable.create(configuration);
-		} else {
+		} else 
+		{
 			// System.out.println("getVariable(" + variableName + ","
 			// + configuration.getName() + ") returns null");
 			return null;

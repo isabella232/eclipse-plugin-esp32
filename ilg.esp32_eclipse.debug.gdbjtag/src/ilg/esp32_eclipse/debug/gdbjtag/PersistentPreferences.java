@@ -42,7 +42,8 @@ public class PersistentPreferences {
 
 	// ----- Getters ----------------------------------------------------------
 
-	public static String getString(String key, String defaultValue) {
+	public static String getString(String key, String defaultValue) 
+	{
 
 		String value;
 		value = Platform.getPreferencesService().getString(Activator.PLUGIN_ID, key, null, null);

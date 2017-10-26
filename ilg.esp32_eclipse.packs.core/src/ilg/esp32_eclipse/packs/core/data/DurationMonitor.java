@@ -22,13 +22,15 @@ public class DurationMonitor {
 	private int fDepth;
 	private MessageConsoleStream fOut;
 
-	public DurationMonitor() {
+	public DurationMonitor() 
+	{
 
 		fDepth = 0;
 		fOut = ConsoleStream.getConsoleOut();
 	}
 
-	public void displayTimeAndRun(Runnable runnable) {
+	public void displayTimeAndRun(Runnable runnable) 
+	{
 
 		fDepth++;
 		long beginTime = System.currentTimeMillis();

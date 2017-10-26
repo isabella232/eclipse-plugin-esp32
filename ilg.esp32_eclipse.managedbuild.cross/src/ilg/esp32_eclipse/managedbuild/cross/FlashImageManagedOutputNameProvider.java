@@ -22,7 +22,8 @@ public class FlashImageManagedOutputNameProvider implements IManagedOutputNamePr
 
 	// ------------------------------------------------------------------------
 
-	public IPath[] getOutputNames(ITool tool, IPath[] primaryInputNames) {
+	public IPath[] getOutputNames(ITool tool, IPath[] primaryInputNames) 
+	{
 
 		String value = null;
 
