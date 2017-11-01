@@ -2276,7 +2276,7 @@
 			configurationMacroSupplier="ilg.esp32_eclipse.managedbuild.cross.ConfigurationBuildMacroSupplier"
 			id="ilg.esp32_eclipse.managedbuild.cross.toolchain.base"
 			isAbstract="false"
-			languageSettingsProviders="org.eclipse.cdt.managedbuilder.core.GCCBuildCommandParser;ilg.esp32_eclipse.managedbuild.cross.GCCBuiltinSpecsDetector"
+			languageSettingsProviders="ilg.esp32_eclipse.managedbuild.cross.Esp32BuildCommandParser;ilg.esp32_eclipse.managedbuild.cross.GCCBuiltinSpecsDetector"
 			name="%toolchain.name"
 			osList="all"
 			targetTool="ilg.esp32_eclipse.managedbuild.cross.tool.c.linker;ilg.esp32_eclipse.managedbuild.cross.tool.cpp.linker;cdt.managedbuild.tool.gnu.archiver">
@@ -4465,13 +4465,21 @@
 			class="org.eclipse.cdt.managedbuilder.language.settings.providers.GCCBuiltinSpecsDetector"
 			id="ilg.esp32_eclipse.managedbuild.cross.GCCBuiltinSpecsDetector"
 			name="%GCCBuiltinSpecsDetector.name"
-			parameter="${COMMAND} ${FLAGS} ${cross_toolchain_flags} -E -P -v -dD &quot;${INPUTS}&quot;"
+			parameter="xtensa-esp32-elf-gcc ${FLAGS} ${cross_toolchain_flags} -E -P -v -dD &quot;${INPUTS}&quot;"
 			prefer-non-shared="true">
 			<language-scope id="org.eclipse.cdt.core.gcc">
 			</language-scope>
 			<language-scope id="org.eclipse.cdt.core.g++">
 			</language-scope>
 		</provider>
+		<provider
+            class="org.eclipse.cdt.managedbuilder.language.settings.providers.GCCBuildCommandParser"
+            id="ilg.esp32_eclipse.managedbuild.cross.Esp32BuildCommandParser"
+            name="%XlcBuildCommandParserName"
+            parameter="xtensa-esp32-elf-(g?cc)|([gc]\+\+)|(clang)"
+            prefer-non-shared="true">
+      	</provider>
+
 	</extension>
 	<extension point="org.eclipse.cdt.ui.cPropertyTab">
 		<tab

@@ -19,175 +19,94 @@ import ilg.esp32_eclipse.managedbuild.cross.ui.PersistentPreferences;
 
 import java.io.File;
 
-import org.eclipse.cdt.core.cdtvariables.CdtVariableException;
+import org.eclipse.cdt.core.CCorePlugin;
+import org.eclipse.cdt.core.envvar.IEnvironmentVariable;
+import org.eclipse.cdt.core.settings.model.ICConfigurationDescription;
+//import org.eclipse.cdt.internal.core.Cygwin;
 import org.eclipse.cdt.managedbuilder.core.IConfiguration;
-import org.eclipse.cdt.managedbuilder.core.IOption;
-import org.eclipse.cdt.managedbuilder.core.IToolChain;
-import org.eclipse.cdt.managedbuilder.core.ManagedBuildManager;
 import org.eclipse.cdt.managedbuilder.envvar.IBuildEnvironmentVariable;
 import org.eclipse.cdt.managedbuilder.envvar.IConfigurationEnvironmentVariableSupplier;
 import org.eclipse.cdt.managedbuilder.envvar.IEnvironmentVariableProvider;
-import org.eclipse.cdt.managedbuilder.macros.IBuildMacroProvider;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.Platform;
+import org.eclipse.cdt.managedbuilder.internal.envvar.BuildEnvVar;
+import org.eclipse.core.runtime.Path;
 
-public class EnvironmentVariableSupplier implements IConfigurationEnvironmentVariableSupplier 
-{
+/**
+ * @noextend This class is not intended to be subclassed by clients.
+ */
+public class EnvironmentVariableSupplier implements IConfigurationEnvironmentVariableSupplier {
+	private static final String ENV_PATH = "PATH"; //$NON-NLS-1$
+	private static final String ENV_LANG = "LANG"; //$NON-NLS-1$
+	private static final String ENV_LC_ALL = "LC_ALL"; //$NON-NLS-1$
+	private static final String ENV_LC_MESSAGES = "LC_MESSAGES"; //$NON-NLS-1$
 
-	// ------------------------------------------------------------------------
+	private static final String PROPERTY_OSNAME = "os.name"; //$NON-NLS-1$
+	private static final String BACKSLASH = java.io.File.separator;
 
-	public IBuildEnvironmentVariable getVariable(String variableName, IConfiguration configuration, IEnvironmentVariableProvider provider) 
-	{
-		if (PathEnvironmentVariable.isVar(variableName)) 
-		{
-			return PathEnvironmentVariable.create(configuration);
-		} else 
-		{
-			// System.out.println("getVariable(" + variableName + ","
-			// + configuration.getName() + ") returns null");
+	private static final String ENV_CYGWIN_HOME = "CYGWIN_HOMW_PATH";
+	private static final String ENV_BATCH_BUILD = "BATCH_BUILD";
+	
+	@Override
+	public IBuildEnvironmentVariable getVariable(String variableName, IConfiguration configuration, IEnvironmentVariableProvider provider) {
+		if (variableName == null) {
 			return null;
 		}
-	}
 
-	public IBuildEnvironmentVariable[] getVariables(IConfiguration configuration,
-			IEnvironmentVariableProvider provider) {
-		IBuildEnvironmentVariable path = PathEnvironmentVariable.create(configuration);
-		if (path != null) {
-			return new IBuildEnvironmentVariable[] { path };
-		} else {
-			// System.out.println("getVariables(" + configuration.getName()
-			// + ") returns empty array");
-			return new IBuildEnvironmentVariable[0];
-		}
-	}
-
-	private static class PathEnvironmentVariable implements IBuildEnvironmentVariable {
-
-		public static String name = "PATH"; //$NON-NLS-1$
-
-		private File path;
-
-		private PathEnvironmentVariable(File path) {
-			// System.out.println("cpath=" + path);
-			this.path = path;
+		if (!System.getProperty(PROPERTY_OSNAME).toLowerCase().startsWith("windows ")) { //$NON-NLS-1$
+			return null;
 		}
 
-		@SuppressWarnings("unused")
-		public static PathEnvironmentVariable create(IConfiguration configuration) {
-			IToolChain toolchain = configuration.getToolChain();
-
-			IProject project = (IProject) configuration.getManagedProject().getOwner();
-
-			String path = PersistentPreferences.getBuildToolsPath(project);
-
-			IOption option;
-			option = toolchain.getOptionBySuperClassId(Option.OPTION_TOOLCHAIN_NAME); // $NON-NLS-1$
-			String toolchainName = (String) option.getValue();
-
-			String toolchainPath = null;
-
-			{
-				// TODO: remove DEPRECATED
-
-				// Warning: since multiple per configuration paths are copied
-				// into a single per project path, in case the configuration
-				// paths were different, each usage will override the previous
-				// values.
-				boolean isPathPerProject = ProjectStorage.isToolchainPathPerProject(configuration);
-
-				if (isPathPerProject) {
-					// Get per configuration path
-					toolchainPath = ProjectStorage.getToolchainPath(configuration);
-
-					// Copy the toolchain path from the wrong storage to project
-					// preferences.
-					PersistentPreferences.putToolchainPath(toolchainName, toolchainPath, project);
-
-					// Disable flag
-					ProjectStorage.putToolchainPathPerProject(configuration, false);
-
-					if (Activator.getInstance().isDebugging()) {
-						System.out.println("Path \"" + toolchainPath + "\" copied to project " + project.getName());
-					}
+		if (variableName.equalsIgnoreCase(ENV_PATH)) {
+			@SuppressWarnings("nls")
+			String path = "${" + ENV_CYGWIN_HOME + "}" + BACKSLASH + "bin";
+			return new BuildEnvVar(ENV_PATH, path, IBuildEnvironmentVariable.ENVVAR_PREPEND);
+		} else if (variableName.equals(ENV_CYGWIN_HOME)) {
+			IEnvironmentVariable varCygwincppHome = CCorePlugin.getDefault().getBuildEnvironmentManager().getVariable(ENV_CYGWIN_HOME, (ICConfigurationDescription) null, false);
+			if (varCygwincppHome == null) {
+				// Contribute if the variable does not already come from workspace environment
+				String envCygwinHomeValue = varCygwincppHome != null ? varCygwincppHome.getValue() : null;
+				String home = envCygwinHomeValue;
+				if (home == null) {
+					// If the variable is not defined still show it in the environment variables list as a hint to user
+					home = ""; //$NON-NLS-1$
 				}
+				return new BuildEnvVar(ENV_CYGWIN_HOME, new Path(home).toOSString());
 			}
+			return null;
 
-			// Get the most specific toolchain path (project, workspace,
-			// Eclipse, defaults).
-			toolchainPath = PersistentPreferences.getToolchainPath(toolchainName, project);
-
-			if (path.isEmpty()) {
-				path = toolchainPath;
+		} else if (variableName.equalsIgnoreCase(ENV_LANG)) {
+			// Workaround for not being able to select encoding for CDT console -> change codeset to Latin1
+			String langValue = System.getenv(ENV_LANG);
+			if (langValue == null || langValue.length() == 0) {
+				langValue = System.getenv(ENV_LC_ALL);
+			}
+			if (langValue == null || langValue.length() == 0) {
+				langValue = System.getenv(ENV_LC_MESSAGES);
+			}
+			if (langValue != null && langValue.length() > 0) {
+				// langValue is [language[_territory][.codeset][@modifier]], i.e. "en_US.UTF-8@dict"
+				// we replace codeset with Latin1 as CDT console garbles UTF
+				// and ignore modifier which is not used by LANG
+				langValue = langValue.replaceFirst("([^.@]*)(\\..*)?(@.*)?", "$1.ISO-8859-1"); //$NON-NLS-1$ //$NON-NLS-2$
 			} else {
-				if (!toolchainPath.isEmpty()) {
-					// Concatenate build tools path with toolchain path.
-					path += EclipseUtils.getPathSeparator();
-					path += toolchainPath;
-				}
+				langValue = "C.ISO-8859-1"; //$NON-NLS-1$
 			}
-
-			if (!path.isEmpty()) {
-
-				// if present, substitute macros
-				if (path.indexOf("${") >= 0) {
-					path = resolveMacros(path, configuration);
-				}
-
-				File sysroot = new File(path);
-				File bin = new File(sysroot, "bin"); //$NON-NLS-1$
-				if (bin.isDirectory())
-					sysroot = bin;
-				if (false) {
-					if (Activator.getInstance().isDebugging()) {
-						System.out.println("PATH=" + sysroot + " opt=" + path + " cfg=" + configuration + " prj="
-								+ configuration.getManagedProject().getOwner().getName());
-					}
-				}
-				return new PathEnvironmentVariable(sysroot);
-			}
-
-			// System.out.println("create(" + configuration.getName()
-			// + ") returns null");
-			return null;
+			return new BuildEnvVar(ENV_LANG, langValue);
+		} 
+		else if (variableName.equals(ENV_BATCH_BUILD)) 
+		{	
+			String bbuildValue = "1";
+			return new BuildEnvVar(ENV_BATCH_BUILD, bbuildValue);
 		}
-
-		private static String resolveMacros(String str, IConfiguration configuration) {
-
-			String result = str;
-			try {
-				result = ManagedBuildManager.getBuildMacroProvider().resolveValue(str, "", " ", //$NON-NLS-1$ //$NON-NLS-2$
-						IBuildMacroProvider.CONTEXT_CONFIGURATION, configuration);
-			} catch (CdtVariableException e) {
-				Activator.log("resolveMacros " + e.getMessage());
-			}
-
-			return result;
-
-		}
-
-		public static boolean isVar(String name) {
-			// Windows has case insensitive env var names
-			return Platform.getOS().equals(Platform.OS_WIN32) ? name.equalsIgnoreCase(PathEnvironmentVariable.name)
-					: name.equals(PathEnvironmentVariable.name);
-		}
-
-		public String getDelimiter() {
-			return Platform.getOS().equals(Platform.OS_WIN32) ? ";" : ":"; //$NON-NLS-1$ //$NON-NLS-2$
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public int getOperation() {
-			return IBuildEnvironmentVariable.ENVVAR_PREPEND;
-		}
-
-		public String getValue() {
-			return path.getAbsolutePath();
-		}
-
+		return null;
 	}
 
-	// ------------------------------------------------------------------------
+	@Override
+	public IBuildEnvironmentVariable[] getVariables(IConfiguration configuration, IEnvironmentVariableProvider provider) {
+		IBuildEnvironmentVariable varHome = getVariable(ENV_CYGWIN_HOME, configuration, provider);
+		IBuildEnvironmentVariable varLang = getVariable(ENV_LANG, configuration, provider);
+		IBuildEnvironmentVariable varPath = getVariable(ENV_PATH, configuration, provider);
+		IBuildEnvironmentVariable varBatch = getVariable(ENV_BATCH_BUILD, configuration, provider);
+
+		return new IBuildEnvironmentVariable[] {varHome, varLang, varPath, varBatch};
+	}
 }
