@@ -51,6 +51,7 @@ public class SetCrossCommandWizardPage extends MBSCustomPage {
 	private Composite fComposite;
 	private boolean fFinish = false;
 	private Text fPathTxt;
+	private Text fIdfPathTxt;
 	private Combo fToolchainCombo;
 	private int fSelectedToolchainIndex;
 	private String fSelectedToolchainName;
@@ -65,6 +66,7 @@ public class SetCrossCommandWizardPage extends MBSCustomPage {
 
 	public static final String CROSS_TOOLCHAIN_NAME = "toolchain.name"; //$NON-NLS-1$
 	public static final String CROSS_TOOLCHAIN_PATH = "toolchain.path"; //$NON-NLS-1$
+	public static final String CROSS_TOOLCHAIN_IDFPATH = "toolchain.idfpath"; //$NON-NLS-1$
 
 	// ------------------------------------------------------------------------
 
@@ -72,7 +74,8 @@ public class SetCrossCommandWizardPage extends MBSCustomPage {
 		pageID = PAGE_ID;
 
 		// initialise properties in local storage
-		MBSCustomPageManager.addPageProperty(PAGE_ID, CROSS_TOOLCHAIN_PATH, ""); //$NON-NLS-1$
+		MBSCustomPageManager.addPageProperty(PAGE_ID, CROSS_TOOLCHAIN_PATH, "c:\\msys32"); //$NON-NLS-1$
+		MBSCustomPageManager.addPageProperty(PAGE_ID, CROSS_TOOLCHAIN_IDFPATH, ""); //$NON-NLS-1$
 		MBSCustomPageManager.addPageProperty(PAGE_ID, CROSS_TOOLCHAIN_NAME, ""); //$NON-NLS-1$
 	}
 
@@ -101,69 +104,19 @@ public class SetCrossCommandWizardPage extends MBSCustomPage {
 
 	public void createControl(Composite parent) {
 		fComposite = new Composite(parent, SWT.NULL);
-
+		fSelectedToolchainName = PersistentPreferences.getToolchainName();
+		
 		fComposite.setLayout(new GridLayout(3, false));
 		GridData layoutData = new GridData();
 		fComposite.setLayoutData(layoutData);
 
 		// Toolchain
-		Label toolchainLbl = new Label(fComposite, SWT.NONE);
-		toolchainLbl.setText(Messages.SetCrossCommandWizardPage_toolchain);
-
-		fToolchainCombo = new Combo(fComposite, SWT.DROP_DOWN);
-		layoutData = new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1);
-		fToolchainCombo.setLayoutData(layoutData);
-
-		// create the selection array
-		String[] toolchains = new String[ToolchainDefinition.getSize()];
-		for (int i = 0; i < ToolchainDefinition.getSize(); ++i) {
-			toolchains[i] = ToolchainDefinition.getToolchain(i).getFullName();
-		}
-		fToolchainCombo.setItems(toolchains);
-
-		// decide which one is selected
-		try {
-			fSelectedToolchainName = PersistentPreferences.getToolchainName();
-			// System.out.println("Previous toolchain name "
-			// + fSelectedToolchainName);
-			if (fSelectedToolchainName != null && fSelectedToolchainName.length() > 0) {
-				try {
-					fSelectedToolchainIndex = ToolchainDefinition.findToolchainByName(fSelectedToolchainName);
-				} catch (IndexOutOfBoundsException e) {
-					fSelectedToolchainIndex = ToolchainDefinition.getDefault();
-				}
-			} else {
-				fSelectedToolchainIndex = ToolchainDefinition.getDefault();
-				fSelectedToolchainName = ToolchainDefinition.getToolchain(fSelectedToolchainIndex).getName();
-			}
-		} catch (Exception e) {
-			fSelectedToolchainIndex = 0;
-		}
-		updateToolchainNameProperty();
-
-		String toolchainSel = toolchains[fSelectedToolchainIndex];
-		fToolchainCombo.setText(toolchainSel);
-
-		fToolchainCombo.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent event) {
-				// System.out.println("Combo " + toolchainCombo.getText());
-				fSelectedToolchainIndex = fToolchainCombo.getSelectionIndex();
-				fSelectedToolchainName = ToolchainDefinition.getToolchain(fSelectedToolchainIndex).getName();
-				updateToolchainNameProperty();
-
-				String crossCommandPath = PersistentPreferences.getToolchainPath(fSelectedToolchainName, null);
-				fPathTxt.setText(crossCommandPath);
-
-			}
-		});
-
-		// Path
-		Label label = new Label(fComposite, SWT.NONE);
-		label.setText(Messages.SetCrossCommandWizardPage_path);
+		Label label_sys = new Label(fComposite, SWT.NONE);
+		label_sys.setText(Messages.SetCrossCommandWizardPage_path);
 
 		fPathTxt = new Text(fComposite, SWT.SINGLE | SWT.BORDER);
-		String crossCommandPath = PersistentPreferences.getToolchainPath(fSelectedToolchainName, null);
-		fPathTxt.setText(crossCommandPath);
+		String sys_path = PersistentPreferences.getToolchainPath(fSelectedToolchainName, null);
+		fPathTxt.setText(sys_path);
 		updatePathProperty();
 
 		layoutData = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
@@ -173,6 +126,94 @@ public class SetCrossCommandWizardPage extends MBSCustomPage {
 			public void modifyText(ModifyEvent e) {
 
 				updatePathProperty();
+			}
+		});
+
+		Button button_sys = new Button(fComposite, SWT.NONE);
+		button_sys.setText(Messages.SetCrossCommandWizardPage_browse);
+		button_sys.addSelectionListener(new SelectionListener() {
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				DirectoryDialog dirDialog = new DirectoryDialog(fComposite.getShell(), SWT.APPLICATION_MODAL);
+				String browsedDirectory = dirDialog.open();
+				fPathTxt.setText(browsedDirectory);
+
+			}
+		});
+		layoutData = new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1);
+		button_sys.setLayoutData(layoutData);
+
+		// // Toolchain
+		// Label toolchainLbl = new Label(fComposite, SWT.NONE);
+		// toolchainLbl.setText(Messages.SetCrossCommandWizardPage_idf);
+
+		// fToolchainCombo = new Combo(fComposite, SWT.DROP_DOWN);
+		// layoutData = new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1);
+		// fToolchainCombo.setLayoutData(layoutData);
+
+		// // create the selection array
+		// String[] toolchains = new String[ToolchainDefinition.getSize()];
+		// for (int i = 0; i < ToolchainDefinition.getSize(); ++i) {
+		// 	toolchains[i] = ToolchainDefinition.getToolchain(i).getFullName();
+		// }
+		// fToolchainCombo.setItems(toolchains);
+
+		// // decide which one is selected
+		// try {
+		// 	fSelectedToolchainName = PersistentPreferences.getToolchainName();
+		// 	// System.out.println("Previous toolchain name "
+		// 	// + fSelectedToolchainName);
+		// 	if (fSelectedToolchainName != null && fSelectedToolchainName.length() > 0) {
+		// 		try {
+		// 			fSelectedToolchainIndex = ToolchainDefinition.findToolchainByName(fSelectedToolchainName);
+		// 		} catch (IndexOutOfBoundsException e) {
+		// 			fSelectedToolchainIndex = ToolchainDefinition.getDefault();
+		// 		}
+		// 	} else {
+		// 		fSelectedToolchainIndex = ToolchainDefinition.getDefault();
+		// 		fSelectedToolchainName = ToolchainDefinition.getToolchain(fSelectedToolchainIndex).getName();
+		// 	}
+		// } catch (Exception e) {
+		// 	fSelectedToolchainIndex = 0;
+		// }
+		// updateToolchainNameProperty();
+
+		// String toolchainSel = toolchains[fSelectedToolchainIndex];
+		// fToolchainCombo.setText(toolchainSel);
+
+		// fToolchainCombo.addSelectionListener(new SelectionAdapter() {
+		// 	public void widgetSelected(SelectionEvent event) {
+		// 		// System.out.println("Combo " + toolchainCombo.getText());
+		// 		fSelectedToolchainIndex = fToolchainCombo.getSelectionIndex();
+		// 		fSelectedToolchainName = ToolchainDefinition.getToolchain(fSelectedToolchainIndex).getName();
+		// 		updateToolchainNameProperty();
+
+		// 		String crossCommandPath = PersistentPreferences.getToolchainPath(fSelectedToolchainName, null);
+		// 		fPathTxt.setText(crossCommandPath);
+
+		// 	}
+		// });
+
+		// Path
+		Label label = new Label(fComposite, SWT.NONE);
+		label.setText(Messages.SetCrossCommandWizardPage_idfpath);
+
+		fIdfPathTxt = new Text(fComposite, SWT.SINGLE | SWT.BORDER);
+		String crossIdfPath = PersistentPreferences.getToolchainIdfPath(fSelectedToolchainName, null);
+//		String crossCommandPath = "c:\\Work\\Espressif\\Tech\\Git\\esp-idf";
+		fIdfPathTxt.setText(crossIdfPath);
+		updateIdfPathProperty();
+
+		layoutData = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+		fIdfPathTxt.setLayoutData(layoutData);
+		fIdfPathTxt.addModifyListener(new ModifyListener() {
+
+			public void modifyText(ModifyEvent e) {
+
+				updateIdfPathProperty();
 			}
 		});
 
@@ -186,7 +227,7 @@ public class SetCrossCommandWizardPage extends MBSCustomPage {
 			public void widgetSelected(SelectionEvent e) {
 				DirectoryDialog dirDialog = new DirectoryDialog(fComposite.getShell(), SWT.APPLICATION_MODAL);
 				String browsedDirectory = dirDialog.open();
-				fPathTxt.setText(browsedDirectory);
+				fIdfPathTxt.setText(browsedDirectory);
 
 			}
 		});
@@ -245,6 +286,10 @@ public class SetCrossCommandWizardPage extends MBSCustomPage {
 	 * MBSCustomPageManager and properties are used to pass things to
 	 * SetCrossCommandOperation
 	 */
+	private void updateIdfPathProperty() {
+		MBSCustomPageManager.addPageProperty(PAGE_ID, CROSS_TOOLCHAIN_IDFPATH, fIdfPathTxt.getText());
+	}
+
 	private void updatePathProperty() {
 		MBSCustomPageManager.addPageProperty(PAGE_ID, CROSS_TOOLCHAIN_PATH, fPathTxt.getText());
 	}

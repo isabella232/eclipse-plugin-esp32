@@ -177,6 +177,35 @@ public class DefaultPreferences {
 		putString(key, value);
 	}
 
+	public static void putToolchainIdfPath(String toolchainName, String value) {
+
+		String key = PersistentPreferences.getToolchainIdfKey(toolchainName);
+		if (Activator.getInstance().isDebugging()) {
+			System.out.println("Default " + key + "=" + value);
+		}
+		putString(key, value);
+	}
+	public static String getToolchainIdfPath(String toolchainName) {
+
+		String key = PersistentPreferences.getToolchainIdfKey(toolchainName);
+		String value = getString(key, null);
+		if (value == null) {
+
+			// TODO: remove DEPRECATED
+			try {
+				Properties prop = getToolchainProperties();
+				int hash = Math.abs(toolchainName.trim().hashCode());
+				value = prop.getProperty(DEFAULT_IDFPATH + "." + String.valueOf(hash), "").trim();
+			} catch (IOException e) {
+				value = "";
+			}
+		}
+
+		if (Activator.getInstance().isDebugging()) {
+			System.out.println("getToolchainPath()=\"" + value + "\" (" + key + ")");
+		}
+		return value;
+	}
 	// ------------------------------------------------------------------------
 
 	/**
@@ -198,7 +227,8 @@ public class DefaultPreferences {
 		return value;
 	}
 
-	public static void putToolchainSearchPath(String toolchainName, String value) {
+	public static void putToolchainSearchPath(String toolchainName, String value) 
+	{
 
 		String key = PersistentPreferences.getToolchainSearchKey(toolchainName);
 		if (Activator.getInstance().isDebugging()) {
@@ -403,6 +433,7 @@ public class DefaultPreferences {
 	// TODO: remove DEPRECATED
 	public static final String DEFAULT_NAME = "default.name";
 	public static final String DEFAULT_PATH = "default.path";
+	public static final String DEFAULT_IDFPATH = "default.idfpath";
 	public static final String TOOLCHAIN = "toolchains.prefs";
 	private static Properties fgToolchainProperties;
 

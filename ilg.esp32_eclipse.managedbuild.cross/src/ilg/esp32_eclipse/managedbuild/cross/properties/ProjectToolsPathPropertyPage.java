@@ -100,15 +100,17 @@ public class ProjectToolsPathPropertyPage extends FieldEditorPropertyPage {
 
 		for (String toolchainName : toolchainNames) {
 
-			FieldEditor labelField = new LabelFakeFieldEditor(toolchainName, Messages.ToolsPaths_ToolchainName_label,
-					getFieldEditorParent());
+			FieldEditor labelField = new LabelFakeFieldEditor(toolchainName, Messages.ToolsPaths_ToolchainName_label, getFieldEditorParent());
 			addField(labelField);
 
 			isStrict = DefaultPreferences.getBoolean(PersistentPreferences.PROJECT_TOOLCHAIN_PATH_STRICT, true);
 			String key = PersistentPreferences.getToolchainKey(toolchainName);
-			FieldEditor toolchainPathField = new DirectoryNotStrictFieldEditor(key, Messages.ToolchainPaths_label,
-					getFieldEditorParent(), isStrict);
+			FieldEditor toolchainPathField = new DirectoryNotStrictFieldEditor(key, Messages.ToolchainPaths_label, getFieldEditorParent(), isStrict);
 			addField(toolchainPathField);
+
+			FieldEditor toolchainIdfPathField = new DirectoryNotStrictFieldEditor(key, Messages.ToolchainIdfPaths_label,
+					getFieldEditorParent(), isStrict);
+			addField(toolchainIdfPathField);
 		}
 	}
 

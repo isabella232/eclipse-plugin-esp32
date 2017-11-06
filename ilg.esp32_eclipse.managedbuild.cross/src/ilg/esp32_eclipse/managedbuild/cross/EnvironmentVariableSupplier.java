@@ -28,6 +28,7 @@ import org.eclipse.cdt.managedbuilder.envvar.IBuildEnvironmentVariable;
 import org.eclipse.cdt.managedbuilder.envvar.IConfigurationEnvironmentVariableSupplier;
 import org.eclipse.cdt.managedbuilder.envvar.IEnvironmentVariableProvider;
 import org.eclipse.cdt.managedbuilder.internal.envvar.BuildEnvVar;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Path;
 
 /**
@@ -42,8 +43,9 @@ public class EnvironmentVariableSupplier implements IConfigurationEnvironmentVar
 	private static final String PROPERTY_OSNAME = "os.name"; //$NON-NLS-1$
 	private static final String BACKSLASH = java.io.File.separator;
 
-	private static final String ENV_CYGWIN_HOME = "CYGWIN_HOMW_PATH";
+	private static final String ENV_CYGWIN_HOME = "TOOLCHAIN_HOME_PATH";
 	private static final String ENV_BATCH_BUILD = "BATCH_BUILD";
+	private static final String ENV_IDF_PATH = "IDF_PATH";
 	
 	@Override
 	public IBuildEnvironmentVariable getVariable(String variableName, IConfiguration configuration, IEnvironmentVariableProvider provider) {
@@ -57,14 +59,22 @@ public class EnvironmentVariableSupplier implements IConfigurationEnvironmentVar
 
 		if (variableName.equalsIgnoreCase(ENV_PATH)) {
 			@SuppressWarnings("nls")
-			String path = "${" + ENV_CYGWIN_HOME + "}" + BACKSLASH + "bin";
+			// Add MSys32 path to the main path....C:\\msys32\\usr\bin;C:\\msys32\mingw32\\bin;C:\\msys32\\opt\\xtensa-esp32-elf\\bin
+			String path = "";
+			 path += "${" + ENV_CYGWIN_HOME + "}" + "\\usr\\bin;";
+			 path += "${" + ENV_CYGWIN_HOME + "}" + "\\mingw32\\bin;";
+			 path += "${" + ENV_CYGWIN_HOME + "}" + "\\opt\\xtensa-esp32-elf\\bin;";
+
 			return new BuildEnvVar(ENV_PATH, path, IBuildEnvironmentVariable.ENVVAR_PREPEND);
 		} else if (variableName.equals(ENV_CYGWIN_HOME)) {
 			IEnvironmentVariable varCygwincppHome = CCorePlugin.getDefault().getBuildEnvironmentManager().getVariable(ENV_CYGWIN_HOME, (ICConfigurationDescription) null, false);
 			if (varCygwincppHome == null) {
-				// Contribute if the variable does not already come from workspace environment
-				String envCygwinHomeValue = varCygwincppHome != null ? varCygwincppHome.getValue() : null;
-				String home = envCygwinHomeValue;
+				String fSelectedToolchainName = PersistentPreferences.getToolchainName();
+				IProject project = (IProject) configuration.getManagedProject().getOwner();
+				String cross_Path = PersistentPreferences.getToolchainPath(fSelectedToolchainName, project);
+				String project_Path = ProjectStorage.getToolchainPath(configuration);
+				if (project_Path == "") project_Path = cross_Path;
+				String home = project_Path;
 				if (home == null) {
 					// If the variable is not defined still show it in the environment variables list as a hint to user
 					home = ""; //$NON-NLS-1$
@@ -97,6 +107,15 @@ public class EnvironmentVariableSupplier implements IConfigurationEnvironmentVar
 			String bbuildValue = "1";
 			return new BuildEnvVar(ENV_BATCH_BUILD, bbuildValue);
 		}
+		else if (variableName.equals(ENV_IDF_PATH)) 
+		{	
+			String fSelectedToolchainName = PersistentPreferences.getToolchainName();
+			IProject project = (IProject) configuration.getManagedProject().getOwner();
+			String cross_IdfPath = PersistentPreferences.getToolchainIdfPath(fSelectedToolchainName, project);
+			String project_IdfPath = ProjectStorage.getToolchainIdfPath(configuration);
+			if (project_IdfPath == "") project_IdfPath = cross_IdfPath;
+			return new BuildEnvVar(ENV_IDF_PATH, project_IdfPath);
+		}
 		return null;
 	}
 
@@ -106,7 +125,8 @@ public class EnvironmentVariableSupplier implements IConfigurationEnvironmentVar
 		IBuildEnvironmentVariable varLang = getVariable(ENV_LANG, configuration, provider);
 		IBuildEnvironmentVariable varPath = getVariable(ENV_PATH, configuration, provider);
 		IBuildEnvironmentVariable varBatch = getVariable(ENV_BATCH_BUILD, configuration, provider);
+		IBuildEnvironmentVariable varIdfPath = getVariable(ENV_IDF_PATH, configuration, provider);
 
-		return new IBuildEnvironmentVariable[] {varHome, varLang, varPath, varBatch};
+		return new IBuildEnvironmentVariable[] {varHome, varLang, varPath, varBatch, varIdfPath};
 	}
 }

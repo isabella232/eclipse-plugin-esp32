@@ -2288,7 +2288,7 @@
 				osList="all">
 			</targetPlatform>
 			<builder
-				command="${cross_make}"
+				command="make"
 				id="ilg.esp32_eclipse.managedbuild.cross.builder"
 				superClass="cdt.managedbuild.target.gnu.builder">
 			</builder>
@@ -4488,7 +4488,7 @@
 			icon="icons/elcl16/config-tool.gif"
 			name="%tab.toolchainSettings"
 			parent="org.eclipse.cdt.managedbuilder.ui.properties.Page_BuildSettings"
-			tooltip="Select and configure the toolchain  "
+			tooltip="Select and configure the toolchain"
 			weight="012">
 		</tab>
 
@@ -4544,8 +4544,47 @@
 			type="java.lang.Object">
 		</propertyTester>
 	</extension>
+
     
    <!--       
+	<extension
+       point="org.eclipse.ui.navigator.navigatorContent">
+		<navigatorContent
+			activeByDefault="true"
+			contentProvider="org.eclipse.cdt.make.internal.ui.MakeNavContentProvider"
+			id="org.eclipse.cdt.make.ui.makeTargets.content"
+			labelProvider="org.eclipse.cdt.make.internal.ui.MakeNavLabelProvider"
+			name="Build Targets">
+		<triggerPoints>
+			<or>
+				<and>
+					<instanceof
+						value="org.eclipse.core.resources.IContainer">
+					</instanceof>
+					<test
+						property="org.eclipse.core.resources.projectNature"
+						value="org.eclipse.cdt.core.cnature">
+					</test>
+				</and>
+				<instanceof
+					value="org.eclipse.cdt.core.model.ICContainer">
+				</instanceof>
+			</or>
+		</triggerPoints>
+		</navigatorContent>
+		<actionProvider
+			class="org.eclipse.cdt.make.internal.ui.MakeTargetActionProvider"
+			id="org.eclipse.cdt.make.ui.makeTargets.actions">
+		<enablement>
+			<instanceof
+					value="org.eclipse.cdt.make.core.IMakeTarget">
+			</instanceof>
+		</enablement>
+		</actionProvider>
+ 	</extension>s
+
+
+
    <extension
          point="org.eclipse.ui.propertyPages">
 
@@ -4571,6 +4610,6 @@
 	<extension point="ilg.esp32_eclipse.managedbuild.cross.toolchains">
 		<toolchain
 			name="Custom"
-			prefix="arm-none-eabi-" />
+			prefix="xtensa-esp32-elf-" />
 	</extension>
 </plugin>

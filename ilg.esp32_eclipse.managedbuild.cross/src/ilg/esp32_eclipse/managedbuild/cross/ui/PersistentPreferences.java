@@ -32,7 +32,12 @@ public class PersistentPreferences {
 	private static final String TOOLCHAIN_SEARCH_PATH_KEY = "toolchain.search.path.%d";
 	private static final String TOOLCHAIN_SEARCH_PATH_OS_KEY = "toolchain.search.path.%s.%d";
 
+	private static final String TOOLCHAIN_IDFPATH_KEY = "toolchain.idfpath.%d";
+	private static final String TOOLCHAIN_SEARCH_IDFPATH_KEY = "toolchain.search.idfpath.%d";
+	private static final String TOOLCHAIN_SEARCH_IDFPATH_OS_KEY = "toolchain.search.idfpath.%s.%d";
+
 	public static final String BUILD_TOOLS_PATH_KEY = "buildTools.path";
+	public static final String BUILD_TOOLS_IDFPATH_KEY = "buildTools.idfpath";
 
 	public static final String GLOBAL_TOOLCHAIN_PATH_STRICT = "global.toolchain.path.strict";
 	public static final String GLOBAL_BUILDTOOLS_PATH_STRICT = "global.buildTools.path.strict";
@@ -193,6 +198,12 @@ public class PersistentPreferences {
 		String key = String.format(TOOLCHAIN_PATH_KEY, hash);
 		return key;
 	}
+	public static String getToolchainIdfKey(String toolchainName) {
+
+		int hash = Math.abs(toolchainName.trim().hashCode());
+		String key = String.format(TOOLCHAIN_IDFPATH_KEY, hash);
+		return key;
+	}
 
 	/**
 	 * Get the toolchain path for a given toolchain name.
@@ -217,6 +228,28 @@ public class PersistentPreferences {
 	}
 
 	/**
+	 * Get the toolchain path for a given toolchain name.
+	 * 
+	 * @param toolchainName
+	 * @return a string, possibly empty.
+	 */
+	public static String getToolchainIdfPath(String toolchainName, IProject project) {
+
+		String value = getString(getToolchainIdfKey(toolchainName), null, project);
+		if (value != null && !value.isEmpty()) {
+			return value;
+		}
+
+		value = "";
+		{
+			// TODO: remove DEPRECATED
+			value = DefaultPreferences.getToolchainIdfPath(toolchainName);
+		}
+
+		return value;
+	}
+
+	/**
 	 * Store the toolchain path in the Workspace/Eclipse scope. Used in the
 	 * project wizard, to maintain global persistency.
 	 * 
@@ -226,6 +259,18 @@ public class PersistentPreferences {
 	public static void putToolchainPath(String toolchainName, String path) {
 
 		putString(getToolchainKey(toolchainName), path);
+	}
+
+	/**
+	 * Store the toolchain path in the Workspace/Eclipse scope. Used in the
+	 * project wizard, to maintain global persistency.
+	 * 
+	 * @param toolchainName
+	 * @param path
+	 */
+	public static void putToolchainIdfPath(String toolchainName, String path) {
+
+		putString(getToolchainIdfKey(toolchainName), path);
 	}
 
 	/**
@@ -241,6 +286,19 @@ public class PersistentPreferences {
 		putProjectString(getToolchainKey(toolchainName), path, project);
 	}
 
+	/**
+	 * Store the toolchain path in the Project scope. Used in
+	 * EnvironmentVariableSupplier to copy path from old storage to new storage.
+	 * 
+	 * @param toolchainName
+	 * @param path
+	 * @param project
+	 */
+	public static void putToolchainIdfPath(String toolchainName, String path, IProject project) {
+
+		putProjectString(getToolchainIdfKey(toolchainName), path, project);
+	}
+
 	// ------------------------------------------------------------------------
 
 	public static String getToolchainSearchKey(String toolchainName) {
@@ -251,11 +309,28 @@ public class PersistentPreferences {
 		return key;
 	}
 
+	public static String getToolchainSearchIdfKey(String toolchainName) {
+
+		int hash = Math.abs(toolchainName.trim().hashCode());
+		String key = String.format(TOOLCHAIN_SEARCH_IDFPATH_KEY, hash);
+		// System.out.println(key);
+		return key;
+	}
+
 	public static String getToolchainSearchOsKey(String toolchainName) {
 
 		int hash = Math.abs(toolchainName.trim().hashCode());
 		String os = EclipseUtils.getOsFamily();
 		String key = String.format(TOOLCHAIN_SEARCH_PATH_OS_KEY, os, hash);
+		// System.out.println(key);
+		return key;
+	}
+
+	public static String getToolchainSearchIdfOsKey(String toolchainName) {
+
+		int hash = Math.abs(toolchainName.trim().hashCode());
+		String os = EclipseUtils.getOsFamily();
+		String key = String.format(TOOLCHAIN_SEARCH_IDFPATH_OS_KEY, os, hash);
 		// System.out.println(key);
 		return key;
 	}
@@ -270,6 +345,15 @@ public class PersistentPreferences {
 	public static String getBuildToolsPath(IProject project) {
 
 		return getString(BUILD_TOOLS_PATH_KEY, "", project);
+	}
+	/**
+	 * Get the build tools path. Search all possible scopes.
+	 * 
+	 * @return a string, possibly empty.
+	 */
+	public static String getBuildToolsIdfPath(IProject project) {
+
+		return getString(BUILD_TOOLS_IDFPATH_KEY, "", project);
 	}
 
 	// ------------------------------------------------------------------------

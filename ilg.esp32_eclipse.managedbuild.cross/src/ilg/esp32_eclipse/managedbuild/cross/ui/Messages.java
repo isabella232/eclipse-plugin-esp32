@@ -31,6 +31,7 @@ public class Messages extends NLS {
 	public static String SetCrossCommandWizardPage_name;
 	public static String SetCrossCommandWizardPage_toolchain;
 	public static String SetCrossCommandWizardPage_path;
+	public static String SetCrossCommandWizardPage_idfpath;
 	public static String SetCrossCommandWizardPage_prefix;
 	public static String SetCrossCommandWizardPage_title;
 
@@ -59,6 +60,7 @@ public class Messages extends NLS {
 	public static String ToolsPaths_ToolchainName_label;
 
 	public static String ToolchainPaths_label;
+	public static String ToolchainIdfPaths_label;
 	public static String ToolchainName_label;
 
 	public static String ProjectToolsPathsPropertyPage_description;

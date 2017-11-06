@@ -110,7 +110,7 @@
       <documentation>
             &lt;extension
       point=&quot;ilg.esp32_eclipse.managedbuild.cross.toolchains&quot;&gt;
-      &lt;toolchain name=&quot;Custom&quot; prefix=&quot;arm-none-eabi-&quot; /&gt;
+      &lt;toolchain name=&quot;Custom&quot; prefix=&quot;xtensa-esp32-elf-&quot; /&gt;
    &lt;/extension&gt;
 
       </documentation>

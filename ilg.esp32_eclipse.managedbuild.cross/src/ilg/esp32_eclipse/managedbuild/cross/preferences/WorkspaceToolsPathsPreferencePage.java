@@ -139,6 +139,12 @@ public class WorkspaceToolsPathsPreferencePage extends FieldEditorPreferencePage
 					getFieldEditorParent(), isStrict);
 
 			addField(toolchainPathField);
+
+			FieldEditor toolchainIdfPathField;
+			toolchainIdfPathField = new DirectoryNotStrictFieldEditor(key, Messages.ToolchainIdfPaths_label,
+					getFieldEditorParent(), isStrict);
+
+			addField(toolchainIdfPathField);
 		}
 	}
 

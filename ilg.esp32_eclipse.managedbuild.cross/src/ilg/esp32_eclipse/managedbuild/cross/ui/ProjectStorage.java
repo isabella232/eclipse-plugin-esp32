@@ -35,6 +35,8 @@ public class ProjectStorage {
 	private static String TOOLCHAIN_PATH = "toolchain.path";
 	private static String IS_TOOLCHAIN_PATH_PER_PROJECT = "is.toolchain.path.per.project";
 
+	private static String TOOLCHAIN_IDFPATH = "toolchain.idfpath";
+	private static String IS_TOOLCHAIN_IDFPATH_PER_PROJECT = "is.toolchain.idfpath.per.project";
 	// ------------------------------------------------------------------------
 
 	// Was used from PathManagedOptionValueHandler
@@ -56,6 +58,23 @@ public class ProjectStorage {
 
 		return "true".equalsIgnoreCase(value.trim());
 	}
+	public static boolean isToolchainIdfPathPerProject(IConfiguration config) {
+
+		IProject project = (IProject) config.getManagedProject().getOwner();
+
+		String value;
+		try {
+			value = project.getPersistentProperty(new QualifiedName(config.getId(), IS_TOOLCHAIN_IDFPATH_PER_PROJECT));
+		} catch (CoreException e) {
+			Activator.log(e.getStatus());
+			return false;
+		}
+
+		if (value == null)
+			value = "";
+
+		return "true".equalsIgnoreCase(value.trim());
+	}
 
 	public static boolean putToolchainPathPerProject(IConfiguration config, boolean value) {
 
@@ -63,6 +82,21 @@ public class ProjectStorage {
 
 		try {
 			project.setPersistentProperty(new QualifiedName(config.getId(), IS_TOOLCHAIN_PATH_PER_PROJECT),
+					String.valueOf(value));
+		} catch (CoreException e) {
+			Activator.log(e.getStatus());
+			return false;
+		}
+
+		return true;
+	}
+
+	public static boolean putToolchainIdfPathPerProject(IConfiguration config, boolean value) {
+
+		IProject project = (IProject) config.getManagedProject().getOwner();
+
+		try {
+			project.setPersistentProperty(new QualifiedName(config.getId(), IS_TOOLCHAIN_IDFPATH_PER_PROJECT),
 					String.valueOf(value));
 		} catch (CoreException e) {
 			Activator.log(e.getStatus());
@@ -96,12 +130,44 @@ public class ProjectStorage {
 		return value.trim();
 	}
 
+	public static String getToolchainIdfPath(IConfiguration config) {
+
+		IProject project = (IProject) config.getManagedProject().getOwner();
+
+		String value;
+		try {
+			value = project.getPersistentProperty(new QualifiedName(config.getId(), TOOLCHAIN_IDFPATH));
+		} catch (CoreException e) {
+			Activator.log(e.getStatus());
+			return "";
+		}
+
+		if (value == null)
+			value = "";
+
+		return value.trim();
+	}
+
 	public static boolean putToolchainPath(IConfiguration config, String value) {
 
 		IProject project = (IProject) config.getManagedProject().getOwner();
 
 		try {
 			project.setPersistentProperty(new QualifiedName(config.getId(), TOOLCHAIN_PATH), value.trim());
+		} catch (CoreException e) {
+			Activator.log(e.getStatus());
+			return false;
+		}
+
+		return true;
+	}
+
+	public static boolean putToolchainIdfPath(IConfiguration config, String value) {
+
+		IProject project = (IProject) config.getManagedProject().getOwner();
+
+		try {
+			project.setPersistentProperty(new QualifiedName(config.getId(), TOOLCHAIN_IDFPATH), value.trim());
 		} catch (CoreException e) {
 			Activator.log(e.getStatus());
 			return false;

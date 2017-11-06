@@ -24,8 +24,8 @@ public class ToolchainDefinition {
 
 	// ------------------------------------------------------------------------
 
-	public static final String GNU_TOOLS_FOR_ARM_EMBEDDED = "GNU Tools for ARM Embedded Processors";
-	public static final String DEFAULT_TOOLCHAIN_NAME = GNU_TOOLS_FOR_ARM_EMBEDDED;
+	public static final String GNU_TOOLS_FOR_ESP32_EMBEDDED = "GNU Tools for ESP32 Embedded Processors";
+	public static final String DEFAULT_TOOLCHAIN_NAME = GNU_TOOLS_FOR_ESP32_EMBEDDED;
 
 	// ------------------------------------------------------------------------
 
@@ -318,52 +318,52 @@ public class ToolchainDefinition {
 		fgList = new ArrayList<ToolchainDefinition>();
 
 		// 0
-		fgList.add(new ToolchainDefinition(GNU_TOOLS_FOR_ARM_EMBEDDED, "arm-none-eabi-"));
-		// 1
-		ToolchainDefinition tc;
-		tc = new ToolchainDefinition("Sourcery CodeBench Lite for ARM EABI", "arm-none-eabi-");
-		if (EclipseUtils.isWindows()) {
-			tc.setWin("cs-make", "cs-rm");
-		}
-		fgList.add(tc);
+		fgList.add(new ToolchainDefinition(GNU_TOOLS_FOR_ESP32_EMBEDDED, "xtensa-esp32-elf-"));
+		// // 1
+		// ToolchainDefinition tc;
+		// tc = new ToolchainDefinition("Sourcery CodeBench Lite for Xtensa (ESP32 and ESP9266", "xtensa-esp32-elf-");
+		// if (EclipseUtils.isWindows()) {
+		// 	tc.setWin("cs-make", "cs-rm");
+		// }
+		// fgList.add(tc);
 
-		// 2
-		tc = new ToolchainDefinition("Sourcery CodeBench Lite for ARM GNU/Linux", "arm-none-linux-gnueabi-");
-		if (EclipseUtils.isWindows()) {
-			tc.setWin("cs-make", "cs-rm");
-		}
-		fgList.add(tc);
+		// // 2
+		// tc = new ToolchainDefinition("Sourcery CodeBench Lite for ARM GNU/Linux", "arm-none-linux-gnueabi-");
+		// if (EclipseUtils.isWindows()) {
+		// 	tc.setWin("cs-make", "cs-rm");
+		// }
+		// fgList.add(tc);
 
-		// 3
-		fgList.add(new ToolchainDefinition("devkitPro ARM EABI", "arm-eabi-"));
+		// // 3
+		// fgList.add(new ToolchainDefinition("devkitPro ARM EABI", "arm-eabi-"));
 
-		// 4
-		fgList.add(new ToolchainDefinition("Yagarto, Summon, etc. ARM EABI", "arm-none-eabi-"));
+		// // 4
+		// fgList.add(new ToolchainDefinition("Yagarto, Summon, etc. ARM EABI", "xtensa-esp32-elf-"));
 
-		// 5
-		fgList.add(new ToolchainDefinition("Linaro ARMv7 bare-metal EABI", "arm-none-eabi-"));
+		// // 5
+		// fgList.add(new ToolchainDefinition("Linaro ARMv7 bare-metal EABI", "arm-none-eabi-"));
 
-		// 6
-		fgList.add(new ToolchainDefinition("Linaro ARMv7 big-endian bare-metal EABI", "armeb-none-eabi-"));
+		// // 6
+		// fgList.add(new ToolchainDefinition("Linaro ARMv7 big-endian bare-metal EABI", "armeb-none-eabi-"));
 
-		// 7
-		fgList.add(new ToolchainDefinition("Linaro ARMv7 Linux GNU EABI HF", "arm-linux-gnueabihf-"));
+		// // 7
+		// fgList.add(new ToolchainDefinition("Linaro ARMv7 Linux GNU EABI HF", "arm-linux-gnueabihf-"));
 
-		// 8
-		fgList.add(new ToolchainDefinition("Linaro ARMv7 big-endian Linux GNU EABI HF", "armeb-linux-gnueabihf-"));
+		// // 8
+		// fgList.add(new ToolchainDefinition("Linaro ARMv7 big-endian Linux GNU EABI HF", "armeb-linux-gnueabihf-"));
 
-		// 64 bit toolchains
-		// 9
-		fgList.add(new ToolchainDefinition("Linaro AArch64 bare-metal ELF", "aarch64-elf-", "aarch64"));
+		// // 64 bit toolchains
+		// // 9
+		// fgList.add(new ToolchainDefinition("Linaro AArch64 bare-metal ELF", "aarch64-elf-", "aarch64"));
 
-		// 10
-		fgList.add(new ToolchainDefinition("Linaro AArch64 big-endian bare-metal ELF", "aarch64_be-elf-", "aarch64"));
+		// // 10
+		// fgList.add(new ToolchainDefinition("Linaro AArch64 big-endian bare-metal ELF", "aarch64_be-elf-", "aarch64"));
 
-		// 11
-		fgList.add(new ToolchainDefinition("Linaro AArch64 Linux GNU", "aarch64-linux-gnu-", "aarch64"));
+		// // 11
+		// fgList.add(new ToolchainDefinition("Linaro AArch64 Linux GNU", "aarch64-linux-gnu-", "aarch64"));
 
-		// 12
-		fgList.add(new ToolchainDefinition("Linaro AArch64 big-endian Linux GNU", "aarch64_be-linux-gnu-", "aarch64"));
+		// // 12
+		// fgList.add(new ToolchainDefinition("Linaro AArch64 big-endian Linux GNU", "aarch64_be-linux-gnu-", "aarch64"));
 
 		// 13 - Moved to extension point
 		// fgList.add(new ToolchainDefinition("Custom", "arm-none-eabi-"));

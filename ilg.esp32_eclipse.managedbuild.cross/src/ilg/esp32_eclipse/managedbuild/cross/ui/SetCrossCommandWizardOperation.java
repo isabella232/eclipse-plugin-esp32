@@ -61,8 +61,7 @@ public class SetCrossCommandWizardOperation implements IRunnableWithProgress {
 
 		assert projectName != null;
 
-		String toolchainName = (String) MBSCustomPageManager.getPageProperty(SetCrossCommandWizardPage.PAGE_ID,
-				SetCrossCommandWizardPage.CROSS_TOOLCHAIN_NAME);
+		String toolchainName = (String)ToolchainDefinition.DEFAULT_TOOLCHAIN_NAME;// MBSCustomPageManager.getPageProperty(SetCrossCommandWizardPage.PAGE_ID, SetCrossCommandWizardPage.CROSS_TOOLCHAIN_NAME);
 		String path = (String) MBSCustomPageManager.getPageProperty(SetCrossCommandWizardPage.PAGE_ID,
 				SetCrossCommandWizardPage.CROSS_TOOLCHAIN_PATH);
 
@@ -72,6 +71,13 @@ public class SetCrossCommandWizardOperation implements IRunnableWithProgress {
 			// Store persistent values in Eclipse scope
 			PersistentPreferences.putToolchainPath(toolchainName, path);
 			PersistentPreferences.putToolchainName(toolchainName);
+			PersistentPreferences.flush();
+		}
+		String idfpath = (String) MBSCustomPageManager.getPageProperty(SetCrossCommandWizardPage.PAGE_ID,
+				SetCrossCommandWizardPage.CROSS_TOOLCHAIN_IDFPATH);
+		if (!toolchainName.isEmpty() && !idfpath.isEmpty()) {
+			// Store persistent values in Eclipse scope
+			PersistentPreferences.putToolchainIdfPath(toolchainName, idfpath);
 			PersistentPreferences.flush();
 		}
 
@@ -98,6 +104,7 @@ public class SetCrossCommandWizardOperation implements IRunnableWithProgress {
 		if (true) {
 			for (IConfiguration config : configs) {
 				ScannerConfigBuilder.build(config, ScannerConfigBuilder.PERFORM_CORE_UPDATE, new NullProgressMonitor());
+				ProjectStorage.putToolchainIdfPath(config, idfpath);//putToolchainIdfPathPerProject()
 			}
 		}
 
