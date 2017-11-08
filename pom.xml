@@ -38,6 +38,7 @@
 	</licenses>
 
 	<modules>
+		<module>esp32_eclipse_plugin</module>
 		<module>ilg.esp32_eclipse.core</module>
 		<module>ilg.esp32_eclipse.managedbuild.cross</module>
 
@@ -46,7 +47,7 @@
 		<module>ilg.esp32_eclipse.debug.gdbjtag</module>
 
 		<module>ilg.esp32_eclipse.debug.gdbjtag.openocd</module>
-        <module>ilg.esp32_eclipse.debug.gdbjtag.openocd-feature</module>
+        
 
 		<module>ilg.esp32_eclipse.debug.packs</module>
 
@@ -55,6 +56,7 @@
 		<module>ilg.esp32_eclipse.packs.core</module>
 		<module>ilg.esp32_eclipse.packs.data</module>
 
+		<module>ilg.esp32_eclipse.debug.gdbjtag.openocd-feature</module>
 	</modules>
 
 	<repositories>

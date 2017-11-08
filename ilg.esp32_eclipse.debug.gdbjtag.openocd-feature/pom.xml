@@ -5,8 +5,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>ilg.esp32_eclipse.features</groupId>
-	<artifactId>ilg.esp32_eclipse.debug.gdbjtag.openocd</artifactId>
+   	<groupId>ilg.esp32_eclipse.features</groupId>
+	<artifactId>ilg.esp32_eclipse.debug.gdbjtag.openocd-features</artifactId>
 	<version>4.1.4-SNAPSHOT</version>
 	<packaging>eclipse-feature</packaging>
 
@@ -16,17 +16,6 @@
 		<version>3.4.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
- 
-    <dependency>
-       <groupId>org.slf4j</groupId>
-       <artifactId>slf4j-api</artifactId>
-       <version>1.7.5</version>
-   </dependency>
-   <dependency>
-       <groupId>org.slf4j</groupId>
-       <artifactId>slf4j-log4j12</artifactId>
-       <version>1.7.5</version>
-   </dependency>
 	<name>ESP32 Eclipse OpenOCD debug feature</name>
 	<url>http://esp32_eclipse.github.io</url>
 </project>
