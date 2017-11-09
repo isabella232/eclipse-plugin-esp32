@@ -20,6 +20,7 @@ import ilg.esp32_eclipse.core.ui.FieldEditorPropertyPage;
 import ilg.esp32_eclipse.managedbuild.cross.Activator;
 import ilg.esp32_eclipse.managedbuild.cross.Option;
 import ilg.esp32_eclipse.managedbuild.cross.ui.DefaultPreferences;
+import ilg.esp32_eclipse.managedbuild.cross.ui.ProjectStorage;
 import ilg.esp32_eclipse.managedbuild.cross.ui.Messages;
 import ilg.esp32_eclipse.managedbuild.cross.ui.PersistentPreferences;
 import java.util.HashSet;
@@ -31,8 +32,10 @@ import org.eclipse.cdt.managedbuilder.core.IOption;
 import org.eclipse.cdt.managedbuilder.core.IToolChain;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ProjectScope;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
+
 
 public class ProjectToolsPathPropertyPage extends FieldEditorPropertyPage {
 
@@ -45,7 +48,16 @@ public class ProjectToolsPathPropertyPage extends FieldEditorPropertyPage {
 	public ProjectToolsPathPropertyPage() {
 		super(GRID);
 
+//		setPreferenceStore(new ScopedPreferenceStore(ConfigurationScope.INSTANCE, Activator.PLUGIN_ID));
+//		setPreferenceStore(new ScopedPreferenceStoreWithoutDefaults(
+//				InstanceScope.INSTANCE, Activator.PLUGIN_ID));
+//		setPreferenceStore(new ScopedPreferenceStoreWithoutDefaults(
+//		InstanceScope.INSTANCE, Activator.PLUGIN_ID));
+
 		setDescription(Messages.ProjectToolsPathsPropertyPage_description);
+
+		// setPreferenceStore(ilg.esp32_eclipse.packs.core.Preferences.getPreferenceStore());
+		//doGetPreferenceStore();
 	}
 
 	// ------------------------------------------------------------------------
@@ -62,12 +74,12 @@ public class ProjectToolsPathPropertyPage extends FieldEditorPropertyPage {
 	@Override
 	protected void createFieldEditors() {
 		boolean isStrict = DefaultPreferences.getBoolean(PersistentPreferences.PROJECT_BUILDTOOLS_PATH_STRICT, true);
-		FieldEditor buildToolsPathField = new DirectoryNotStrictFieldEditor(PersistentPreferences.BUILD_TOOLS_PATH_KEY,
-				Messages.ToolsPaths_label, getFieldEditorParent(), isStrict);
-		addField(buildToolsPathField);
+		// FieldEditor buildToolsPathField = new DirectoryNotStrictFieldEditor(PersistentPreferences.BUILD_TOOLS_PATH_KEY,
+		// 		Messages.ToolsPaths_label, getFieldEditorParent(), isStrict);
+		// addField(buildToolsPathField);
 
 		Set<String> toolchainNames = new HashSet<String>();
-
+		IConfiguration main_config = null;
 		Object element = getElement();
 		if (element instanceof IProject) {
 			// TODO: get project toolchain name. How?
@@ -87,6 +99,7 @@ public class ProjectToolsPathPropertyPage extends FieldEditorPropertyPage {
 						String name = option.getStringValue();
 						if (!name.isEmpty()) {
 							toolchainNames.add(name);
+							main_config = configs[i];
 						}
 					} catch (BuildException e) {
 						;
@@ -105,13 +118,31 @@ public class ProjectToolsPathPropertyPage extends FieldEditorPropertyPage {
 
 			isStrict = DefaultPreferences.getBoolean(PersistentPreferences.PROJECT_TOOLCHAIN_PATH_STRICT, true);
 			String key = PersistentPreferences.getToolchainKey(toolchainName);
+			IProject project = null;
+			if (main_config != null) project = (IProject) main_config.getManagedProject().getOwner();
+			String tools_Path = PersistentPreferences.getToolchainPath(toolchainName, project);
+            String key_Path = getPreferenceStore().getString(key);
+			if (key_Path == "") 
+			{
+				getPreferenceStore().setValue(key, tools_Path);
+			}
 			FieldEditor toolchainPathField = new DirectoryNotStrictFieldEditor(key, Messages.ToolchainPaths_label, getFieldEditorParent(), isStrict);
 			addField(toolchainPathField);
-
-			FieldEditor toolchainIdfPathField = new DirectoryNotStrictFieldEditor(key, Messages.ToolchainIdfPaths_label,
+			
+			String key_idf = PersistentPreferences.getToolchainIdfKey(toolchainName);
+			
+			String tools_IdfPath = PersistentPreferences.getToolchainIdfPath(toolchainName, project);
+            String key_IdfPath = getPreferenceStore().getString(key_idf);
+			if (key_IdfPath == "") 
+			{
+				getPreferenceStore().setValue(key_idf, tools_IdfPath);
+			}
+			
+			FieldEditor toolchainIdfPathField = new DirectoryNotStrictFieldEditor(key_idf, Messages.ToolchainIdfPaths_label,
 					getFieldEditorParent(), isStrict);
 			addField(toolchainIdfPathField);
 		}
+		//doGetPreferenceStore();
 	}
 
 	// ------------------------------------------------------------------------

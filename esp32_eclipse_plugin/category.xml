@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/ilg.esp32_eclipse.managedbuild.cross_2.4.1.qualifier.jar" id="ilg.esp32_eclipse.managedbuild.cross" version="2.4.1.qualifier">
+      <category name="ESP32 C++ Tools"/>
+   </feature>
+   <feature url="features/ilg.esp32_eclipse.debug.gdbjtag.openocd_4.1.4.qualifier.jar" id="ilg.esp32_eclipse.debug.gdbjtag.openocd" version="4.1.4.qualifier">
+      <category name="ESP32 OpenOCD Tools"/>
+   </feature>
+   <category-def name="ESP32 C++ Tools" label="ESP32 C++ Tools">
+      <description>
+         ESP32 C++ Toolss
+      </description>
+   </category-def>
+   <category-def name="ESP32 OpenOCD Tools" label="ESP32 OpenOCD Tools">
+      <description>
+         ESP32 OpenOCD Tools
+      </description>
+   </category-def>
+</site>

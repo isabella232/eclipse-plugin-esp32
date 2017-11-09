@@ -2496,6 +2496,20 @@
 				</enablement>
 			</option>
 			<option
+				browseType="directory"
+				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
+				id="ilg.esp32_eclipse.managedbuild.cross.option.toolchain.idfpath"
+				isAbstract="false"
+				name="%option.toolchain.idfpath"
+				resourceFilter="all"
+				valueType="string">
+				<enablement type="UI_VISIBILITY">
+					<false>
+						false body text
+					</false>
+				</enablement>
+			</option>
+			<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.addtools.createflash"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.toolchain.createflash">
@@ -4465,18 +4479,19 @@
 			class="org.eclipse.cdt.managedbuilder.language.settings.providers.GCCBuiltinSpecsDetector"
 			id="ilg.esp32_eclipse.managedbuild.cross.GCCBuiltinSpecsDetector"
 			name="%GCCBuiltinSpecsDetector.name"
-			parameter="xtensa-esp32-elf-gcc ${FLAGS} ${cross_toolchain_flags} -E -P -v -dD &quot;${INPUTS}&quot;"
+			parameter="xtensa-esp32-elf-gcc ${FLAGS} -E -P -v -dD &quot;${INPUTS}&quot;"
 			prefer-non-shared="true">
 			<language-scope id="org.eclipse.cdt.core.gcc">
 			</language-scope>
 			<language-scope id="org.eclipse.cdt.core.g++">
 			</language-scope>
 		</provider>
+					<!--parameter="xtensa-esp32-elf-gcc ${FLAGS} ${cross_toolchain_flags} -E -P -v -dD &quot;${INPUTS}&quot;"-->
 		<provider
             class="org.eclipse.cdt.managedbuilder.language.settings.providers.GCCBuildCommandParser"
             id="ilg.esp32_eclipse.managedbuild.cross.Esp32BuildCommandParser"
             name="%XlcBuildCommandParserName"
-            parameter="xtensa-esp32-elf-(g?cc)|([gc]\+\+)|(clang)"
+            parameter="xtensa-esp32-elf-((g?cc)|([gc]\+\+)|(clang))"
             prefer-non-shared="true">
       	</provider>
 

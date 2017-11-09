@@ -202,7 +202,7 @@ public class DefaultPreferences {
 		}
 
 		if (Activator.getInstance().isDebugging()) {
-			System.out.println("getToolchainPath()=\"" + value + "\" (" + key + ")");
+			System.out.println("getToolchainIdfPath()=\"" + value + "\" (" + key + ")");
 		}
 		return value;
 	}
@@ -226,11 +226,30 @@ public class DefaultPreferences {
 
 		return value;
 	}
+	public static String getToolchainSearchIdfPath(String toolchainName) {
+
+		String key = PersistentPreferences.getToolchainSearchIdfKey(toolchainName);
+		if (Activator.getInstance().isDebugging()) {
+			System.out.println("Check " + key + " for \"" + toolchainName + "\"");
+		}
+		String value = getString(PersistentPreferences.getToolchainSearchIdfKey(toolchainName), "");
+
+		return value;
+	}
 
 	public static void putToolchainSearchPath(String toolchainName, String value) 
 	{
 
 		String key = PersistentPreferences.getToolchainSearchKey(toolchainName);
+		if (Activator.getInstance().isDebugging()) {
+			System.out.println("Default " + key + "=" + value);
+		}
+		putString(key, value);
+	}
+	public static void putToolchainSearchIdfPath(String toolchainName, String value) 
+	{
+
+		String key = PersistentPreferences.getToolchainSearchIdfKey(toolchainName);
 		if (Activator.getInstance().isDebugging()) {
 			System.out.println("Default " + key + "=" + value);
 		}
@@ -250,6 +269,12 @@ public class DefaultPreferences {
 	public static String getToolchainSearchPathOs(String toolchainName) {
 
 		String value = getString(PersistentPreferences.getToolchainSearchOsKey(toolchainName), "");
+
+		return value;
+	}
+	public static String getToolchainSearchIdfPathOs(String toolchainName) {
+
+		String value = getString(PersistentPreferences.getToolchainSearchIdfOsKey(toolchainName), "");
 
 		return value;
 	}

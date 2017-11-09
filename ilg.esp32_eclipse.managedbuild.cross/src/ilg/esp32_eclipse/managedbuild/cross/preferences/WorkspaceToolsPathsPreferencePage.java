@@ -58,7 +58,9 @@ public class WorkspaceToolsPathsPreferencePage extends FieldEditorPreferencePage
 	public WorkspaceToolsPathsPreferencePage() {
 		super(GRID);
 
-		setPreferenceStore(new ScopedPreferenceStoreWithoutDefaults(InstanceScope.INSTANCE, Activator.PLUGIN_ID));
+				setPreferenceStore(new ScopedPreferenceStoreWithoutDefaults(
+				InstanceScope.INSTANCE, Activator.PLUGIN_ID));
+
 
 		setDescription(Messages.WorkspaceToolsPathsPropertyPage_description);
 	}
@@ -82,12 +84,12 @@ public class WorkspaceToolsPathsPreferencePage extends FieldEditorPreferencePage
 	protected void createFieldEditors() {
 
 		boolean isStrict;
-		isStrict = DefaultPreferences.getBoolean(PersistentPreferences.WORKSPACE_BUILDTOOLS_PATH_STRICT, true);
-		FieldEditor buildToolsPathField;
-		buildToolsPathField = new DirectoryNotStrictFieldEditor(PersistentPreferences.BUILD_TOOLS_PATH_KEY,
-				Messages.ToolsPaths_label, getFieldEditorParent(), isStrict);
+		// isStrict = DefaultPreferences.getBoolean(PersistentPreferences.WORKSPACE_BUILDTOOLS_PATH_STRICT, true);
+		// FieldEditor buildToolsPathField;
+		// buildToolsPathField = new DirectoryNotStrictFieldEditor(PersistentPreferences.BUILD_TOOLS_PATH_KEY,
+		// 		Messages.ToolsPaths_label, getFieldEditorParent(), isStrict);
 
-		addField(buildToolsPathField);
+		// addField(buildToolsPathField);
 
 		FieldEditor toolchainNameField = new ToolchainsFieldEditor(PersistentPreferences.TOOLCHAIN_NAME_KEY,
 				Messages.ToolchainName_label, getFieldEditorParent());
@@ -133,15 +135,17 @@ public class WorkspaceToolsPathsPreferencePage extends FieldEditorPreferencePage
 			String key = PersistentPreferences.getToolchainKey(toolchainName);
 
 			isStrict = DefaultPreferences.getBoolean(PersistentPreferences.WORKSPACE_TOOLCHAIN_PATH_STRICT, true);
-
+//			String key_Path = getPreferenceStore().getString(key);
+			
 			FieldEditor toolchainPathField;
 			toolchainPathField = new DirectoryNotStrictFieldEditor(key, Messages.ToolchainPaths_label,
 					getFieldEditorParent(), isStrict);
 
 			addField(toolchainPathField);
 
+			String key_idf = PersistentPreferences.getToolchainIdfKey(toolchainName);
 			FieldEditor toolchainIdfPathField;
-			toolchainIdfPathField = new DirectoryNotStrictFieldEditor(key, Messages.ToolchainIdfPaths_label,
+			toolchainIdfPathField = new DirectoryNotStrictFieldEditor(key_idf, Messages.ToolchainIdfPaths_label,
 					getFieldEditorParent(), isStrict);
 
 			addField(toolchainIdfPathField);

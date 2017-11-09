@@ -41,13 +41,14 @@
 		<module>esp32_eclipse_plugin</module>
 		<module>ilg.esp32_eclipse.core</module>
 		<module>ilg.esp32_eclipse.managedbuild.cross</module>
+        <module>ilg.esp32_eclipse.managedbuild.cross-feature</module>
 
 		<module>ilg.esp32_eclipse.debug.core</module>
 
 		<module>ilg.esp32_eclipse.debug.gdbjtag</module>
 
 		<module>ilg.esp32_eclipse.debug.gdbjtag.openocd</module>
-        
+
 
 		<module>ilg.esp32_eclipse.debug.packs</module>
 

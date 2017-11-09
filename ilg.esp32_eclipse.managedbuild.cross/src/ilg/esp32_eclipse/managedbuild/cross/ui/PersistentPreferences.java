@@ -40,10 +40,13 @@ public class PersistentPreferences {
 	public static final String BUILD_TOOLS_IDFPATH_KEY = "buildTools.idfpath";
 
 	public static final String GLOBAL_TOOLCHAIN_PATH_STRICT = "global.toolchain.path.strict";
+	public static final String GLOBAL_TOOLCHAIN_IDFPATH_STRICT = "global.toolchain.idfpath.strict";
 	public static final String GLOBAL_BUILDTOOLS_PATH_STRICT = "global.buildTools.path.strict";
 	public static final String WORKSPACE_TOOLCHAIN_PATH_STRICT = "workspace.toolchain.path.strict";
+	public static final String WORKSPACE_TOOLCHAIN_IDFPATH_STRICT = "workspace.toolchain.idfpath.strict";
 	public static final String WORKSPACE_BUILDTOOLS_PATH_STRICT = "workspace.buildTools.path.strict";
 	public static final String PROJECT_TOOLCHAIN_PATH_STRICT = "project.toolchain.path.strict";
+	public static final String PROJECT_TOOLCHAIN_IDFPATH_STRICT = "project.toolchain.idfpath.strict";
 	public static final String PROJECT_BUILDTOOLS_PATH_STRICT = "project.buildTools.path.strict";
 
 	// Note: The shared defaults keys don't have "cross" in them because we want

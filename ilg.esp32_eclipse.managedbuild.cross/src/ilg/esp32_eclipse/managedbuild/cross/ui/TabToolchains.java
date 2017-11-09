@@ -92,6 +92,7 @@ public class TabToolchains extends AbstractCBuildPropertyTab {
 	private Text fCommandMakeText;
 	private Text fCommandRmText;
 	private Text fPathLabel;
+	private Text fIdfPathLabel;
 
 	private Button fFlashButton;
 	private Button fListingButton;
@@ -333,6 +334,18 @@ public class TabToolchains extends AbstractCBuildPropertyTab {
 			fPathLabel.setEnabled(true);
 			fPathLabel.setEditable(false);
 		}
+		{
+			Label label = new Label(usercomp, SWT.NONE);
+			label.setText(Messages.ToolChainSettingsTab_path_label);
+
+			fIdfPathLabel = new Text(usercomp, SWT.SINGLE | SWT.BORDER);
+			layoutData = new GridData(SWT.FILL, 0, true, false);
+			layoutData.horizontalSpan = 2;
+			fIdfPathLabel.setLayoutData(layoutData);
+
+			fIdfPathLabel.setEnabled(true);
+			fIdfPathLabel.setEditable(false);
+		}
 
 		{
 			Label label = new Label(usercomp, SWT.NONE);
@@ -367,6 +380,7 @@ public class TabToolchains extends AbstractCBuildPropertyTab {
 
 					if (ret == Window.OK) {
 						updateToolchainPath(getSelectedToolchainName());
+						updateToolchainIdfPath(getSelectedToolchainName());
 					}
 				}
 			});
@@ -453,6 +467,7 @@ public class TabToolchains extends AbstractCBuildPropertyTab {
 		}
 
 		updateToolchainPath(td.getName());
+		updateToolchainIdfPath(td.getName());
 	}
 
 	protected void updateToolchainPath(String toolchainName) {
@@ -461,6 +476,13 @@ public class TabToolchains extends AbstractCBuildPropertyTab {
 		IProject project = (IProject) fConfig.getManagedProject().getOwner();
 		String toolchainPath = PersistentPreferences.getToolchainPath(toolchainName, project);
 		fPathLabel.setText(toolchainPath);
+	}
+	protected void updateToolchainIdfPath(String toolchainName) {
+
+		assert (fConfig != null);
+		IProject project = (IProject) fConfig.getManagedProject().getOwner();
+		String toolchainIdfPath = PersistentPreferences.getToolchainIdfPath(toolchainName, project);
+		fIdfPathLabel.setText(toolchainIdfPath);
 	}
 
 	// This event comes when the tab is selected after the windows is
@@ -731,6 +753,8 @@ public class TabToolchains extends AbstractCBuildPropertyTab {
 		fLastUpdatedConfig = config;
 
 		updateToolchainPath(toolchainDefinition.getName());
+		updateToolchainIdfPath(toolchainDefinition.getName());
+		
 	}
 
 	private void updateOptions(IConfiguration config) {

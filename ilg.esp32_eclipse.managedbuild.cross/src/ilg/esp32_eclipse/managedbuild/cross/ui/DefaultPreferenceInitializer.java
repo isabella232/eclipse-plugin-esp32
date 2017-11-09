@@ -113,7 +113,11 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 				// Check if the toolchain path is explictly defined in the
 				// default preferences.
 				String path = DefaultPreferences.getToolchainPath(toolchainName);
+				String idf_path = DefaultPreferences.getToolchainIdfPath(toolchainName);
 				if (!path.isEmpty()) {
+					continue; // Already defined, use it as is.
+				}
+				if (!idf_path.isEmpty()) {
 					continue; // Already defined, use it as is.
 				}
 
@@ -130,6 +134,17 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 						DefaultPreferences.putToolchainSearchPath(toolchainName, searchPath);
 					}
 				}
+				String searchIdfPath = DefaultPreferences.getToolchainSearchIdfPath(toolchainName);
+				if (searchIdfPath.isEmpty()) {
+
+					// If not defined, get the OS Specific default
+					// from preferences.ini.
+					searchIdfPath = DefaultPreferences.getToolchainSearchIdfPathOs(toolchainName);
+					if (!searchIdfPath.isEmpty()) {
+						// Store the search path in the preferences
+						DefaultPreferences.putToolchainSearchIdfPath(searchIdfPath, searchPath);
+					}
+				}
 
 				if (!searchPath.isEmpty()) {
 					// If the search path is known, discover toolchain.
@@ -140,6 +155,15 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 						DefaultPreferences.putToolchainPath(toolchainName, value);
 					}
 				}
+				// if (!searchIdfPath.isEmpty()) {
+				// 	// If the search path is known, discover toolchain.
+				// 	value = DefaultPreferences.discoverToolchainIdfPath(toolchainName, searchIdfPath);
+				// 	if (value != null && !value.isEmpty()) {
+				// 		// If the toolchain path was finally discovered, store
+				// 		// it in the preferences.
+				// 		DefaultPreferences.putToolchainIdfPath(toolchainName, value);
+				// 	}
+				// }
 			}
 		}
 	}

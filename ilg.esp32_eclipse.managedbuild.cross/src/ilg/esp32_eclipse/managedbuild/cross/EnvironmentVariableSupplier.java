@@ -72,9 +72,9 @@ public class EnvironmentVariableSupplier implements IConfigurationEnvironmentVar
 				String fSelectedToolchainName = PersistentPreferences.getToolchainName();
 				IProject project = (IProject) configuration.getManagedProject().getOwner();
 				String cross_Path = PersistentPreferences.getToolchainPath(fSelectedToolchainName, project);
-				String project_Path = ProjectStorage.getToolchainPath(configuration);
-				if (project_Path == "") project_Path = cross_Path;
-				String home = project_Path;
+				String tools_Path = ProjectStorage.getToolchainPath(configuration);
+				if (tools_Path == "") tools_Path = cross_Path;
+				String home = tools_Path;
 				if (home == null) {
 					// If the variable is not defined still show it in the environment variables list as a hint to user
 					home = ""; //$NON-NLS-1$
@@ -113,8 +113,8 @@ public class EnvironmentVariableSupplier implements IConfigurationEnvironmentVar
 			IProject project = (IProject) configuration.getManagedProject().getOwner();
 			String cross_IdfPath = PersistentPreferences.getToolchainIdfPath(fSelectedToolchainName, project);
 			String project_IdfPath = ProjectStorage.getToolchainIdfPath(configuration);
-			if (project_IdfPath == "") project_IdfPath = cross_IdfPath;
-			return new BuildEnvVar(ENV_IDF_PATH, project_IdfPath);
+			if (cross_IdfPath == "") cross_IdfPath = project_IdfPath;
+			return new BuildEnvVar(ENV_IDF_PATH, cross_IdfPath);
 		}
 		return null;
 	}
