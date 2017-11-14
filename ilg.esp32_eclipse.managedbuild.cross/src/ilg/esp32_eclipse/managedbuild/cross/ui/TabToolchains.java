@@ -427,23 +427,23 @@ public class TabToolchains extends AbstractCBuildPropertyTab {
 		if (Activator.getInstance().isDebugging()) {
 			System.out.println("TabToolchains.updateInterfaceAfterToolchainChange()");
 		}
-		int index;
-		try {
-			String sSelectedCombo = fToolchainCombo.getText();
-			index = ToolchainDefinition.findToolchainByFullName(sSelectedCombo);
-		} catch (NullPointerException e) {
-			index = 0;
-		}
+		int index = 0;
+		// try {
+		// 	String sSelectedCombo = fToolchainCombo.getText();
+		// 	index = ToolchainDefinition.findToolchainByFullName(sSelectedCombo);
+		// } catch (NullPointerException e) {
+		// 	index = 0;
+		// }
 		ToolchainDefinition td = ToolchainDefinition.getToolchain(index);
 
 		String sArchitecture = td.getArchitecture();
-		if ("arm".equals(sArchitecture)) {
-			index = 0;
-		} else if ("aarch64".equals(sArchitecture)) {
-			index = 1;
-		} else {
-			index = 0; // default is ARM
-		}
+		// if ("arm".equals(sArchitecture)) {
+		// 	index = 0;
+		// } else if ("aarch64".equals(sArchitecture)) {
+		// 	index = 1;
+		// } else {
+		// 	index = 0; // default is ARM
+		// }
 		fArchitectureCombo.setText(ToolchainDefinition.getArchitecture(index));
 
 		fPrefixText.setText(td.getPrefix());
@@ -639,17 +639,17 @@ public class TabToolchains extends AbstractCBuildPropertyTab {
 		fArchitectureCombo.setItems(ToolchainDefinition.getArchitectures());
 
 		String sSelectedArchitecture = Option.getOptionStringValue(config, Option.OPTION_ARCHITECTURE);
-		int index;
-		try {
-			if (sSelectedArchitecture.endsWith("." + Option.ARCHITECTURE_ARM))
-				index = 0;
-			else if (sSelectedArchitecture.endsWith("." + Option.ARCHITECTURE_AARCH64))
-				index = 1;
-			else
-				index = 0; // default is ARM
-		} catch (NullPointerException e) {
-			index = 0; // default is ARM
-		}
+		int index = 0;
+		// try {
+		// 	if (sSelectedArchitecture.endsWith("." + Option.ARCHITECTURE_ARM))
+		// 		index = 0;
+		// 	else if (sSelectedArchitecture.endsWith("." + Option.ARCHITECTURE_AARCH64))
+		// 		index = 1;
+		// 	else
+		// 		index = 0; // default is ARM
+		// } catch (NullPointerException e) {
+		// 	index = 0; // default is ARM
+		// }
 		fArchitectureCombo.setText(ToolchainDefinition.getArchitecture(index));
 
 		String prefix = Option.getOptionStringValue(config, Option.OPTION_COMMAND_PREFIX);
@@ -783,13 +783,14 @@ public class TabToolchains extends AbstractCBuildPropertyTab {
 			// values are not saved to .cproject.
 
 			String sSelectedArchitecture = fArchitectureCombo.getText();
-			if (ToolchainDefinition.getArchitecture(0).equals(sSelectedArchitecture)) {
-				val = Option.OPTION_ARCHITECTURE_ARM;
-			} else if (ToolchainDefinition.getArchitecture(1).equals(sSelectedArchitecture)) {
-				val = Option.OPTION_ARCHITECTURE_AARCH64;
-			} else {
-				val = Option.OPTION_ARCHITECTURE_ARM; // default is ARM
-			}
+			// if (ToolchainDefinition.getArchitecture(0).equals(sSelectedArchitecture)) {
+			// 	val = Option.OPTION_ARCHITECTURE_ARM;
+			// } else if (ToolchainDefinition.getArchitecture(1).equals(sSelectedArchitecture)) {
+			// 	val = Option.OPTION_ARCHITECTURE_AARCH64;
+			// } else {
+			// 	val = Option.OPTION_ARCHITECTURE_ARM; // default is ARM
+			// }
+			val = Option.OPTION_ARCHITECTURE_XTENSA; // default is XTENSA
 			option = toolchain.getOptionBySuperClassId(Option.OPTION_ARCHITECTURE); // $NON-NLS-1$
 			config.setOption(toolchain, option, val);
 
@@ -881,22 +882,22 @@ public class TabToolchains extends AbstractCBuildPropertyTab {
 		val = Option.OPTION_ARCHITECTURE + "." + sArchitecture;
 		Utils.setOptionForced(config, toolchain, option, val);
 
-		if ("arm".equals(sArchitecture)) {
-			option = toolchain.getOptionBySuperClassId(Option.OPTION_ARM_TARGET_FAMILY);
-			Utils.forceOptionRewrite(config, toolchain, option);
+		// if ("arm".equals(sArchitecture)) {
+		// 	option = toolchain.getOptionBySuperClassId(Option.OPTION_ARM_TARGET_FAMILY);
+		// 	Utils.forceOptionRewrite(config, toolchain, option);
 
-			option = toolchain.getOptionBySuperClassId(Option.OPTION_ARM_TARGET_INSTRUCTIONSET);
-			Utils.forceOptionRewrite(config, toolchain, option);
-		} else if ("aarch64".equals(sArchitecture)) {
-			option = toolchain.getOptionBySuperClassId(Option.OPTION_AARCH64_TARGET_FAMILY);
-			Utils.setOptionForced(config, toolchain, option, Option.OPTION_AARCH64_MCPU_GENERIC);
+		// 	option = toolchain.getOptionBySuperClassId(Option.OPTION_ARM_TARGET_INSTRUCTIONSET);
+		// 	Utils.forceOptionRewrite(config, toolchain, option);
+		// } else if ("aarch64".equals(sArchitecture)) {
+		// 	option = toolchain.getOptionBySuperClassId(Option.OPTION_AARCH64_TARGET_FAMILY);
+		// 	Utils.setOptionForced(config, toolchain, option, Option.OPTION_AARCH64_MCPU_GENERIC);
 
-			option = toolchain.getOptionBySuperClassId(Option.OPTION_AARCH64_FEATURE_SIMD);
-			Utils.setOptionForced(config, toolchain, option, Option.OPTION_AARCH64_FEATURE_SIMD_ENABLED);
+		// 	option = toolchain.getOptionBySuperClassId(Option.OPTION_AARCH64_FEATURE_SIMD);
+		// 	Utils.setOptionForced(config, toolchain, option, Option.OPTION_AARCH64_FEATURE_SIMD_ENABLED);
 
-			option = toolchain.getOptionBySuperClassId(Option.OPTION_AARCH64_CMODEL);
-			Utils.setOptionForced(config, toolchain, option, Option.OPTION_AARCH64_CMODEL_SMALL);
-		}
+		// 	option = toolchain.getOptionBySuperClassId(Option.OPTION_AARCH64_CMODEL);
+		// 	Utils.setOptionForced(config, toolchain, option, Option.OPTION_AARCH64_CMODEL_SMALL);
+		// }
 
 		option = toolchain.getOptionBySuperClassId(Option.OPTION_COMMAND_PREFIX); // $NON-NLS-1$
 		config.setOption(toolchain, option, td.getPrefix());

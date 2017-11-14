@@ -703,6 +703,7 @@
 			<option
 				browseType="directory"
 				command="-I"
+				defaultValue="${IDF_PATH}\components\freertos\include"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.base.dirs.include.paths"
 				isAbstract="true"
 				name="%option.compiler.include.paths"
@@ -918,8 +919,8 @@
 		<tool
 			id="ilg.esp32_eclipse.managedbuild.cross.tool.base.arm"
 			isAbstract="true"
-			name="ARM32 Targets common options">
-			<option
+			name="Xtensa Targets common options">
+			<!--<option
 				id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.family"
 				isAbstract="true"
 				name="%option.target.arm.family"
@@ -942,524 +943,9 @@
 					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm1020t"
 					name="arm1020t">
 				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm1022e"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm1022e"
-					name="arm1022e">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm1026ej-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm1026ej-s"
-					name="arm1026ej-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm10e"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm10e"
-					name="arm10e">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm10tdmi"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm10tdmi"
-					name="arm10tdmi">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm1136j-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm1136j-s"
-					name="arm1136j-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm1136jf-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm1136jf-s"
-					name="arm1136jf-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm1156t2-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm1156t2-s"
-					name="arm1156t2-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm1156t2f-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm1156t2f-s"
-					name="arm1156t2f-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm1176jz-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm1176jz-s"
-					name="arm1176jz-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm1176jzf-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm1176jzf-s"
-					name="arm1176jzf-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm2"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm2"
-					name="arm2">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm250"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm250"
-					name="arm250">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm3"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm3"
-					name="arm3">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm6"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm6"
-					name="arm6">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm60"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm60"
-					name="arm60">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm600"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm600"
-					name="arm600">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm610"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm610"
-					name="arm610">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm620"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm620"
-					name="arm620">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm7"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm7"
-					name="arm7">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm70"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm70"
-					name="arm70">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm700"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm700"
-					name="arm700">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm700i"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm700i"
-					name="arm700i">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm710"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm710"
-					name="arm710">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm7100"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm7100"
-					name="arm7100">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm710c"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm710c"
-					name="arm710c">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm710t"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm710t"
-					name="arm710t">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm720"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm720"
-					name="arm720">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm720t"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm720t"
-					name="arm720t">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm740t"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm740t"
-					name="arm740t">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm7500"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm7500"
-					name="arm7500">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm7500fe"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm7500fe"
-					name="arm7500fe">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm7d"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm7d"
-					name="arm7d">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm7di"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm7di"
-					name="arm7di">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm7dm"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm7dm"
-					name="arm7dm">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm7dmi"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm7dmi"
-					name="arm7dmi">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm7m"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm7m"
-					name="arm7m">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm7tdmi"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm7tdmi"
-					name="arm7tdmi">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm7tdmi-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm7tdmi-s"
-					name="arm7tdmi-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm8"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm8"
-					name="arm8">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm810"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm810"
-					name="arm810">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm9"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm9"
-					name="arm9">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm920"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm920"
-					name="arm920">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm920t"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm920t"
-					name="arm920t">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm922t"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm922t"
-					name="arm922t">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm926ej-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm926ej-s"
-					name="arm926ej-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm940t"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm940t"
-					name="arm940t">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm946e-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm946e-s"
-					name="arm946e-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm966e-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm966e-s"
-					name="arm966e-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm968e-s"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm968e-s"
-					name="arm968e-s">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm9e"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm9e"
-					name="arm9e">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=arm9tdmi"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.arm9tdmi"
-					name="arm9tdmi">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a12"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a12"
-					name="cortex-a12">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a15"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a15"
-					name="cortex-a15">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a17"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a17"
-					name="cortex-a17">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a32"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a32"
-					name="cortex-a32">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a35"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a35"
-					name="cortex-a35">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a5"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a5"
-					name="cortex-a5">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a53"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a53"
-					name="cortex-a53">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a57"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a57"
-					name="cortex-a57">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a7"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a7"
-					name="cortex-a7">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a72"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a72"
-					name="cortex-a72">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a8"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a8"
-					name="cortex-a8">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-a9"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-a9"
-					name="cortex-a9">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-m0"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m0"
-					name="cortex-m0">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-m0.small-multiply"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m0-small-multiply"
-					name="cortex-m0.small-multiply">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-m0plus"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m0plus"
-					name="cortex-m0plus">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-m0plus.small-multiply"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m0plus-small-multiply"
-					name="cortex-m0plus.small-multiply">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-m1"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m1"
-					name="cortex-m1">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-m1.small-multiply"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m1-small-multiply"
-					name="cortex-m1.small-multiply">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-m23"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m23"
-					name="cortex-m23">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-m3"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m3"
-					isDefault="true"
-					name="cortex-m3">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-m33"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m33"
-					name="cortex-m33">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-m4"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m4"
-					name="cortex-m4">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-m7"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m7"
-					name="cortex-m7">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-r4"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-r4"
-					name="cortex-r4">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-r4f"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-r4f"
-					name="cortex-r4f">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-r5"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-r5"
-					name="cortex-r5">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-r7"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-r7"
-					name="cortex-r7">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=cortex-r8"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-r8"
-					name="cortex-r8">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=ep9312"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.ep9312"
-					name="ep9312">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=exynos-m1"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.exynos-m1"
-					name="exynos-m1">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=fa526"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.fa526"
-					name="fa526">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=fa606te"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.fa606te"
-					name="fa606te">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=fa626"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.fa626"
-					name="fa626">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=fa626te"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.fa626te"
-					name="fa626te">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=fa726te"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.fa726te"
-					name="fa726te">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=fmp626"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.fmp626"
-					name="fmp626">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=generic-armv7-a"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.generic-armv7-a"
-					name="generic-armv7-a">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=iwmmxt"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.iwmmxt"
-					name="iwmmxt">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=iwmmxt2"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.iwmmxt2"
-					name="iwmmxt2">
-				</enumeratedOptionValue>
-            <!-- not supported since 4.8 -->
-				<enumeratedOptionValue
-					command="-mcpu=marvell-f"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.marvell-f"
-					name="marvell-f (deprecated)">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=marvell-pj4"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.marvell-pj4"
-					name="marvell-pj4">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=mpcore"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.mpcore"
-					name="mpcore">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=mpcorenovfp"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.mpcorenovfp"
-					name="mpcorenovfp">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=native"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.native"
-					name="Native (-mcpu=native)">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=qdf24xx"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.qdf24xx"
-					name="qdf24xx">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=strongarm"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.strongarm"
-					name="strongarm">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=strongarm110"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.strongarm110"
-					name="strongarm110">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=strongarm1100"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.strongarm1100"
-					name="strongarm1100">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=strongarm1110"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.strongarm1110"
-					name="strongarm1110">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=xgene1"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.xgene1"
-					name="xgene1">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-mcpu=xscale"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.xscale"
-					name="xscale">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.default"
-					name="%option.toolchain.default">
-				</enumeratedOptionValue>
-			</option>
-			<option
+			</option>-->
+
+			<!--<option
 				id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.architecture"
 				isAbstract="true"
 				name="%option.target.arm.architecture"
@@ -1652,61 +1138,32 @@
 					isDefault="true"
 					name="%option.toolchain.default">
 				</enumeratedOptionValue>
-			</option>
-			<option
-				id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.instructionset"
+			</option>-->
+			
+			<!--<option
+				command="-mthumb-interwork"
+				defaultValue="false"
+				id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.thumbinterwork"
 				isAbstract="true"
-				name="%option.target.arm.instructionset"
-				tip="Select between generating code that executes in ARM and Thumb states. The default for most configurations is to generate code that executes in ARM state, but the default can be changed by configuring GCC with the --with-mode=state configure option."
+				name="%option.target.arm.thumbInterwork"
+				tip="Generate code that supports calling between the ARM and Thumb instruction sets."
+				useByScannerDiscovery="true"
+				valueType="boolean">
+				<enablement type="UI_ENABLEMENT|CMD_USAGE">
+					<checkOption
+						holderId="ilg.esp32_eclipse.managedbuild.cross.toolchain.base"
+						isRegex="false"
+						optionId="ilg.esp32_eclipse.managedbuild.cross.option.architecture"
+						value="ilg.esp32_eclipse.managedbuild.cross.option.architecture.arm">
+					</checkOption>
+				</enablement>
+			</option>-->
+			<!--<option
+				id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.endianness"
+				isAbstract="true"
+				name="%option.target.arm.endianness"
+				useByScannerDiscovery="true"
 				valueType="enumerated">
-				<enablement type="UI_ENABLEMENT|CMD_USAGE">
-					<checkOption
-						holderId="ilg.esp32_eclipse.managedbuild.cross.toolchain.base"
-						isRegex="false"
-						optionId="ilg.esp32_eclipse.managedbuild.cross.option.architecture"
-						value="ilg.esp32_eclipse.managedbuild.cross.option.architecture.arm">
-					</checkOption>
-				</enablement>
-				<enumeratedOptionValue
-					command="-mthumb"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.instructionset.thumb"
-					isDefault="true"
-					name="%option.target.arm.instructionset.thumb">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					command="-marm"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.instructionset.arm"
-					name="%option.target.arm.instructionset.arm">
-				</enumeratedOptionValue>
-				<enumeratedOptionValue
-					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.instructionset.default"
-					name="%option.target.arm.instructionset.default">
-				</enumeratedOptionValue>
-			</option>
-			<option
-         command="-mthumb-interwork"
-         defaultValue="false"
-         id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.thumbinterwork"
-         isAbstract="true"
-         name="%option.target.arm.thumbInterwork"
-         tip="Generate code that supports calling between the ARM and Thumb instruction sets."
-         useByScannerDiscovery="true"
-         valueType="boolean">
-				<enablement type="UI_ENABLEMENT|CMD_USAGE">
-					<checkOption
-						holderId="ilg.esp32_eclipse.managedbuild.cross.toolchain.base"
-						isRegex="false"
-						optionId="ilg.esp32_eclipse.managedbuild.cross.option.architecture"
-						value="ilg.esp32_eclipse.managedbuild.cross.option.architecture.arm">
-					</checkOption>
-				</enablement>
-			</option>
-			<option
-         id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.endianness"
-         isAbstract="true"
-         name="%option.target.arm.endianness"
-         useByScannerDiscovery="true"
-         valueType="enumerated">
 				<enablement type="UI_ENABLEMENT|CMD_USAGE">
 					<checkOption
 						holderId="ilg.esp32_eclipse.managedbuild.cross.toolchain.base"
@@ -1730,15 +1187,15 @@
 					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.endianness.big"
 					name="%option.target.arm.endianness.big">
 				</enumeratedOptionValue>
-			</option>
-			<option
-         id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.fpu.abi"
-         isAbstract="true"
-         name="%option.target.arm.floatABI"
-         tip="Specifies which floating-point ABI to use. Specifying ‘soft’ causes GCC to generate output containing library calls for floating-point operations. ‘softfp’ allows the generation of code using hardware floating-point instructions, but still uses the soft-float calling conventions. ‘hard’ allows generation of floating-point instructions and uses FPU-specific calling conventions. The default depends on the specific target configuration. Note that the hard-float and soft-float ABIs are not link-compatible; you must compile your entire program with the same ABI, and link with a compatible set of libraries."
-         useByScannerDiscovery="true"
-         valueHandler="ilg.esp32_eclipse.managedbuild.cross.FloatABIManagedOptionHandleValue"
-         valueType="enumerated">
+			</option>-->
+			<!--<option
+				id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.fpu.abi"
+				isAbstract="true"
+				name="%option.target.arm.floatABI"
+				tip="Specifies which floating-point ABI to use. Specifying ‘soft’ causes GCC to generate output containing library calls for floating-point operations. ‘softfp’ allows the generation of code using hardware floating-point instructions, but still uses the soft-float calling conventions. ‘hard’ allows generation of floating-point instructions and uses FPU-specific calling conventions. The default depends on the specific target configuration. Note that the hard-float and soft-float ABIs are not link-compatible; you must compile your entire program with the same ABI, and link with a compatible set of libraries."
+				useByScannerDiscovery="true"
+				valueHandler="ilg.esp32_eclipse.managedbuild.cross.FloatABIManagedOptionHandleValue"
+				valueType="enumerated">
 				<enablement type="UI_ENABLEMENT|CMD_USAGE">
 					<checkOption
 						holderId="ilg.esp32_eclipse.managedbuild.cross.toolchain.base"
@@ -1803,14 +1260,14 @@
 					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.fpu.abi.hard"
 					name="%option.target.arm.floatABI.hard">
 				</enumeratedOptionValue>
-			</option>
-			<option
-         id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.fpu.unit"
-         isAbstract="true"
-         name="%option.target.arm.fpuType"
-         tip="This specifies what floating-point hardware (or hardware emulation) is available on the target. If ‘-msoft-float’ is specified this specifies the format of floating-point values."
-         useByScannerDiscovery="true"
-         valueType="enumerated">
+			</option>-->
+			<!--<option
+				id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.fpu.unit"
+				isAbstract="true"
+				name="%option.target.arm.fpuType"
+				tip="This specifies what floating-point hardware (or hardware emulation) is available on the target. If ‘-msoft-float’ is specified this specifies the format of floating-point values."
+				useByScannerDiscovery="true"
+				valueType="enumerated">
 				<enablement type="UI_ENABLEMENT|CMD_USAGE">
 					<checkOption
 						holderId="ilg.esp32_eclipse.managedbuild.cross.toolchain.base"
@@ -1865,19 +1322,6 @@
 						</or>
 					</not>
 				</enablement>
-            <!--
-            <enablement
-                  attribute="defaultValue"
-                  extensionAdjustment="false"
-                  type="CONTAINER_ATTRIBUTE"
-                  value="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.fpu.unit.fpv4spd16">
-               <checkOption
-                     holderId="ilg.esp32_eclipse.managedbuild.cross.toolchain.base"
-                     optionId="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.family"
-                     value="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.mcpu.cortex-m4">
-               </checkOption>
-            </enablement>
-            -->
 				<enumeratedOptionValue
 					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.fpu.unit.default"
 					isDefault="true"
@@ -1996,14 +1440,14 @@
 					id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.fpu.unit.vfpv4d16"
 					name="%option.target.arm.fpuType.vfpv4d16">
 				</enumeratedOptionValue>
-			</option>
-			<option
-         id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.unalignedaccess"
-         isAbstract="true"
-         name="%option.target.arm.unalignedaccess"
-         tip="Enables (or disables) reading and writing of 16- and 32- bit values from addresses that are not 16- or 32- bit aligned. By default unaligned access is disabled for all pre-ARMv6 and all ARMv6-M architectures, and enabled for all other architectures. If unaligned access is not enabled then words in packed data structures will be accessed a byte at a time."
-         useByScannerDiscovery="true"
-         valueType="enumerated">
+			</option>-->
+			<!--<option
+				id="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.unalignedaccess"
+				isAbstract="true"
+				name="%option.target.arm.unalignedaccess"
+				tip="Enables (or disables) reading and writing of 16- and 32- bit values from addresses that are not 16- or 32- bit aligned. By default unaligned access is disabled for all pre-ARMv6 and all ARMv6-M architectures, and enabled for all other architectures. If unaligned access is not enabled then words in packed data structures will be accessed a byte at a time."
+				useByScannerDiscovery="true"
+				valueType="enumerated">
 				<enablement type="UI_ENABLEMENT|CMD_USAGE">
 					<checkOption
 						holderId="ilg.esp32_eclipse.managedbuild.cross.toolchain.base"
@@ -2027,7 +1471,7 @@
 					isDefault="true"
 					name="%option.target.arm.unalignedaccess.default">
 				</enumeratedOptionValue>
-			</option>
+			</option>-->
 		</tool>
 
 		<tool
@@ -2036,7 +1480,7 @@
 			name="ARM64 Targets common options">
 
          <!-- ===== AArch64 Target ======================================== -->
-			<option
+			<!--<option
 				id="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.family"
 				name="%option.target.aarch64.family"
 				valueType="enumerated">
@@ -2063,9 +1507,9 @@
 					id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.mcpu.default"
 					name="Toolchain Default">
 				</enumeratedOptionValue>
-			</option>
+			</option>-->
 
-			<option
+			<!--<option
 				id="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.feature.crc"
 				name="%option.target.aarch64.feature.crc"
 				valueType="enumerated">
@@ -2102,8 +1546,8 @@
 					isDefault="true"
 					name="%option.target.aarch64.feature.crc.default">
 				</enumeratedOptionValue>
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				id="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.feature.crypto"
 				name="%option.target.aarch64.feature.crypto"
 				valueType="enumerated">
@@ -2140,8 +1584,8 @@
 					isDefault="true"
 					name="%option.target.aarch64.feature.crypto.default">
 				</enumeratedOptionValue>
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				id="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.feature.fp"
 				name="%option.target.aarch64.feature.fp"
 				valueType="enumerated">
@@ -2178,12 +1622,12 @@
 					isDefault="true"
 					name="%option.target.aarch64.feature.fp.default">
 				</enumeratedOptionValue>
-			</option>
+			</option>-->
 			<option
-				id="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.feature.simd"
-				name="%option.target.aarch64.feature.simd"
+				id="ilg.esp32_eclipse.managedbuild.cross.option.base.xtensa.target.feature.const16"
+				name="%option.target.xtensa.feature.const16"
 				valueType="enumerated">
-				<enablement type="UI_ENABLEMENT|CMD_USAGE">
+				<!--<enablement type="UI_ENABLEMENT|CMD_USAGE">
 					<checkOption
 						holderId="ilg.esp32_eclipse.managedbuild.cross.toolchain.base"
 						isRegex="false"
@@ -2200,24 +1644,46 @@
 							value="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.mcpu.default">
 						</checkOption>
 					</not>
-				</enablement>
+				</enablement>-->
 				<enumeratedOptionValue
-					command="simd"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.feature.simd.enabled"
+					command=""
+					id="ilg.esp32_eclipse.managedbuild.cross.option.xtensa.target.feature.const16.default"
 					isDefault="true"
-					name="%option.target.aarch64.feature.simd.enabled">
+					name="%option.target.xtensa.feature.const16.default">
 				</enumeratedOptionValue>
 				<enumeratedOptionValue
-					command="nosimd"
-					id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.feature.simd.disabled"
-					name="%option.target.aarch64.feature.simd.disabled">
+					command="-mconst16"
+					id="ilg.esp32_eclipse.managedbuild.cross.option.xtensa.target.feature.const16.enabled"
+					name="%option.target.xtensa.feature.const16.enabled">
 				</enumeratedOptionValue>
 				<enumeratedOptionValue
-					id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.feature.simd.default"
-					name="%option.target.aarch64.feature.simd.default">
+					command="-mno-const16"
+					id="ilg.esp32_eclipse.managedbuild.cross.option.xtensa.target.feature.const16.disabled"
+					name="%option.target.xtensa.feature.const16.disabled">
 				</enumeratedOptionValue>
 			</option>
 			<option
+				id="ilg.esp32_eclipse.managedbuild.cross.option.base.xtensa.target.feature.madd"
+				name="%option.target.xtensa.feature.madd"
+				valueType="enumerated">
+				<enumeratedOptionValue
+					command=""
+					id="ilg.esp32_eclipse.managedbuild.cross.option.xtensa.target.feature.madd.default"
+					isDefault="true"
+					name="%option.target.xtensa.feature.madd.default">
+				</enumeratedOptionValue>
+				<enumeratedOptionValue
+					command="-mfused-madd"
+					id="ilg.esp32_eclipse.managedbuild.cross.option.xtensa.target.feature.madd.enabled"
+					name="%option.target.xtensa.feature.madd.enabled">
+				</enumeratedOptionValue>
+				<enumeratedOptionValue
+					command="-mno-fused-madd"
+					id="ilg.esp32_eclipse.managedbuild.cross.option.xtensa.target.feature.madd.disabled"
+					name="%option.target.xtensa.feature.madd.disabled">
+				</enumeratedOptionValue>
+			</option>
+			<!--<option
 				id="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.cmodel"
 				name="%option.target.aarch64.cmodel"
 				valueType="enumerated">
@@ -2249,8 +1715,8 @@
 					id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.cmodel.default"
 					name="%option.target.aarch64.cmodel.default">
 				</enumeratedOptionValue>
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				command="-mstrict-align"
 				defaultValue="false"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.strictalign"
@@ -2264,7 +1730,7 @@
 						value="ilg.esp32_eclipse.managedbuild.cross.option.architecture.aarch64">
 					</checkOption>
 				</enablement>
-			</option>
+			</option>-->
          <!-- ============================================================= -->
 
 		</tool>
@@ -2545,82 +2011,89 @@
 				id="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				name="%optionCategory.target">
 			</optionCategory>
-			<option
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.family"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.family">
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.architecture"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.architecture">
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.instructionset"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.instructionset">
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.thumbinterwork"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.thumbinterwork">
-			</option>
+			</option>-->
 
-			<option
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.endianness"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.endianness">
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.fpu.abi"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.fpu.abi">
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.fpu.unit"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.fpu.unit">
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.arm.target.unalignedaccess"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.arm.target.unalignedaccess">
+			</option>-->
+			<option
+				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
+				id="ilg.esp32_eclipse.managedbuild.cross.option.xtensa.target.feature.const16"
+				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.xtensa.target.feature.const16">
 			</option>
 			<option
+				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
+				id="ilg.esp32_eclipse.managedbuild.cross.option.xtensa.target.feature.madd"
+				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.xtensa.target.feature.madd">
+			</option>
+
+
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.family"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.family">
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.feature.crc"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.feature.crc">
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.feature.crypto"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.feature.crypto">
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.feature.fp"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.feature.fp">
-			</option>
-			<option
-				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
-				id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.feature.simd"
-				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.feature.simd">
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.cmodel"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.cmodel">
-			</option>
-			<option
+			</option>-->
+			<!--<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.aarch64.target.strictalign"
 				superClass="ilg.esp32_eclipse.managedbuild.cross.option.base.aarch64.target.strictalign">
-			</option>
+			</option>-->
 			<option
 				category="ilg.esp32_eclipse.managedbuild.cross.optionCategory.target"
 				id="ilg.esp32_eclipse.managedbuild.cross.option.target.other"

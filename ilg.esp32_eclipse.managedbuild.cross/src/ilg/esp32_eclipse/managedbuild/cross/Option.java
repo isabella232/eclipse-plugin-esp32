@@ -24,34 +24,41 @@ public class Option {
 
 	public static final String OPTION_ARCHITECTURE = OPTION_PREFIX + ".architecture";
 
-	public static final String ARCHITECTURE_ARM = "arm";
-	public static final String ARCHITECTURE_AARCH64 = "aarch64";
+//	public static final String ARCHITECTURE_ARM = "arm";
+//	public static final String ARCHITECTURE_AARCH64 = "aarch64";
+	public static final String ARCHITECTURE_XTENSA = "xtensa";
 
-	public static final String OPTION_ARCHITECTURE_ARM = OPTION_ARCHITECTURE + "." + ARCHITECTURE_ARM;
-	public static final String OPTION_ARCHITECTURE_AARCH64 = OPTION_ARCHITECTURE + "." + ARCHITECTURE_AARCH64;
+//	public static final String OPTION_ARCHITECTURE_ARM = OPTION_ARCHITECTURE + "." + ARCHITECTURE_ARM;
+//	public static final String OPTION_ARCHITECTURE_AARCH64 = OPTION_ARCHITECTURE + "." + ARCHITECTURE_AARCH64;
+	public static final String OPTION_ARCHITECTURE_XTENSA = OPTION_ARCHITECTURE + "." + ARCHITECTURE_XTENSA;
 
 	public static final String OPTION_TARGET = OPTION_PREFIX + ".target.";
 
-	public static final String OPTION_ARM_TARGET = OPTION_PREFIX + "." + ARCHITECTURE_ARM + ".target.";
-	public static final String OPTION_ARM_TARGET_FAMILY = OPTION_ARM_TARGET + "family";
+//	public static final String OPTION_ARM_TARGET = OPTION_PREFIX + "." + ARCHITECTURE_ARM + ".target.";
+//	public static final String OPTION_ARM_TARGET_FAMILY = OPTION_ARM_TARGET + "family";
 
-	public static final String OPTION_ARM_TARGET_ARCHITECTURE = OPTION_ARM_TARGET + "architecture";
-	public static final String OPTION_ARM_TARGET_INSTRUCTIONSET = OPTION_ARM_TARGET + "instructionset";
+//	public static final String OPTION_ARM_TARGET_ARCHITECTURE = OPTION_ARM_TARGET + "architecture";
+	//public static final String OPTION_ARM_TARGET_INSTRUCTIONSET = OPTION_ARM_TARGET + "instructionset";
 
-	public static final String OPTION_ARM_TARGET_THUMB_INTERWORK = OPTION_ARM_TARGET + "thumbinterwork";
-	public static final String OPTION_ARM_TARGET_ENDIANNESS = OPTION_ARM_TARGET + "endianness";
-	public static final String OPTION_ARM_TARGET_FLOAT_ABI = OPTION_ARM_TARGET + "fpu.abi";
-	public static final String OPTION_ARM_TARGET_FLOAT_UNIT = OPTION_ARM_TARGET + "fpu.unit";
-	public static final String OPTION_ARM_TARGET_UNALIGNEDACCESS = OPTION_ARM_TARGET + "unalignedaccess";
+//	public static final String OPTION_ARM_TARGET_THUMB_INTERWORK = OPTION_ARM_TARGET + "thumbinterwork";
+//	public static final String OPTION_ARM_TARGET_ENDIANNESS = OPTION_ARM_TARGET + "endianness";
+//	public static final String OPTION_ARM_TARGET_FLOAT_ABI = OPTION_ARM_TARGET + "fpu.abi";
+//	public static final String OPTION_ARM_TARGET_FLOAT_UNIT = OPTION_ARM_TARGET + "fpu.unit";
+//	public static final String OPTION_ARM_TARGET_UNALIGNEDACCESS = OPTION_ARM_TARGET + "unalignedaccess";
 
-	public static final String OPTION_AARCH64_TARGET = OPTION_PREFIX + "." + ARCHITECTURE_AARCH64 + ".target.";
-	public static final String OPTION_AARCH64_TARGET_FAMILY = OPTION_AARCH64_TARGET + "family";
-	public static final String OPTION_AARCH64_TARGET_FEATURE_CRC = OPTION_AARCH64_TARGET + "feature.crc";
-	public static final String OPTION_AARCH64_TARGET_FEATURE_CRYPTO = OPTION_AARCH64_TARGET + "feature.crypto";
-	public static final String OPTION_AARCH64_TARGET_FEATURE_FP = OPTION_AARCH64_TARGET + "feature.fp";
-	public static final String OPTION_AARCH64_TARGET_FEATURE_SIMD = OPTION_AARCH64_TARGET + "feature.simd";
-	public static final String OPTION_AARCH64_TARGET_CMODEL = OPTION_AARCH64_TARGET + "cmodel";
-	public static final String OPTION_AARCH64_TARGET_STRICTALIGN = OPTION_AARCH64_TARGET + "strictalign";
+	// public static final String OPTION_AARCH64_TARGET = OPTION_PREFIX + "." + ARCHITECTURE_AARCH64 + ".target.";
+	// public static final String OPTION_AARCH64_TARGET_FAMILY = OPTION_AARCH64_TARGET + "family";
+	// public static final String OPTION_AARCH64_TARGET_FEATURE_CRC = OPTION_AARCH64_TARGET + "feature.crc";
+	// public static final String OPTION_AARCH64_TARGET_FEATURE_CRYPTO = OPTION_AARCH64_TARGET + "feature.crypto";
+	// public static final String OPTION_AARCH64_TARGET_FEATURE_FP = OPTION_AARCH64_TARGET + "feature.fp";
+//	
+
+	public static final String OPTION_XTENSA_TARGET = OPTION_PREFIX + "." + ARCHITECTURE_XTENSA + ".target.";
+	public static final String OPTION_XTENSA_TARGET_FEATURE_CONST16 = OPTION_XTENSA_TARGET + "feature.const16";
+	public static final String OPTION_XTENSA_TARGET_FEATURE_MADD = OPTION_XTENSA_TARGET + "feature.madd";
+	
+	// public static final String OPTION_AARCH64_TARGET_CMODEL = OPTION_AARCH64_TARGET + "cmodel";
+	// public static final String OPTION_AARCH64_TARGET_STRICTALIGN = OPTION_AARCH64_TARGET + "strictalign";
 
 	public static final String OPTION_TARGET_OTHER = OPTION_TARGET + "other";
 
@@ -142,24 +149,24 @@ public class Option {
 	public static final String CHOICE_BINARY = "binary";
 
 	// ARM enumeration values
-	public static final String OPTION_ARM_MCPU_CORTEXM3 = OPTION_PREFIX + ".arm.target.mcpu.cortex-m3";
-	public static final String OPTION_ARM_MCPU_CORTEXM4 = OPTION_PREFIX + ".arm.target.mcpu.cortex-m4";
+//	public static final String OPTION_ARM_MCPU_CORTEXM3 = OPTION_PREFIX + ".arm.target.mcpu.cortex-m3";
+//	public static final String OPTION_ARM_MCPU_CORTEXM4 = OPTION_PREFIX + ".arm.target.mcpu.cortex-m4";
 
-	public static final String OPTION_ARM_INSTRUCTIONSET_THUMB = OPTION_PREFIX + ".arm.target.instructionset.thumb";
+//	public static final String OPTION_ARM_INSTRUCTIONSET_THUMB = OPTION_PREFIX + ".arm.target.instructionset.thumb";
 
-	public static final String OPTION_ARM_FPU_ABI_HARD = OPTION_PREFIX + ".arm.target.fpu.abi.hard";
+//	public static final String OPTION_ARM_FPU_ABI_HARD = OPTION_PREFIX + ".arm.target.fpu.abi.hard";
 
-	public static final String OPTION_ARM_FPU_ABI_SOFTFP = OPTION_PREFIX + ".arm.target.fpu.abi.softfp";
+//	public static final String OPTION_ARM_FPU_ABI_SOFTFP = OPTION_PREFIX + ".arm.target.fpu.abi.softfp";
 
-	public static final String OPTION_ARM_FPU_UNIT_DEFAULT = OPTION_PREFIX + ".arm.target.fpu.unit.default";
+//	public static final String OPTION_ARM_FPU_UNIT_DEFAULT = OPTION_PREFIX + ".arm.target.fpu.unit.default";
 
-	public static final String OPTION_ARM_FPU_UNIT_FPV4SPD16 = OPTION_PREFIX + ".arm.target.fpu.unit.fpv4spd16";
+//	public static final String OPTION_ARM_FPU_UNIT_FPV4SPD16 = OPTION_PREFIX + ".arm.target.fpu.unit.fpv4spd16";
 
 	// AARCH64 enumeration values
 	public static final String OPTION_AARCH64_MCPU_GENERIC = OPTION_PREFIX + ".aarch64.target.mcpu.generic";
 
-	public static final String OPTION_AARCH64_FEATURE_SIMD = OPTION_PREFIX + ".aarch64.target.feature.simd";
-	public static final String OPTION_AARCH64_FEATURE_SIMD_ENABLED = OPTION_AARCH64_FEATURE_SIMD + ".enabled";
+//	public static final String OPTION_AARCH64_FEATURE_SIMD = OPTION_PREFIX + ".aarch64.target.feature.simd";
+//	public static final String OPTION_AARCH64_FEATURE_SIMD_ENABLED = OPTION_AARCH64_FEATURE_SIMD + ".enabled";
 
 	public static final String OPTION_AARCH64_CMODEL = OPTION_PREFIX + ".aarch64.target.cmodel";
 	public static final String OPTION_AARCH64_CMODEL_SMALL = OPTION_AARCH64_CMODEL + ".small";
@@ -262,38 +269,38 @@ public class Option {
 		String sReturn = "";
 		String sValue;
 
-		sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_FAMILY);
-		if (sValue != null && sValue.length() > 0)
-			sReturn += " " + sValue;
+		// sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_FAMILY);
+		// if (sValue != null && sValue.length() > 0)
+		// 	sReturn += " " + sValue;
 
-		sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_ARCHITECTURE);
-		if (sValue != null && sValue.length() > 0)
-			sReturn += " " + sValue;
+//		sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_ARCHITECTURE);
+//		if (sValue != null && sValue.length() > 0)
+//			sReturn += " " + sValue;
 
-		sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_INSTRUCTIONSET);
-		if (sValue != null && sValue.length() > 0)
-			sReturn += " " + sValue;
+		// sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_INSTRUCTIONSET);
+		// if (sValue != null && sValue.length() > 0)
+		// 	sReturn += " " + sValue;
 
-		sValue = getOptionBooleanCommand(config, OPTION_ARM_TARGET_THUMB_INTERWORK);
-		if (sValue != null && sValue.length() > 0)
-			sReturn += " " + sValue;
+//		sValue = getOptionBooleanCommand(config, OPTION_ARM_TARGET_THUMB_INTERWORK);
+//		if (sValue != null && sValue.length() > 0)
+//			sReturn += " " + sValue;
 
-		sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_ENDIANNESS);
-		if (sValue != null && sValue.length() > 0)
-			sReturn += " " + sValue;
+//		sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_ENDIANNESS);
+//		if (sValue != null && sValue.length() > 0)
+//			sReturn += " " + sValue;
 
-		sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_FLOAT_ABI);
-		if (sValue != null && sValue.length() > 0) {
-			sReturn += " " + sValue;
+//		sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_FLOAT_ABI);
+//		if (sValue != null && sValue.length() > 0) {
+//			sReturn += " " + sValue;
 
-			sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_FLOAT_UNIT);
-			if (sValue != null && sValue.length() > 0)
-				sReturn += " " + sValue;
-		}
+//			sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_FLOAT_UNIT);
+//			if (sValue != null && sValue.length() > 0)
+//				sReturn += " " + sValue;
+//		}
 
-		sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_UNALIGNEDACCESS);
-		if (sValue != null && sValue.length() > 0)
-			sReturn += " " + sValue;
+//		sValue = getOptionEnumCommand(config, OPTION_ARM_TARGET_UNALIGNEDACCESS);
+//		if (sValue != null && sValue.length() > 0)
+//			sReturn += " " + sValue;
 
 		if (sReturn != null)
 			sReturn = sReturn.trim();
@@ -306,35 +313,37 @@ public class Option {
 		String sReturn = "";
 		String sValue;
 
-		sValue = getOptionEnumCommand(config, OPTION_AARCH64_TARGET_FAMILY);
-		if (sValue != null && sValue.length() > 0) {
+//		sValue = getOptionEnumCommand(config, OPTION_AARCH64_TARGET_FAMILY);
+//		if (sValue != null && sValue.length() > 0) {
+//			sReturn += " " + sValue;
+
+//			sValue = getOptionEnumCommand(config, OPTION_AARCH64_TARGET_FEATURE_CRC);
+//			if (sValue != null && sValue.length() > 0)
+//				sReturn += "+" + sValue;
+
+//			sValue = getOptionEnumCommand(config, OPTION_AARCH64_TARGET_FEATURE_CRYPTO);
+//			if (sValue != null && sValue.length() > 0)
+//				sReturn += "+" + sValue;
+
+//			sValue = getOptionEnumCommand(config, OPTION_AARCH64_TARGET_FEATURE_FP);
+//			if (sValue != null && sValue.length() > 0)
+//				sReturn += "+" + sValue;
+
+//		}
+		sValue = getOptionEnumCommand(config, OPTION_XTENSA_TARGET_FEATURE_CONST16);
+		if (sValue != null && sValue.length() > 0) 
+			sReturn += " " + sValue;
+		sValue = getOptionEnumCommand(config, OPTION_XTENSA_TARGET_FEATURE_MADD);
+		if (sValue != null && sValue.length() > 0) 
 			sReturn += " " + sValue;
 
-			sValue = getOptionEnumCommand(config, OPTION_AARCH64_TARGET_FEATURE_CRC);
-			if (sValue != null && sValue.length() > 0)
-				sReturn += "+" + sValue;
+//		sValue = getOptionEnumCommand(config, OPTION_AARCH64_TARGET_CMODEL);
+//		if (sValue != null && sValue.length() > 0)
+//			sReturn += " " + sValue;
 
-			sValue = getOptionEnumCommand(config, OPTION_AARCH64_TARGET_FEATURE_CRYPTO);
-			if (sValue != null && sValue.length() > 0)
-				sReturn += "+" + sValue;
-
-			sValue = getOptionEnumCommand(config, OPTION_AARCH64_TARGET_FEATURE_FP);
-			if (sValue != null && sValue.length() > 0)
-				sReturn += "+" + sValue;
-
-			sValue = getOptionEnumCommand(config, OPTION_AARCH64_TARGET_FEATURE_SIMD);
-			if (sValue != null && sValue.length() > 0)
-				sReturn += "+" + sValue;
-
-		}
-
-		sValue = getOptionEnumCommand(config, OPTION_AARCH64_TARGET_CMODEL);
-		if (sValue != null && sValue.length() > 0)
-			sReturn += " " + sValue;
-
-		sValue = getOptionBooleanCommand(config, OPTION_AARCH64_TARGET_STRICTALIGN);
-		if (sValue != null && sValue.length() > 0)
-			sReturn += " " + sValue;
+//		sValue = getOptionBooleanCommand(config, OPTION_AARCH64_TARGET_STRICTALIGN);
+//		if (sValue != null && sValue.length() > 0)
+//			sReturn += " " + sValue;
 
 		if (sReturn != null)
 			sReturn = sReturn.trim();
@@ -531,17 +540,28 @@ public class Option {
 		String sReturn = "";
 		String sValue;
 
-		if (sArchitectureId != null) {
-			sValue = null;
-			if (sArchitectureId.endsWith("." + ARCHITECTURE_ARM)) {
-				sValue = getArmTargetFlags(config);
-			} else if (sArchitectureId.endsWith("." + ARCHITECTURE_AARCH64)) {
-				sValue = getAarch64TargetFlags(config);
-			}
-			if (sValue != null && sValue.length() > 0)
-				sReturn += " " + sValue;
-		}
+		// if (sArchitectureId != null) {
+		// 	sValue = null;
+		// 	if (sArchitectureId.endsWith("." + ARCHITECTURE_ARM)) {
+		// 		sValue = getArmTargetFlags(config);
+		// 	} else if (sArchitectureId.endsWith("." + ARCHITECTURE_AARCH64)) {
+		// 		sValue = getAarch64TargetFlags(config);
+		// 	}
+		// 	if (sValue != null && sValue.length() > 0)
+		// 		sReturn += " " + sValue;
+		// }
 
+		// This part have to be moved to another method ---
+		sValue = getOptionEnumCommand(config, OPTION_XTENSA_TARGET_FEATURE_CONST16);
+		if (sValue != null && sValue.length() > 0) 
+			sReturn += " " + sValue;
+		sValue = getOptionEnumCommand(config, OPTION_XTENSA_TARGET_FEATURE_MADD);
+		if (sValue != null && sValue.length() > 0) 
+			sReturn += " " + sValue;
+
+			
+		// ---
+		
 		sValue = getOptionStringValue(config, OPTION_TARGET_OTHER);
 		if (sValue != null && sValue.length() > 0)
 			sReturn += " " + sValue;

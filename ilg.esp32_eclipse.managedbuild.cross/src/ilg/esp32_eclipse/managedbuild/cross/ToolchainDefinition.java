@@ -44,7 +44,7 @@ public class ToolchainDefinition {
 	private String fCmdObjdump;
 	private String fCmdSize;
 
-	private static String fArchitectures[] = { "ARM (AArch32)", "ARM64 (AArch64)" };
+	private static String fArchitectures[] = { "Xtensa (ESP32 & ESP8266)"};
 
 	// ------------------------------------------------------------------------
 
