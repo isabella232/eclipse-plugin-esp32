@@ -1,0 +1,2 @@
+# Control if trace messages are shown.
+ilg.esp32_eclipse.debug.gdbjtag.restart/debug=false
