@@ -28,4 +28,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Export-Package: ilg.esp32_eclipse.debug.gdbjtag.openocd,
  ilg.esp32_eclipse.debug.gdbjtag.openocd.dsf,
+ ilg.esp32_eclipse.debug.gdbjtag.openocd.preferences,
  ilg.esp32_eclipse.debug.gdbjtag.openocd.ui

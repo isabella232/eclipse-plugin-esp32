@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>esp32_eclipse_plugin </groupId>
-	<artifactId>esp32_eclipse_plugin </artifactId>
+	<artifactId>esp32_eclipse_plugin</artifactId>
 	<version>4.1.4-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 
@@ -17,6 +17,28 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-repository-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<compress>true</compress>
+					<!-- Nope, it brings all 3rd party plug-ins.
+					<includeAllDependencies>true</includeAllDependencies>
+					-->
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>archive-repository</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 	<name>ESP32 Eclipse Plug-In</name>
 	<url>http://esp32_eclipse.github.io</url>
 </project>

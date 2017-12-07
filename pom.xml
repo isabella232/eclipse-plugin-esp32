@@ -38,7 +38,6 @@
 	</licenses>
 
 	<modules>
-		<module>esp32_eclipse_plugin</module>
 		<module>ilg.esp32_eclipse.core</module>
 		<module>ilg.esp32_eclipse.managedbuild.cross</module>
         <module>ilg.esp32_eclipse.managedbuild.cross-feature</module>
@@ -58,15 +57,17 @@
 		<module>ilg.esp32_eclipse.packs.data</module>
 
 		<module>ilg.esp32_eclipse.debug.gdbjtag.openocd-feature</module>
+		<!-- <module>esp32_eclipse_plugin</module> -->
+
 	</modules>
 
 	<repositories>
 		<repository>
-			<id>eclipse-luna</id>
+			<id>eclipse-neon</id>
 			<layout>p2</layout>
 			<!-- Explicit reference to Luna SR2 -->
 			<!-- (Do a run without version and retain the most recent one) -->
-			<url>http://download.eclipse.org/releases/luna/201502271000</url>
+			<url>http://download.eclipse.org/releases/neon/201705151400</url>
 		</repository>
 	</repositories>
 
@@ -102,11 +103,6 @@
 							<arch>x86_64</arch>
 						</environment>
 						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>ppc64</arch>
-						</environment>
-						<environment>
 							<os>win32</os>
 							<ws>win32</ws>
 							<arch>x86</arch>
@@ -121,11 +117,6 @@
 							<ws>cocoa</ws>
 							<arch>x86_64</arch>
 						</environment>
-						<environment>
-							<os>aix</os>
-							<ws>gtk</ws>
-							<arch>ppc</arch>
-						</environment>
 					</environments>
 				</configuration>
 			</plugin>
@@ -139,25 +130,23 @@
 					<version>${tycho.version}</version>
 					<configuration>
 						<encoding>UTF-8</encoding>
-						<useProjectSettings>true</useProjectSettings>
+						<!-- <useProjectSettings>true</useProjectSettings> -->
+						<!-- <showDeprecation>true</showDeprecation> -->
 					</configuration>
 				</plugin>
-				<!-- enable source bundle generation -->
-				<!-- 
+
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
-					<artifactId>tycho-source-plugin</artifactId>
-					<version>${tycho-version}</version>
-					<executions>
-						<execution>
-							<id>plugin-source</id>
-							<goals>
-								<goal>plugin-source</goal>
-							</goals>
-						</execution>
-					</executions>
+					<artifactId>tycho-p2-repository-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<configuration>
+						<compress>true</compress>
+						<!-- Nope, it brings all 3rd party plug-ins.
+						<includeAllDependencies>true</includeAllDependencies>
+						-->
+					</configuration>
 				</plugin>
-				 -->
+
 			</plugins>
 		</pluginManagement>
 	</build>
