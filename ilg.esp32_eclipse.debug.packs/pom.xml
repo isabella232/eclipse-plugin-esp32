@@ -12,9 +12,9 @@
 
 	<parent>
 		<groupId>ilg.esp32_eclipse</groupId>
-		<artifactId>plug-ins</artifactId>
+		<artifactId>ilg.esp32_eclipse.parent</artifactId>
 		<version>3.4.1-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
+		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
 	<name>ESP32 Eclipse debug packs</name>

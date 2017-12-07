@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/ilg.esp32_eclipse.managedbuild.cross_2.4.1.qualifier.jar" id="ilg.esp32_eclipse.managedbuild.cross" version="2.4.1.qualifier">
+      <category name="ilg.esp32_eclipse.repository"/>
+   </feature>
+   <feature url="features/ilg.esp32_eclipse.debug.gdbjtag.openocd_4.1.4.qualifier.jar" id="ilg.esp32_eclipse.debug.gdbjtag.openocd" version="4.1.4.qualifier">
+      <category name="ilg.esp32_eclipse.repository"/>
+   </feature>
+   <category-def name="esp32_eclipse_plugin" label="GNU ESP32 C/C++ Cross Development Tools">
+      <description>
+         GNU ESP32 C/C++ Cross Development Tools
+      </description>
+   </category-def>
+</site>

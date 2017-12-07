@@ -11,31 +11,17 @@
 	<!-- Generally unique amongst an organization or a project. -->
 	<groupId>ilg.esp32_eclipse</groupId>
 	<!-- Generally the name that the project is known by. -->
-	<artifactId>plug-ins</artifactId>
+	<artifactId>ilg.esp32_eclipse.plugins</artifactId>
 	<version>3.4.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<properties>
-		<!-- https://wiki.eclipse.org/Tycho/Release_Notes -->
-		<tycho.version>0.25.0</tycho.version>
+	<parent>
+		<groupId>ilg.esp32_eclipse</groupId>
+		<artifactId>ilg.esp32_eclipse.parent</artifactId>
+		<version>3.4.1-SNAPSHOT</version>
+		<relativePath>parent/pom.xml</relativePath>
+	</parent>
 
-		<!-- Silence a Maven warning -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
-	<licenses>
-		<license>
-			<name>Eclipse Public License v1.0</name>
-			<comments>
-       All rights reserved.
-
-       This program and the accompanying materials are made
-       available under the terms of the Eclipse Public License v1.0
-       which accompanies this distribution, and is available at
-       http://www.eclipse.org/legal/epl-v10.htm
-      </comments>
-		</license>
-	</licenses>
 
 	<modules>
 		<module>ilg.esp32_eclipse.core</module>
@@ -57,99 +43,9 @@
 		<module>ilg.esp32_eclipse.packs.data</module>
 
 		<module>ilg.esp32_eclipse.debug.gdbjtag.openocd-feature</module>
-		<!-- <module>esp32_eclipse_plugin</module> -->
+		<module>ilg.esp32_eclipse.repository</module>
 
 	</modules>
-
-	<repositories>
-		<repository>
-			<id>eclipse-neon</id>
-			<layout>p2</layout>
-			<!-- Explicit reference to Luna SR2 -->
-			<!-- (Do a run without version and retain the most recent one) -->
-			<url>http://download.eclipse.org/releases/neon/201705151400</url>
-		</repository>
-	</repositories>
-
-	<profiles>
-		<profile>
-		</profile>
-	</profiles>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho.version}</version>
-				<extensions>true</extensions>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>target-platform-configuration</artifactId>
-				<version>${tycho.version}</version>
-				<configuration>
-					<resolver>p2</resolver>
-					<pomDependencies>consider</pomDependencies>
-					<environments>
-						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>x86</arch>
-						</environment>
-						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86</arch>
-						</environment>
-						<environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>macosx</os>
-							<ws>cocoa</ws>
-							<arch>x86_64</arch>
-						</environment>
-					</environments>
-				</configuration>
-			</plugin>
-		</plugins>
-
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.tycho</groupId>
-					<artifactId>tycho-compiler-plugin</artifactId>
-					<version>${tycho.version}</version>
-					<configuration>
-						<encoding>UTF-8</encoding>
-						<!-- <useProjectSettings>true</useProjectSettings> -->
-						<!-- <showDeprecation>true</showDeprecation> -->
-					</configuration>
-				</plugin>
-
-				<plugin>
-					<groupId>org.eclipse.tycho</groupId>
-					<artifactId>tycho-p2-repository-plugin</artifactId>
-					<version>${tycho.version}</version>
-					<configuration>
-						<compress>true</compress>
-						<!-- Nope, it brings all 3rd party plug-ins.
-						<includeAllDependencies>true</includeAllDependencies>
-						-->
-					</configuration>
-				</plugin>
-
-			</plugins>
-		</pluginManagement>
-	</build>
 
 	<name>ESP32 Eclipse parent</name>
 	<url>http://esp32_eclipse.github.io</url>

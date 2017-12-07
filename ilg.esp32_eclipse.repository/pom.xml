@@ -6,9 +6,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ilg.esp32_eclipse</groupId>
-	<artifactId>ilg.esp32_eclipse.packs.data</artifactId>
-	<version>1.3.1-SNAPSHOT</version>
-	<packaging>eclipse-plugin</packaging>
+	<artifactId>ilg.esp32_eclipse.repository</artifactId>
+	<version>3.4.1-SNAPSHOT</version>
+	<packaging>eclipse-repository</packaging>
 
 	<parent>
 		<groupId>ilg.esp32_eclipse</groupId>
@@ -17,6 +17,6 @@
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
-	<name>ESP32 Eclipse packages data</name>
+	<name>ESP32 Eclipse Plug-In</name>
 	<url>http://esp32_eclipse.github.io</url>
 </project>

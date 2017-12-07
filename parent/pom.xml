@@ -1,0 +1,157 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<prerequisites>
+		<maven>3.0.5</maven>
+	</prerequisites>
+
+	<!-- https://maven.apache.org/pom.html groupId:artifactId:version are all 
+		required fields, acting much like an address and timestamp in one. -->
+	<!-- Generally unique amongst an organization or a project. -->
+	<groupId>ilg.esp32_eclipse</groupId>
+	<!-- Generally the name that the project is known by. -->
+	<artifactId>ilg.esp32_eclipse.parent</artifactId>
+	<version>3.4.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<!-- https://wiki.eclipse.org/Tycho/Release_Notes -->
+		<tycho.version>0.25.0</tycho.version>
+
+		<!-- Silence a Maven warning -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- The usual Eclipse timestamp, down to minutes. -->
+		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>Eclipse Public License v1.0</name>
+			<comments>
+       All rights reserved.
+
+       This program and the accompanying materials are made
+       available under the terms of the Eclipse Public License v1.0
+       which accompanies this distribution, and is available at
+       http://www.eclipse.org/legal/epl-v10.htm
+      		</comments>
+		</license>
+	</licenses>
+
+	<repositories>
+		<repository>
+			<id>eclipse-neon</id>
+			<layout>p2</layout>
+			<!-- Explicit reference to Neon.3 with CDT 9.2.1 -->
+			<!-- (Do a run without version and retain the most recent one) -->
+			<url>http://download.eclipse.org/releases/neon/201705151400</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- Enable Tycho. -->
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<!-- Mandatory, without it eclipse-* POMs are not accepted. -->
+				<extensions>true</extensions> 
+			</plugin>
+
+			<!-- 
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>gme-parse-version</id>
+						<goals>
+							<goal>parse-version</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			-->
+ 
+			<plugin>
+				<!-- Used by eclipse-repository packagings.  -->
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<pomDependencies>consider</pomDependencies>
+					
+					<!-- Mandatory, without it Build is platform dependent. -->
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+		<pluginManagement>
+			<!-- Defaults, applied when plug-ins are actually used. -->
+			<plugins>
+
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-compiler-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+						<!-- <useProjectSettings>true</useProjectSettings> -->
+						<!-- <showDeprecation>true</showDeprecation> -->
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-p2-repository-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<configuration>
+						<compress>true</compress>
+						<!-- Nope, it brings all 3rd party plug-ins.
+						<includeAllDependencies>true</includeAllDependencies>
+						-->
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<name>ESP32 Eclipse parent</name>
+	<url>http://esp32_eclipse.github.io</url>
+</project>
