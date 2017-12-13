@@ -1,20 +1,47 @@
 stages:
-  - test
   - build
+  - test
   - deploy
 
-test:
-  stage: test
-  script: echo "Running tests"
+before_script:
+  # add gitlab ssh key (on Linux only)
+  - >
+    test $(uname -s) != "Darwin" &&
+    echo "Setting up Gitlab SSH key" &&
+    mkdir -p ~/.ssh &&
+    chmod 700 ~/.ssh &&
+    echo -n $GITLAB_KEY > ~/.ssh/id_rsa_base64 &&
+    base64 --decode --ignore-garbage ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa &&
+    chmod 600 ~/.ssh/id_rsa &&
+    echo -e "Host gitlab.espressif.cn\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
 
 build:
   stage: build
-  script: echo "Building the app"
+  image: jimador/docker-jdk-8-maven-node
+  tags:
+    - build
 
-deploy_staging:
-  stage: deploy
+  artifacts:
+    paths:
+      - dist
+    expire_in: 2 weeks
+
+  variables:
+    GIT_STRATEGY: fetch
+
   script:
-    - echo "Deploy to staging server"
-  environment:
-    name: staging
-    url: https://staging.example.com
+    # Build ESP32 Eclipse Plugins
+    - echo "Hello Dmitry!"
+    - git submodule update --init
+    - ls
+    - mvn clean install 
+    - ls ilg.esp32_eclipse.repository
+    - ls ilg.esp32_eclipse.repository/target
+    #- ls ilg.esp32_eclipse.repository/target/$REL_NAME.zip
+    - mkdir -p dist
+    - mv ilg.esp32_eclipse.repository/target/*.zip dist/
+    #- mv ilg.esp32_eclipse.repository/target/$REL_NAME.zip dist/
+
+
+    
