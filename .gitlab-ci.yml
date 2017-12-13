@@ -30,7 +30,7 @@ build:
   variables:
     GIT_STRATEGY: fetch
 
-script:
+  script:
     # Build ESP32 Eclipse Plugins
     - echo "Hello Dmitry!"
     - git submodule update --init
@@ -44,3 +44,6 @@ script:
     - mkdir -p dist
     - mv ilg.esp32_eclipse.repository/target/*.zip dist/
     #- mv ilg.esp32_eclipse.repository/target/$REL_NAME.zip dist/
+
+
+    
