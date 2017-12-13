@@ -30,10 +30,12 @@ build:
   variables:
     GIT_STRATEGY: fetch
 
-  script:
+script:
     # Build ESP32 Eclipse Plugins
     - echo "Hello Dmitry!"
     - git submodule update --init
+    - ls
+    - keytool -genkey -dname "cn=Dmitry Yakovlev, ou=SW, o=Espressif Inc, c=CN" -alias business -keypass key123 -keystore testkey.key -storepass key123 -validity 180
     - ls
     - mvn clean install 
     - ls ilg.esp32_eclipse.repository
@@ -42,6 +44,3 @@ build:
     - mkdir -p dist
     - mv ilg.esp32_eclipse.repository/target/*.zip dist/
     #- mv ilg.esp32_eclipse.repository/target/$REL_NAME.zip dist/
-
-
-    
