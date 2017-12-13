@@ -35,7 +35,7 @@ build:
     - echo "Hello Dmitry!"
     - git submodule update --init
     - ls
-    - keytool -genkey -dname "cn=Dmitry Yakovlev, ou=SW, o=Espressif Inc, c=CN" -alias business -keypass key123 -keystore testkey.key -storepass key123 -validity 180
+    - keytool -genkey -dname "cn=Dmitry Yakovlev, ou=SW, o=Espressif Systems Ltd, c=CN" -alias business -keypass key123 -keystore esp32_plugins.key -storepass key123 -validity 360
     - ls
     - mvn clean install 
     - ls ilg.esp32_eclipse.repository
