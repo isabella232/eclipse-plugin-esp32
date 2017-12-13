@@ -118,7 +118,7 @@
 					</environments>
 				</configuration>
 			</plugin>
-
+				<!-- The plugin have to be signed off. -->
 				<plugin>
 				        <groupId>org.apache.maven.plugins</groupId>
 				        <artifactId>maven-jarsigner-plugin</artifactId>
@@ -138,10 +138,12 @@
 							</execution>
 				        </executions>
 				        <configuration>
-				          <keystore>../testkey.key</keystore>
-				          <alias>business</alias>
-				          <storepass>key123</storepass>
-				          <keypass>key123</keypass>
+							<keystore>../testkey.key</keystore>
+							<alias>business</alias>
+							<storepass>key123</storepass>
+							<keypass>key123</keypass>
+							<verbose>true</verbose>
+							<certs>true</certs>
 				        </configuration>
 				</plugin>
 
@@ -173,7 +175,7 @@
 						-->
 					</configuration>
 				</plugin>
-				<plugin>
+				<!--<plugin>
 				        <groupId>org.apache.maven.plugins</groupId>
 				        <artifactId>maven-jarsigner-plugin</artifactId>
 				        <version>1.4</version>
@@ -197,7 +199,7 @@
 				          <storepass>key123</storepass>
 				          <keypass>key123</keypass>
 				        </configuration>
-				</plugin>
+				</plugin>-->
 			</plugins>
 		</pluginManagement>
 	</build>
