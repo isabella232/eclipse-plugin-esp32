@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="System View"
+            id="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.category">
+      </category>
+      <command
+            name="Start"
+            categoryId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.category"
+            id="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StartSVCommand">
+      </command>
+      <command
+            name="Stop"
+            categoryId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.category"
+            id="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StopSVCommand">
+      </command>
+      <command
+            name="Options"
+            categoryId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.category"
+            id="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StartSVCommand"
+            class="ilg.esp32_eclipse.debug.gdbjtag.esp32.handlers.StartSVHandler">
+      </handler>
+      <handler
+            commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StopSVCommand"
+            class="ilg.esp32_eclipse.debug.gdbjtag.esp32.handlers.StopSVHandler">
+      </handler>
+      <handler
+            commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand"
+            class="ilg.esp32_eclipse.debug.gdbjtag.esp32.handlers.OptionsSVHandler">
+      </handler>
+   </extension>
+   <extension
+      point="org.eclipse.ui.bindings">
+      <key
+            commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StartSVCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+1"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StopSVCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+2"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+3"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="Esp32"
+               mnemonic="M"
+               id="ilg.esp32_eclipse.debug.gdbjtag.esp32.menus.Esp32Menu">
+            <command
+                  commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StartSVCommand"
+                  icon="icons/StartBtn16x16.ico"
+                  id="ilg.esp32_eclipse.debug.gdbjtag.esp32.menus.StartSVCommand"
+                  label="Start Trace"
+                  mnemonic="S">
+            </command>
+            <command
+                  commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StopSVCommand"
+                  icon="icons/StartBtn16x16.ico"
+                  id="ilg.esp32_eclipse.debug.gdbjtag.esp32.menus.StopSVCommand"
+                  label="Stop Trace"
+                  mnemonic="T">
+            </command>
+            <command
+                  commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand"
+                  icon="icons/StartBtn16x16.ico"
+                  id="ilg.esp32_eclipse.debug.gdbjtag.esp32.menus.OptionsSVCommand"
+                  label="Trace Options"
+                  mnemonic="D">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="ilg.esp32_eclipse.debug.gdbjtag.esp32.toolbars.SystemViewToolbar">
+            <command
+                  commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StartSVCommand"
+                  icon="icons/StartBtn16x16.ico"
+                  tooltip="Start System View"
+                  id="ilg.esp32_eclipse.debug.gdbjtag.esp32.toolbars.StartSVCommand">
+            </command>
+v            <command
+                  commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StopSVCommand"
+                  icon="icons/StopBtn16x16.ico"
+                  tooltip="Stop System View"
+                  id="ilg.esp32_eclipse.debug.gdbjtag.esp32.toolbars.StopSVCommand">
+            </command>
+            <command
+                  commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand"
+                  icon="icons/StopBtn16x16.ico"
+                  tooltip="System View Options"
+                  id="ilg.esp32_eclipse.debug.gdbjtag.esp32.toolbars.OptionsSVCommand">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+</plugin>
