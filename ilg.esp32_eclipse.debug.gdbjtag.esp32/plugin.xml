@@ -77,14 +77,14 @@
             </command>
             <command
                   commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StopSVCommand"
-                  icon="icons/StartBtn16x16.ico"
+                  icon="icons/StopBtn16x16.ico"
                   id="ilg.esp32_eclipse.debug.gdbjtag.esp32.menus.StopSVCommand"
                   label="Stop Trace"
                   mnemonic="T">
             </command>
             <command
                   commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand"
-                  icon="icons/StartBtn16x16.ico"
+                  icon="icons/Tools.gif"
                   id="ilg.esp32_eclipse.debug.gdbjtag.esp32.menus.OptionsSVCommand"
                   label="Trace Options"
                   mnemonic="D">
@@ -109,7 +109,7 @@ v            <command
             </command>
             <command
                   commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand"
-                  icon="icons/StopBtn16x16.ico"
+                  icon="icons/Tools.gif"
                   tooltip="System View Options"
                   id="ilg.esp32_eclipse.debug.gdbjtag.esp32.toolbars.OptionsSVCommand">
             </command>
