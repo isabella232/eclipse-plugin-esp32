@@ -109,7 +109,7 @@ v            <command
             </command>
             <command
                   commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand"
-                  icon="icons/Tools.gif"
+                  icon="icons/Properties.ico"
                   tooltip="System View Options"
                   id="ilg.esp32_eclipse.debug.gdbjtag.esp32.toolbars.OptionsSVCommand">
             </command>
