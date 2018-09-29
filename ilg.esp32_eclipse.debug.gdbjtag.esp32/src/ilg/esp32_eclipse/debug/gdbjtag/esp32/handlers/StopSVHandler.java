@@ -6,7 +6,9 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
+//import test.properties.SamplePropertyPage;
 
+import ilg.esp32_eclipse.debug.gdbjtag.dsf.GnuArmFinalLaunchSequence;
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
  * @see org.eclipse.core.commands.IHandler
@@ -17,6 +19,9 @@ public class StopSVHandler extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+		String stop_cmd = "monitor esp32 sysview stop"; 
+		GnuArmFinalLaunchSequence.Exec_queueCommand(stop_cmd);
+
 		MessageDialog.openInformation(
 				window.getShell(),
 				"Esp32",

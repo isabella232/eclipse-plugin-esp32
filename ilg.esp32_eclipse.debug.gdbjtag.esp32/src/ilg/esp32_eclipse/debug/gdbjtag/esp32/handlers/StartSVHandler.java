@@ -6,6 +6,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
+import ilg.esp32_eclipse.debug.gdbjtag.dsf.GnuArmFinalLaunchSequence;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
@@ -21,6 +22,9 @@ public class StartSVHandler extends AbstractHandler {
 				window.getShell(),
 				"Esp32",
 				"Start SV");
+		String start_cmd = "monitor esp32 sysview start file://pro_test.txt file://app_test.txt"; 
+		GnuArmFinalLaunchSequence.Exec_queueCommand(start_cmd);
+				
 		return null;
 	}
 }

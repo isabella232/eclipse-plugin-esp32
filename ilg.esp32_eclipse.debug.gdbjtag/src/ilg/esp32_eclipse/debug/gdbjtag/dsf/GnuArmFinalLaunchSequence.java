@@ -274,14 +274,48 @@ public class GnuArmFinalLaunchSequence extends GDBJtagDSFFinalLaunchSequence {
 			return;
 		}
 
+		last_instance = this;
 		super.stepSourceGDBInitFile(new RequestMonitor(getExecutor(), rm) {
 
 			protected void handleSuccess() {
+				last_rm = rm;
 				queueCommands(commandsList, rm);
 			}
 		});
 	}
 
+	static GnuArmFinalLaunchSequence last_instance;
+	static RequestMonitor last_rm;
+
+	public void run_queueCommands(List<String> commands) 
+	{
+		DebugUtils.queueCommands(commands, last_rm, fCommandControl, getExecutor());
+	}
+
+	public static void Exec_queueCommand(String command) 
+	{
+		List<String> cmds = new ArrayList<String>();
+		cmds.add(command);
+		last_instance.run_queueCommands(cmds);
+	}
+	
+	public static void Exec_queueCommands(List<String> commands) 
+	{
+		last_instance.run_queueCommands(commands);
+	}
+	
+	public static void CheckSendQueue()
+	{
+		System.out.println("CheckSendQueue()");
+		List<String> cmds = new ArrayList<String>();
+		cmds.add("monitor reg");
+		last_instance.run_queueCommands(cmds);
+	}
+
+	public static GnuArmFinalLaunchSequence GetInstance()
+	{
+		return last_instance;
+	}
 	// ------------------------------------------------------------------------
 
 	/**

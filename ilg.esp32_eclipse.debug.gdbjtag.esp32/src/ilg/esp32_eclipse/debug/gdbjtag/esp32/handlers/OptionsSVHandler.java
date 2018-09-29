@@ -7,6 +7,8 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 
+import ilg.esp32_eclipse.debug.gdbjtag.dsf.GnuArmFinalLaunchSequence;
+
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
  * @see org.eclipse.core.commands.IHandler
@@ -21,6 +23,11 @@ public class OptionsSVHandler extends AbstractHandler {
 				window.getShell(),
 				"Esp32",
 				"Options SV");
+		
+		String stop_cmd = "monitor esp32 sysview status"; 
+		GnuArmFinalLaunchSequence.Exec_queueCommand(stop_cmd);
+
+
 		return null;
 	}
 }

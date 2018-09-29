@@ -3,5 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Esp32
 Bundle-SymbolicName: ilg.esp32_eclipse.debug.gdbjtag.esp32;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Require-Bundle: org.eclipse.ui
+Require-Bundle: ilg.esp32_eclipse.core,
+ ilg.esp32_eclipse.debug.core,
+ ilg.esp32_eclipse.debug.gdbjtag,
+ org.eclipse.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -198,4 +198,13 @@ public class DebuggerCommands extends GnuArmDebuggerCommandsService {
 	}
 
 	// ------------------------------------------------------------------------
+
+	// ----   System View  ----------------------------------------------------
+
+	@Override
+	public IStatus addStartSysViewCommand(List<String> commandsList) {
+		
+		return Status.OK_STATUS;
+	}
+
 }

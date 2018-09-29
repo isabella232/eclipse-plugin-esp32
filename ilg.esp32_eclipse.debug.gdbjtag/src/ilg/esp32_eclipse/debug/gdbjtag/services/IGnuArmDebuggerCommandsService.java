@@ -66,5 +66,8 @@ public interface IGnuArmDebuggerCommandsService {
 
 	public IStatus addStopAtCommands(List<String> commandsList);
 
+	// ----- System View Commands  -----------------------------------
+	public IStatus addStartSysViewCommand(List<String> commandsList);
+
 	// ------------------------------------------------------------------------
 }
