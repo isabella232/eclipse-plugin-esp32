@@ -34,7 +34,23 @@ public class DefaultPreferences {
 	public static final String GDB_SERVER_EXECUTABLE_DEFAULT_NAME = "openocd";
 	protected static final String GDB_CLIENT_EXECUTABLE_DEFAULT = "${xtensa_tools}/bin/xtensa-esp32-elf-gdb.exe";
 
-	// ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+	protected static final String SYSVIEW_PRO_CPU_FILE_DEFAULT = "pro-cpu.SVDat";
+    private static final String  SYSVIEW_PRO_CPU_FILE_DEPRECATED = "pro-cpu.SVDat";
+	protected static final String SYSVIEW_APP_CPU_FILE_DEFAULT = "app-cpu.SVDat";
+    private static final String  SYSVIEW_APP_CPU_FILE_DEPRECATED = "app-cpu.SVDat";
+
+	protected static final String SYSVIEW_POOL_PERIOD_DEFAULT = "";
+    private static final String  SYSVIEW_POOL_PERIOD_DEPRECATED = "";
+	protected static final String SYSVIEW_TRACE_SIZE_DEFAULT = "";
+    private static final String  SYSVIEW_TRACE_SIZE_DEPRECATED = "";
+	protected static final String SYSVIEW_STOP_TMO_DEFAULT = "";
+    private static final String  SYSVIEW_STOP_TMO_DEPRECATED = "";
+
+    
+
+    // SysView Preferences
+
 
 	// Not yet preferences
 	public static final boolean DO_START_GDB_SERVER_DEFAULT = true;
@@ -169,6 +185,47 @@ public class DefaultPreferences {
 	}
 
 	// ------------------------------------------------------------------------
+	public static String getSysviewProCpuFile() {
+		String value = getString(PersistentPreferences.SYSVIEW_PRO_CPU_FILE, null);
+		if (value != null) {
+			return value;
+		}
+		return getString(SYSVIEW_PRO_CPU_FILE_DEPRECATED, SYSVIEW_PRO_CPU_FILE_DEFAULT);
+	}
+
+	public static String getSysviewAppCpuFile() {
+		String value = getString(PersistentPreferences.SYSVIEW_APP_CPU_FILE, null);
+		if (value != null) {
+			return value;
+		}
+		return getString(SYSVIEW_APP_CPU_FILE_DEPRECATED, SYSVIEW_APP_CPU_FILE_DEFAULT);
+	}
+
+	public static String getSysviewPoolPeriod() {
+		String value = getString(PersistentPreferences.SYSVIEW_POOL_PERIOD, null);
+		if (value != null) {
+			return value;
+		}
+		return getString(SYSVIEW_POOL_PERIOD_DEPRECATED, SYSVIEW_POOL_PERIOD_DEFAULT);
+	}
+
+	public static String getSysviewTraceSize() {
+		String value = getString(PersistentPreferences.SYSVIEW_TRACE_SIZE, null);
+		if (value != null) {
+			return value;
+		}
+		return getString(SYSVIEW_TRACE_SIZE_DEPRECATED, SYSVIEW_TRACE_SIZE_DEFAULT);
+	}
+
+	public static String getSysviewStopTmo() {
+		String value = getString(PersistentPreferences.SYSVIEW_STOP_TMO, null);
+		if (value != null) {
+			return value;
+		}
+		return getString(SYSVIEW_STOP_TMO_DEPRECATED, SYSVIEW_STOP_TMO_DEFAULT);
+	}
+
+    // ------------------------------------------------------------------------
 
 	public static String getOpenocdConfig() {
 		String value = getString(PersistentPreferences.GDB_SERVER_OTHER_OPTIONS, null);

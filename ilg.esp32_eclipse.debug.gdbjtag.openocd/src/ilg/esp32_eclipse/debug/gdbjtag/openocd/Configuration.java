@@ -15,6 +15,7 @@ package ilg.esp32_eclipse.debug.gdbjtag.openocd;
 import ilg.esp32_eclipse.core.EclipseUtils;
 import ilg.esp32_eclipse.core.StringUtils;
 import ilg.esp32_eclipse.debug.gdbjtag.DebugUtils;
+import ilg.esp32_eclipse.debug.gdbjtag.dsf.GnuArmFinalLaunchSequence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -219,5 +220,45 @@ public class Configuration {
 						DefaultPreferences.DO_GDB_SERVER_ALLOCATE_CONSOLE_DEFAULT);
 	}
 
-	// ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    public static String getSysveiwStartCommand(ILaunchConfiguration config) {
+
+		
+		String executable = null;
+
+		try {
+//			GnuArmFinalLaunchSequence.getCurrentConfig();
+            
+            String pro_file = config.getAttribute(ConfigurationAttributes.SYSVIEW_PRO_CPU_FILE, DefaultPreferences.SYSVIEW_PRO_CPU_FILE_DEFAULT).trim();
+            String app_file = config.getAttribute(ConfigurationAttributes.SYSVIEW_APP_CPU_FILE, DefaultPreferences.SYSVIEW_APP_CPU_FILE_DEFAULT).trim();
+
+            String pool_period = config.getAttribute(ConfigurationAttributes.SYSVIEW_POOL_PERIOD, DefaultPreferences.SYSVIEW_POOL_PERIOD_DEFAULT).trim();
+            String trace_size = config.getAttribute(ConfigurationAttributes.SYSVIEW_TRACE_SIZE, DefaultPreferences.SYSVIEW_TRACE_SIZE_DEFAULT).trim();
+            String stop_tmo = config.getAttribute(ConfigurationAttributes.SYSVIEW_STOP_TMO, DefaultPreferences.SYSVIEW_STOP_TMO_DEFAULT).trim();
+
+            pro_file = pro_file.replace('\\', '/');
+            executable =  "file://" + pro_file + " ";
+            app_file = app_file.replace('\\', '/');
+            executable += "file://" + app_file + " ";
+            executable += pool_period + " ";
+            executable += trace_size + " ";
+            executable += stop_tmo + " ";
+		} catch (CoreException e) {
+			Activator.log(e);
+			return null;
+		}
+
+		return executable;
+	}
+    
+    public static String getSysveiwStartCommand() {
+    
+    	ILaunchConfiguration config = GnuArmFinalLaunchSequence.getCurrentConfig();
+    	return getSysveiwStartCommand(config);
+    }
+
+
+    // ------ Stsrem View
+
+
 }

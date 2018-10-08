@@ -18,14 +18,9 @@ public class StopSVHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 		String stop_cmd = "monitor esp32 sysview stop"; 
 		GnuArmFinalLaunchSequence.Exec_queueCommand(stop_cmd);
 
-		MessageDialog.openInformation(
-				window.getShell(),
-				"Esp32",
-				"Stop SV");
 		return null;
 	}
 }

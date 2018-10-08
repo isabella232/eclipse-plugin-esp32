@@ -18,11 +18,11 @@
             categoryId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.category"
             id="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StopSVCommand">
       </command>
-      <command
+      <!-- <command
             name="Options"
             categoryId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.category"
             id="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand">
-      </command>
+      </command> -->
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -34,10 +34,10 @@
             commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.StopSVCommand"
             class="ilg.esp32_eclipse.debug.gdbjtag.esp32.handlers.StopSVHandler">
       </handler>
-      <handler
+      <!-- <handler
             commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand"
             class="ilg.esp32_eclipse.debug.gdbjtag.esp32.handlers.OptionsSVHandler">
-      </handler>
+      </handler> -->
    </extension>
    <extension
       point="org.eclipse.ui.bindings">
@@ -53,12 +53,12 @@
             sequence="M1+2"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
       </key>
-      <key
+      <!-- <key
             commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand"
             contextId="org.eclipse.ui.contexts.window"
             sequence="M1+3"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
-      </key>
+      </key> -->
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -82,13 +82,13 @@
                   label="Stop Trace"
                   mnemonic="T">
             </command>
-            <command
+            <!-- <command
                   commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand"
                   icon="icons/Tools.gif"
                   id="ilg.esp32_eclipse.debug.gdbjtag.esp32.menus.OptionsSVCommand"
                   label="Trace Options"
                   mnemonic="D">
-            </command>
+            </command> -->
          </menu>
       </menuContribution>
       <menuContribution
@@ -107,12 +107,12 @@ v            <command
                   tooltip="Stop System View"
                   id="ilg.esp32_eclipse.debug.gdbjtag.esp32.toolbars.StopSVCommand">
             </command>
-            <command
+            <!-- <command
                   commandId="ilg.esp32_eclipse.debug.gdbjtag.esp32.commands.OptionsSVCommand"
                   icon="icons/Properties.ico"
                   tooltip="System View Options"
                   id="ilg.esp32_eclipse.debug.gdbjtag.esp32.toolbars.OptionsSVCommand">
-            </command>
+            </command> -->
          </toolbar>
       </menuContribution>
    </extension>

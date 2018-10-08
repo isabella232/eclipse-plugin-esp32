@@ -69,4 +69,13 @@ public interface ConfigurationAttributes {
 
 	public static final boolean DEFAULT_LOAD_IMAGE = false; // Just while flash loader not ready
 	// ------------------------------------------------------------------------
+	
+	// System View
+	
+	public static final String SYSVIEW_PRO_CPU_FILE = PREFIX + ".SysviewProCpuFile"; //$NON-NLS-1$
+	public static final String SYSVIEW_APP_CPU_FILE = PREFIX + ".SysviewAppCpuFile"; //$NON-NLS-1$
+	
+	public static final String SYSVIEW_POOL_PERIOD = PREFIX + ".SysviewPoolPeriod"; //$NON-NLS-1$
+	public static final String SYSVIEW_TRACE_SIZE = PREFIX + ".SysviewTraceSize"; //$NON-NLS-1$
+	public static final String SYSVIEW_STOP_TMO = PREFIX + ".SysviewStopTmo"; //$NON-NLS-1$
 }

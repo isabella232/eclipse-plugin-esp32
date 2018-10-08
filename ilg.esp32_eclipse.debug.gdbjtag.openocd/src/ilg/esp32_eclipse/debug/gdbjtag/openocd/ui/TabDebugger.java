@@ -90,6 +90,16 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 
 	protected Button fUpdateThreadlistOnSuspend;
 
+// SysView parameters
+private Text fProCpu;
+private Text fAppCpu;
+
+private Text fPoolPerod;
+private Text fTraceSize;
+private Text fStopTmo;
+
+
+
 	// ------------------------------------------------------------------------
 
 	protected TabDebugger(TabStartup tabStartup) {
@@ -120,7 +130,9 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 
 		createGdbClientControls(comp);
 
-		createRemoteControl(comp);
+		createSysviewControls(comp);
+
+        createRemoteControl(comp);
 
 		fUpdateThreadlistOnSuspend = new Button(comp, SWT.CHECK);
 		fUpdateThreadlistOnSuspend.setText(Messages.getString("DebuggerTab.update_thread_list_on_suspend_Text"));
@@ -547,6 +559,186 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 		});
 	}
 
+	private void createSysviewControls(Composite parent) {
+
+		Group group = new Group(parent, SWT.NONE);
+		group.setText(Messages.getString("DebuggerTab.sysviewSetupGroup_Text"));
+		GridLayout layout = new GridLayout();
+		group.setLayout(layout);
+		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+		group.setLayoutData(gd);
+
+		Composite comp = new Composite(group, SWT.NONE);
+		layout = new GridLayout();
+		layout.numColumns = 2;
+		layout.marginHeight = 0;
+		comp.setLayout(layout);
+		gd = new GridData(GridData.FILL_HORIZONTAL);
+		comp.setLayoutData(gd);
+
+		Label label;
+		Button browseButton1;
+		Button variableButton1;
+		{
+			label = new Label(comp, SWT.NONE);
+			label.setText(Messages.getString("DebuggerTab.sysviewFile1_Label"));
+			label.setToolTipText(Messages.getString("DebuggerTab.sysviewFile1_ToolTipText"));
+
+			Composite local = new Composite(comp, SWT.NONE);
+			layout = new GridLayout();
+			layout.numColumns = 3;
+			layout.marginHeight = 0;
+			layout.marginWidth = 0;
+			local.setLayout(layout);
+			gd = new GridData(GridData.FILL_HORIZONTAL);
+			local.setLayoutData(gd);
+			{
+				fProCpu = new Text(local, SWT.SINGLE | SWT.BORDER);
+				gd = new GridData(GridData.FILL_HORIZONTAL);
+				fProCpu.setLayoutData(gd);
+
+				browseButton1 = new Button(local, SWT.NONE);
+				browseButton1.setText(Messages.getString("DebuggerTab.sysviewFileBrowse"));
+
+				variableButton1 = new Button(local, SWT.NONE);
+				variableButton1.setText(Messages.getString("DebuggerTab.sysviewFileVariable"));
+			}
+		}
+
+        Button browseButton2;
+		Button variableButton2;
+		{
+			label = new Label(comp, SWT.NONE);
+			label.setText(Messages.getString("DebuggerTab.sysviewFile2_Label"));
+			label.setToolTipText(Messages.getString("DebuggerTab.sysviewFile2_ToolTipText"));
+
+			Composite local = new Composite(comp, SWT.NONE);
+			layout = new GridLayout();
+			layout.numColumns = 3;
+			layout.marginHeight = 0;
+			layout.marginWidth = 0;
+			local.setLayout(layout);
+			gd = new GridData(GridData.FILL_HORIZONTAL);
+			local.setLayoutData(gd);
+			{
+				fAppCpu = new Text(local, SWT.SINGLE | SWT.BORDER);
+				gd = new GridData(GridData.FILL_HORIZONTAL);
+				fAppCpu.setLayoutData(gd);
+
+				browseButton2 = new Button(local, SWT.NONE);
+				browseButton2.setText(Messages.getString("DebuggerTab.sysviewFileBrowse"));
+
+				variableButton2 = new Button(local, SWT.NONE);
+				variableButton2.setText(Messages.getString("DebuggerTab.sysviewFileVariable"));
+			}
+		}
+
+		{
+			label = new Label(comp, SWT.NONE);
+			label.setText(Messages.getString("DebuggerTab.sysviewPoolPeriod_Label"));
+			label.setToolTipText(Messages.getString("DebuggerTab.sysviewPoolPeriod_ToolTipText"));
+			gd = new GridData();
+			label.setLayoutData(gd);
+
+			fPoolPerod = new Text(comp, SWT.SINGLE | SWT.BORDER);
+			gd = new GridData(GridData.FILL_HORIZONTAL);
+			fPoolPerod.setLayoutData(gd);
+		}
+
+		{
+			label = new Label(comp, SWT.NONE);
+			label.setText(Messages.getString("DebuggerTab.sysviewTraceSize_Label"));
+			label.setToolTipText(Messages.getString("DebuggerTab.sysviewTraceSize_ToolTipText"));
+			gd = new GridData();
+			label.setLayoutData(gd);
+
+			fTraceSize = new Text(comp, SWT.SINGLE | SWT.BORDER);
+			gd = new GridData(GridData.FILL_HORIZONTAL);
+			fTraceSize.setLayoutData(gd);
+		}
+
+		{
+			label = new Label(comp, SWT.NONE);
+			label.setText(Messages.getString("DebuggerTab.sysviewStopTmo_Label"));
+			label.setToolTipText(Messages.getString("DebuggerTab.sysviewStopTmo_ToolTipText"));
+			gd = new GridData();
+			label.setLayoutData(gd);
+
+			fStopTmo = new Text(comp, SWT.SINGLE | SWT.BORDER);
+			gd = new GridData(GridData.FILL_HORIZONTAL);
+			fStopTmo.setLayoutData(gd);
+		}
+
+		// ----- Actions ------------------------------------------------------
+
+		fProCpu.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+
+				scheduleUpdateJob(); // provides much better performance for
+										// Text listeners
+			}
+		});
+
+		fAppCpu.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+
+				scheduleUpdateJob(); // provides much better performance for
+										// Text listeners
+			}
+		});
+
+		fPoolPerod.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				scheduleUpdateJob();
+			}
+		});
+
+		fTraceSize.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				scheduleUpdateJob();
+			}
+		});
+
+        fStopTmo.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				scheduleUpdateJob();
+			}
+		});
+
+		browseButton1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				browseButtonSelected(Messages.getString("DebuggerTab.sysviewFile1Browse_Title"), fProCpu);
+			}
+		});
+
+        browseButton2.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				browseButtonSelected(Messages.getString("DebuggerTab.sysviewFile2Browse_Title"), fAppCpu);
+			}
+		});
+
+		variableButton1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				variablesButtonSelected(fProCpu);
+			}
+		});
+		variableButton2.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				variablesButtonSelected(fAppCpu);
+			}
+		});
+	}
+
+
 	private void doStartGdbServerChanged() {
 
 		boolean enabled = fDoStartGdbServer.getSelection();
@@ -641,6 +833,26 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 						configuration.getAttribute(ConfigurationAttributes.GDB_CLIENT_OTHER_COMMANDS, stringDefault));
 			}
 
+            // System View Setup
+            {
+				stringDefault = PersistentPreferences.getSysviewProCpuFile();
+				String gdbCommandAttr = configuration.getAttribute(IGDBLaunchConfigurationConstants.ATTR_DEBUG_NAME,
+                        stringDefault);
+                        
+                fProCpu.setText(configuration.getAttribute(ConfigurationAttributes.SYSVIEW_PRO_CPU_FILE, stringDefault));
+
+                stringDefault = PersistentPreferences.getSysviewAppCpuFile();
+                fAppCpu.setText(configuration.getAttribute(ConfigurationAttributes.SYSVIEW_APP_CPU_FILE, stringDefault));
+
+                stringDefault = PersistentPreferences.getSysviewPoolPeriod();
+                fPoolPerod.setText(configuration.getAttribute(ConfigurationAttributes.SYSVIEW_POOL_PERIOD, stringDefault));
+
+                stringDefault = PersistentPreferences.getSysviewTraceSize();
+                fTraceSize.setText(configuration.getAttribute(ConfigurationAttributes.SYSVIEW_TRACE_SIZE, stringDefault));
+
+                stringDefault = PersistentPreferences.getSysviewStopTmo();
+                fStopTmo.setText(configuration.getAttribute(ConfigurationAttributes.SYSVIEW_STOP_TMO, stringDefault));
+            }
 			// Remote target
 			{
 				fTargetIpAddress.setText(configuration.getAttribute(IGDBJtagConstants.ATTR_IP_ADDRESS,
@@ -820,7 +1032,30 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 			stringValue = fGdbClientOtherCommands.getText().trim();
 			configuration.setAttribute(ConfigurationAttributes.GDB_CLIENT_OTHER_COMMANDS, stringValue);
 			PersistentPreferences.putGdbClientCommands(stringValue);
-		}
+        }
+        // System View
+        {
+            stringValue = fProCpu.getText().trim();
+			configuration.setAttribute(ConfigurationAttributes.SYSVIEW_PRO_CPU_FILE, stringValue);
+			PersistentPreferences.putSysviewProFile(stringValue);
+
+            stringValue = fAppCpu.getText().trim();
+			configuration.setAttribute(ConfigurationAttributes.SYSVIEW_APP_CPU_FILE, stringValue);
+			PersistentPreferences.putSysviewAppFile(stringValue);
+
+            stringValue = fPoolPerod.getText().trim();
+			configuration.setAttribute(ConfigurationAttributes.SYSVIEW_POOL_PERIOD, stringValue);
+			PersistentPreferences.putSysviewPootPeriod(stringValue);
+
+            stringValue = fTraceSize.getText().trim();
+			configuration.setAttribute(ConfigurationAttributes.SYSVIEW_TRACE_SIZE, stringValue);
+			PersistentPreferences.putSysviewTraceSize(stringValue);
+
+            stringValue = fStopTmo.getText().trim();
+			configuration.setAttribute(ConfigurationAttributes.SYSVIEW_STOP_TMO, stringValue);
+			PersistentPreferences.putSysviewStopTmo(stringValue);
+
+        }
 
 		{
 			if (fDoStartGdbServer.getSelection()) {

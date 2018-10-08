@@ -40,6 +40,14 @@ public class PersistentPreferences {
 
 	public static final String GDB_CLIENT_COMMANDS = GDB_CLIENT + "commands";
 
+    // System View
+	public static final String SYSVIEW_PRO_CPU_FILE = "pro-cpu.SVDat";
+	public static final String SYSVIEW_APP_CPU_FILE = "app-cpu.SVDat";
+	public static final String SYSVIEW_POOL_PERIOD = "pool period";
+	public static final String SYSVIEW_TRACE_SIZE = "trace size";
+	public static final String SYSVIEW_STOP_TMO = "stop timer";
+
+
 	// Tab Startup
 	// Initialisation Commands
 	public static final String GDB_OPENOCD = "gdb.openocd.";
@@ -166,6 +174,75 @@ public class PersistentPreferences {
 
 		putWorkspaceString(GDB_CLIENT_EXECUTABLE, value);
 	}
+
+    // ----- System View variables --------------------------------------------
+
+	public static String getSysviewProCpuFile() {
+
+		String value = getString(SYSVIEW_PRO_CPU_FILE, null);
+		if (value != null) {
+			return value;
+		}
+		return DefaultPreferences.getSysviewProCpuFile();
+	}
+	public static void putSysviewProFile(String value) {
+
+		putWorkspaceString(SYSVIEW_PRO_CPU_FILE, value);
+	}
+
+	public static String getSysviewAppCpuFile() {
+
+		String value = getString(SYSVIEW_APP_CPU_FILE, null);
+		if (value != null) {
+			return value;
+		}
+		return DefaultPreferences.getSysviewAppCpuFile();
+	}
+	public static void putSysviewAppFile(String value) {
+
+		putWorkspaceString(SYSVIEW_APP_CPU_FILE, value);
+	}
+
+	public static String getSysviewPoolPeriod() {
+
+		String value = getString(SYSVIEW_POOL_PERIOD, null);
+		if (value != null) {
+			return value;
+		}
+		return DefaultPreferences.getSysviewPoolPeriod();
+	}
+	public static void putSysviewPootPeriod(String value) {
+
+		putWorkspaceString(SYSVIEW_POOL_PERIOD, value);
+	}
+
+	public static String getSysviewTraceSize() {
+
+		String value = getString(SYSVIEW_TRACE_SIZE, null);
+		if (value != null) {
+			return value;
+		}
+		return DefaultPreferences.getSysviewTraceSize();
+	}
+    public static void putSysviewTraceSize(String value) {
+
+		putWorkspaceString(SYSVIEW_TRACE_SIZE, value);
+	}
+
+	public static String getSysviewStopTmo() {
+
+		String value = getString(SYSVIEW_STOP_TMO, null);
+		if (value != null) {
+			return value;
+		}
+		return DefaultPreferences.getSysviewStopTmo();
+	}
+    public static void putSysviewStopTmo(String value) {
+
+		putWorkspaceString(SYSVIEW_STOP_TMO, value);
+	}
+
+    // ------------------------------------------------------------------------
 
 	// ----- gdb client other options -----------------------------------------
 	public static String getGdbClientOtherOptions() {

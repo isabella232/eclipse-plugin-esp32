@@ -37,6 +37,7 @@ import org.eclipse.cdt.dsf.service.DsfSession;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunch;
+import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchManager;
 
 public class GnuArmFinalLaunchSequence extends GDBJtagDSFFinalLaunchSequence {
@@ -315,7 +316,29 @@ public class GnuArmFinalLaunchSequence extends GDBJtagDSFFinalLaunchSequence {
 	public static GnuArmFinalLaunchSequence GetInstance()
 	{
 		return last_instance;
+    }
+	
+	public static ILaunchConfiguration getCurrentConfig()
+	{
+        GdbLaunch launch = ((GdbLaunch) last_instance.fSession.getModelAdapter(ILaunch.class));
+        ILaunchConfiguration config = launch.getLaunchConfiguration(); 
+        return config;
 	}
+    public String getSysviewStart()
+    {
+    	String result = "";
+        GdbLaunch launch = ((GdbLaunch) this.fSession.getModelAdapter(ILaunch.class));
+        ILaunchConfiguration config = launch.getLaunchConfiguration(); 
+
+        //result = Configuration.getSysveiwStartCommand(config);
+        return result;
+    }
+
+    public static String GetSysviewStart()
+    {
+        String result = last_instance.getSysviewStart();
+        return result;
+    }
 	// ------------------------------------------------------------------------
 
 	/**

@@ -6,5 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Require-Bundle: ilg.esp32_eclipse.core,
  ilg.esp32_eclipse.debug.core,
  ilg.esp32_eclipse.debug.gdbjtag,
- org.eclipse.ui
+ org.eclipse.ui,
+ ilg.esp32_eclipse.debug.gdbjtag.openocd
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
