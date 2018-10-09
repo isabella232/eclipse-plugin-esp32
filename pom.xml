@@ -33,6 +33,7 @@
 		<module>ilg.esp32_eclipse.debug.gdbjtag</module>
 
 		<module>ilg.esp32_eclipse.debug.gdbjtag.openocd</module>
+		<module>ilg.esp32_eclipse.debug.gdbjtag.esp32</module>
 
 
 		<module>ilg.esp32_eclipse.debug.packs</module>
