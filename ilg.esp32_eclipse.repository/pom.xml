@@ -17,6 +17,6 @@
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
-	<name>ESP32 Eclipse Repositiry</name>
+	<name>ESP32 Eclipse Repository</name>
 	<url>http://esp32_eclipse.github.io</url>
 </project>
