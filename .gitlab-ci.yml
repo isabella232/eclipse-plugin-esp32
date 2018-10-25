@@ -1,49 +1,147 @@
 stages:
   - build
-  - test
   - deploy
+  - release_draft
+  - release_submit
+
+image: ${CI_DOCKER_REGISTRY}/esp32-ci-env
+
+variables:
+  ARCHIVE_DIR: "dist"
+  ARCHIVE_NAME: "com.espressif.esp32.repository-4.1.4-SNAPSHOT.zip"
 
 before_script:
-  # add gitlab ssh key (on Linux only)
-  - >
-    test $(uname -s) != "Darwin" &&
-    echo "Setting up Gitlab SSH key" &&
-    mkdir -p ~/.ssh &&
-    chmod 700 ~/.ssh &&
-    echo -n $GITLAB_KEY > ~/.ssh/id_rsa_base64 &&
-    base64 --decode --ignore-garbage ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa &&
-    chmod 600 ~/.ssh/id_rsa &&
-    echo -e "Host gitlab.espressif.cn\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  # Use CI Tools
+  - curl -sSL ${CIT_LOADER_URL} | sh
+  - source citools/import_functions
 
+.add_gh_remote_key: &add_gh_remote_key |
+  cit_add_ssh_key "${GH_SSH_KEY}"
+  git remote remove gh || true
+  git remote add gh ${GH_PUSH_REPO}
+
+.release_tag_filter: &release_tag_filter
+  only:
+    - /^v[0-9].*$/
+
+.release_submit_action: &release_submit_action
+  when: manual
+  allow_failure: true
 
 build:
   stage: build
   image: jimador/docker-jdk-8-maven-node
   tags:
     - build
-
   artifacts:
     paths:
-      - dist
+      - ${ARCHIVE_DIR}
     expire_in: 2 weeks
-
   variables:
     GIT_STRATEGY: fetch
-
   script:
-    # Build ESP32 Eclipse Plugins
     - echo "Hello Dmitry!"
-    - git submodule update --init
     - ls
     - keytool -genkey -dname "cn=Dmitry Yakovlev, ou=SW, o=Espressif Systems Ltd, c=CN" -alias business -keypass key123 -keystore esp32_plugins.key -storepass key123 -validity 360
     - ls
-    - mvn clean install 
+    - mvn clean install
     - ls com.espressif.esp32.repository
     - ls com.espressif.esp32.repository/target
-    #- ls com.espressif.esp32.repository/target/$REL_NAME.zip
-    - mkdir -p dist
-    - mv com.espressif.esp32.repository/target/*.zip dist/
-    #- mv com.espressif.esp32.repository/target/$REL_NAME.zip dist/
+    - mkdir -p ${ARCHIVE_DIR}
+    - mv -v com.espressif.esp32.repository/target/${ARCHIVE_NAME} ${ARCHIVE_DIR}/
 
+push_master_to_github:
+  stage: deploy
+  only:
+    - master
+  when: on_success
+  dependencies: []
+  script:
+    - *add_gh_remote_key
+    - git push gh HEAD:master
 
-    
+#
+# Versioning of the plugin is based on the Maven's magic.
+#
+# Since we will build a package with a version number that looks like "4.1.4-201810221343",
+# we have to create a git tag such as: "v4.1.4-20181022" then push it to GitLab.
+#
+# Note, the versioning is not based on git tags. We set the tag just to indicate the appropriate Maven's version.
+#
+# CI will do the rest.
+#
+
+gh_release_draft:
+  stage: release_draft
+  <<: *release_tag_filter
+  when: on_success
+  tags:
+    - build
+  script:
+    - export GITHUB_TOKEN=${GH_TOKEN}
+    - export GITHUB_USER=${GH_USER}
+    - export GITHUB_REPO=${GH_REPO}
+    - cit_gh_tool_init
+
+    # Pushing the tag anyway
+    - *add_gh_remote_key
+    - git push --force gh ${CI_COMMIT_TAG}
+
+    # Releasing a draft
+    - ${CIT_GH_TOOL} delete --tag ${CI_COMMIT_TAG} || true
+    - ${CIT_GH_TOOL} release --tag ${CI_COMMIT_TAG} --draft
+
+    - TAG_SUFFIX="${CI_COMMIT_TAG#*v}"
+    - TAGGED_NAME="${ARCHIVE_NAME%-*-SNAPSHOT*}"
+    - TAGGED_NAME="${TAGGED_NAME}-${TAG_SUFFIX}.zip"
+    - pushd ${ARCHIVE_DIR}
+    - mv -v ${ARCHIVE_NAME} ${TAGGED_NAME}
+    - popd
+
+    # Upload the archive
+    - git_gh_tool_upload_file "${ARCHIVE_DIR}/${TAGGED_NAME}" "${TAGGED_NAME}"
+
+Release_tag_submit:
+  stage: release_submit
+  <<: *release_tag_filter
+  <<: *release_submit_action
+  dependencies: []
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - export GITHUB_TOKEN=${GH_TOKEN}
+    - export GITHUB_USER=${GH_USER}
+    - export GITHUB_REPO=${GH_REPO}
+    - cit_gh_tool_init
+    - echo "WARNING! The description will be replaced anyway. You have to fix them on GitHub.com/"
+    - ${CIT_GH_TOOL} edit --tag ${CI_COMMIT_TAG}
+
+Pre-Release_tag_submit:
+  stage: release_submit
+  <<: *release_tag_filter
+  <<: *release_submit_action
+  dependencies: []
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - export GITHUB_TOKEN=${GH_TOKEN}
+    - export GITHUB_USER=${GH_USER}
+    - export GITHUB_REPO=${GH_REPO}
+    - cit_gh_tool_init
+    - echo "WARNING! The description will be replaced anyway. You have to fix them on GitHub.com/"
+    - ${CIT_GH_TOOL} edit --tag ${CI_COMMIT_TAG} --pre-release
+
+Delete_tag_release:
+  stage: release_submit
+  <<: *release_tag_filter
+  <<: *release_submit_action
+  dependencies: []
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - export GITHUB_TOKEN=${GH_TOKEN}
+    - export GITHUB_USER=${GH_USER}
+    - export GITHUB_REPO=${GH_REPO}
+    - cit_gh_tool_init
+    - echo "WARNING! The description will be replaced anyway. You have to fix them on GitHub.com/"
+    - ${CIT_GH_TOOL} delete --tag ${CI_COMMIT_TAG} || true
