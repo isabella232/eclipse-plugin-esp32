@@ -1,0 +1,2 @@
+# Control if trace messages are shown.
+com.espressif.esp32.managedbuild.cross/debug=false

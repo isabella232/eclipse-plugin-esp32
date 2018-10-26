@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.espressif.esp32</groupId>
+	<artifactId>com.espressif.esp32.debug.gdbjtag.openocd</artifactId>
+	<version>4.1.4-SNAPSHOT</version>
+	<packaging>eclipse-plugin</packaging>
+
+	<parent>
+		<groupId>com.espressif.esp32</groupId>
+		<artifactId>com.espressif.esp32.parent</artifactId>
+		<version>3.4.1-SNAPSHOT</version>
+		<relativePath>../parent/pom.xml</relativePath>
+	</parent>
+
+	<name>ESP32 Eclipse OpenOCD debug</name>
+	<url>http://esp32_eclipse.github.io</url>
+</project>

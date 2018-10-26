@@ -11,9 +11,9 @@
 	<!-- https://maven.apache.org/pom.html groupId:artifactId:version are all 
 		required fields, acting much like an address and timestamp in one. -->
 	<!-- Generally unique amongst an organization or a project. -->
-	<groupId>ilg.esp32_eclipse</groupId>
+	<groupId>com.espressif.esp32</groupId>
 	<!-- Generally the name that the project is known by. -->
-	<artifactId>ilg.esp32_eclipse.parent</artifactId>
+	<artifactId>com.espressif.esp32.parent</artifactId>
 	<version>3.4.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 

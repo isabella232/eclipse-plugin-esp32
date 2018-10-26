@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+	<extension point="org.eclipse.debug.core.launchConfigurationTypes">
+		<launchConfigurationType
+			id="com.espressif.esp32.debug.gdbjtag.openocd.launchConfigurationType"
+			modes="debug,run"
+			name="%launchConfig.name"
+			public="true" />
+	</extension>
+
+	<extension point="org.eclipse.debug.core.launchDelegates">
+		<launchDelegate
+			delegate="com.espressif.esp32.debug.gdbjtag.openocd.dsf.LaunchConfigurationDelegate"
+			delegateDescription="%launchDelegate.jtagDsf.description"
+			id="com.espressif.esp32.debug.gdbjtag.openocd.core.dsfLaunchDelegate"
+			modes="debug,run"
+			name="%launchDelegate.jtagDsf.name"
+			sourceLocatorId="org.eclipse.cdt.debug.core.sourceLocator"
+			sourcePathComputerId="org.eclipse.cdt.debug.core.sourcePathComputer"
+			type="com.espressif.esp32.debug.gdbjtag.openocd.launchConfigurationType">
+		</launchDelegate>
+	</extension>
+
+	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+		<launchConfigurationTypeImage
+			configTypeID="com.espressif.esp32.debug.gdbjtag.openocd.launchConfigurationType"
+			icon="icons/obj16/c_app.gif"
+			id="com.espressif.esp32t.debug.gdbjtag.openocd.launchConfigurationTypeImage" />
+	</extension>
+
+	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+		<launchConfigurationTabGroup
+			class="com.espressif.esp32.debug.gdbjtag.openocd.ui.TabGroupLaunchConfiguration"
+			id="com.espressif.esp32.debug.gdbjtag.openocd.launchConfigurationTabGroup"
+			type="com.espressif.esp32.debug.gdbjtag.openocd.launchConfigurationType" />
+	</extension>
+
+	<extension point="org.eclipse.cdt.debug.gdbjtag.core.JTagDevice">
+		<device
+			class="com.espressif.esp32.debug.gdbjtag.openocd.JTagDevice"
+			id="com.espressif.esp32.debug.gdbjtag.openocd.core.jtagdevice"
+			name="%JTagDevice.generic.name">
+		</device>
+	</extension>
+
+	<extension point="org.eclipse.core.variables.valueVariables">
+		<variable
+			initializerClass="com.espressif.esp32.debug.gdbjtag.openocd.VariableInitializer"
+			name="openocd_path" 
+			value="c:/Work/Espressif/Tech/Tools/Jtag/openocd-espressif"
+			/>
+	</extension>
+
+	<extension point="org.eclipse.core.variables.valueVariables">
+		<variable
+			initializerClass="com.espressif.esp32.debug.gdbjtag.openocd.VariableInitializer"
+			name="openocd_executable" />
+		<variable
+			initializerClass="com.espressif.esp32.debug.gdbjtag.openocd.VariableInitializer"
+			name="openocd_path" 
+			value="c:/Work/Espressif/Tech/Tools/Jtag/openocd-espressif"
+			/>
+		<variable
+			initializerClass="com.espressif.esp32.debug.gdbjtag.openocd.VariableInitializer"
+			name="xtensa_tools" 
+			value="C:/msys32/opt/xtensa-esp32-elf"
+			/>
+		<variable
+			initializerClass="com.espressif.esp32.debug.gdbjtag.openocd.VariableInitializer"
+			name="idf_path" 
+			value="c:/Work/Espressif/Tech/Git/esp-idf"
+			/>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="org.eclipse.debug.ui.DebugPreferencePage"
+			class="com.espressif.esp32.debug.gdbjtag.openocd.preferences.OpenOcdPage"
+			id="com.espressif.esp32.debug.gdbjtag.openocd.preferencePage"
+			name="%preferences.openOcd">
+		</page>
+	</extension>
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer
+			class="com.espressif.esp32.debug.gdbjtag.openocd.DefaultPreferenceInitializer">
+		</initializer>
+	</extension>
+
+</plugin>

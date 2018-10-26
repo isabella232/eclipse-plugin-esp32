@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Esp32
+Bundle-SymbolicName: com.espressif.esp32.debug.gdbjtag.esp32;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: com.espressif.esp32.core,
+ com.espressif.esp32.debug.core,
+ com.espressif.esp32.debug.gdbjtag,
+ org.eclipse.ui,
+ com.espressif.esp32.debug.gdbjtag.openocd
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.espressif.esp32.managedbuild.cross_2.4.1.qualifier.jar" id="com.espressif.esp32.managedbuild.cross" version="2.4.1.qualifier">
+      <category name="com.espressif.esp32.category"/>
+   </feature>
+   <feature url="features/com.espressif.esp32.debug.gdbjtag.openocd_4.1.4.qualifier.jar" id="com.espressif.esp32.debug.gdbjtag.openocd" version="4.1.4.qualifier">
+      <category name="com.espressif.esp32.category"/>
+   </feature>
+   <category-def name="com.espressif.esp32.category" label="GNU ESP32 C/C++ Cross Development Tools">
+      <description>
+         GNU ESP32 C/C++ Cross Development Tools
+      </description>
+   </category-def>
+</site>

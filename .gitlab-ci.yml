@@ -38,12 +38,12 @@ build:
     - keytool -genkey -dname "cn=Dmitry Yakovlev, ou=SW, o=Espressif Systems Ltd, c=CN" -alias business -keypass key123 -keystore esp32_plugins.key -storepass key123 -validity 360
     - ls
     - mvn clean install 
-    - ls ilg.esp32_eclipse.repository
-    - ls ilg.esp32_eclipse.repository/target
-    #- ls ilg.esp32_eclipse.repository/target/$REL_NAME.zip
+    - ls com.espressif.esp32.repository
+    - ls com.espressif.esp32.repository/target
+    #- ls com.espressif.esp32.repository/target/$REL_NAME.zip
     - mkdir -p dist
-    - mv ilg.esp32_eclipse.repository/target/*.zip dist/
-    #- mv ilg.esp32_eclipse.repository/target/$REL_NAME.zip dist/
+    - mv com.espressif.esp32.repository/target/*.zip dist/
+    #- mv com.espressif.esp32.repository/target/$REL_NAME.zip dist/
 
 
     

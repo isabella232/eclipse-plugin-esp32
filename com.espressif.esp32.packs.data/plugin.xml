@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="com.espressif.esp32.packs.core.data">
+		<factory class="com.espressif.esp32.packs.data.DataManagerFactory">
+		</factory>
+	</extension>
+
+</plugin>

@@ -9,42 +9,42 @@
 	<!-- https://maven.apache.org/pom.html groupId:artifactId:version are all 
 		required fields, acting much like an address and timestamp in one. -->
 	<!-- Generally unique amongst an organization or a project. -->
-	<groupId>ilg.esp32_eclipse</groupId>
+	<groupId>com.espressif.esp32</groupId>
 	<!-- Generally the name that the project is known by. -->
-	<artifactId>ilg.esp32_eclipse.plugins</artifactId>
+	<artifactId>com.espressif.esp32.plugins</artifactId>
 	<version>3.4.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<parent>
-		<groupId>ilg.esp32_eclipse</groupId>
-		<artifactId>ilg.esp32_eclipse.parent</artifactId>
+		<groupId>com.espressif.esp32</groupId>
+		<artifactId>com.espressif.esp32.parent</artifactId>
 		<version>3.4.1-SNAPSHOT</version>
 		<relativePath>parent/pom.xml</relativePath>
 	</parent>
 
 
 	<modules>
-		<module>ilg.esp32_eclipse.core</module>
-		<module>ilg.esp32_eclipse.managedbuild.cross</module>
-        <module>ilg.esp32_eclipse.managedbuild.cross-feature</module>
+		<module>com.espressif.esp32.core</module>
+		<module>com.espressif.esp32.managedbuild.cross</module>
+        <module>com.espressif.esp32.managedbuild.cross-feature</module>
 
-		<module>ilg.esp32_eclipse.debug.core</module>
+		<module>com.espressif.esp32.debug.core</module>
 
-		<module>ilg.esp32_eclipse.debug.gdbjtag</module>
+		<module>com.espressif.esp32.debug.gdbjtag</module>
 
-		<module>ilg.esp32_eclipse.debug.gdbjtag.openocd</module>
-		<module>ilg.esp32_eclipse.debug.gdbjtag.esp32</module>
+		<module>com.espressif.esp32.debug.gdbjtag.openocd</module>
+		<module>com.espressif.esp32.debug.gdbjtag.esp32</module>
 
 
-		<module>ilg.esp32_eclipse.debug.packs</module>
+		<module>com.espressif.esp32.debug.packs</module>
 
-		<module>ilg.esp32_eclipse.debug.gdbjtag.restart</module>
+		<module>com.espressif.esp32.debug.gdbjtag.restart</module>
 
-		<module>ilg.esp32_eclipse.packs.core</module>
-		<module>ilg.esp32_eclipse.packs.data</module>
+		<module>com.espressif.esp32.packs.core</module>
+		<module>com.espressif.esp32.packs.data</module>
 
-		<module>ilg.esp32_eclipse.debug.gdbjtag.openocd-feature</module>
-		<module>ilg.esp32_eclipse.repository</module>
+		<module>com.espressif.esp32.debug.gdbjtag.openocd-feature</module>
+		<module>com.espressif.esp32.repository</module>
 
 	</modules>
 
